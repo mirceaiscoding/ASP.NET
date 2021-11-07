@@ -1,5 +1,5 @@
 ﻿using System;
-namespace ReservationsAPI.Models
+namespace ReservationsAPI.DAL.Entities
 {
     public class WorkDaySchedule
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ReservationsAPI.Models
+namespace ReservationsAPI.DAL.Entities
 {
     public class WorkSchedule
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 
-namespace ReservationsAPI.Models
+namespace ReservationsAPI.DAL.Entities
 {
     public class ReservationsContext : DbContext
     {
