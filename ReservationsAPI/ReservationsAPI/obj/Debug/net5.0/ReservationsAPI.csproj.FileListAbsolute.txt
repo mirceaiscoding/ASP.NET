@@ -137,6 +137,9 @@
 /Users/binamircea/Projects/ReservationsAPI/ReservationsAPI/obj/Debug/net5.0/ref/ReservationsAPI.dll
 /Users/binamircea/Projects/ReservationsAPI/ReservationsAPI/obj/Debug/net5.0/ReservationsAPI.pdb
 /Users/binamircea/Projects/ReservationsAPI/ReservationsAPI/obj/Debug/net5.0/ReservationsAPI.genruntimeconfig.cache
+/Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/ReservationsAPI.DAL.deps.json
+/Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/ReservationsAPI.DAL.runtimeconfig.json
+/Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/ReservationsAPI.DAL.runtimeconfig.dev.json
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/appsettings.Development.json
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/appsettings.json
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/mono_crash.11a67480d0.0.json
@@ -260,6 +263,8 @@
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/runtimes/win-arm64/lib/net5.0/dotnet-aspnet-codegenerator-design.exe
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/runtimes/win/lib/netstandard2.0/System.Runtime.Caching.dll
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll
+/Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/ReservationsAPI.DAL.dll
+/Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/ReservationsAPI.DAL.pdb
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/obj/Debug/net5.0/ReservationsAPI.csproj.AssemblyReference.cache
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/obj/Debug/net5.0/ReservationsAPI.GeneratedMSBuildEditorConfig.editorconfig
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/obj/Debug/net5.0/ReservationsAPI.AssemblyInfoInputs.cache

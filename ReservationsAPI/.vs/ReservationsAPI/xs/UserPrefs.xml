@@ -1,26 +1,11 @@
-﻿<Properties StartupConfiguration="{8B8FE423-697C-46B4-85C0-2B9B5BE89538}|Default">
-  <MonoDevelop.Ide.ItemProperties.ReservationsAPI FirstBuild="True" PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ReservationsAPI/Startup.cs">
-    <Files>
-      <File FileName="ReservationsAPI/Properties/launchSettings.json" Line="31" Column="2" />
-      <File FileName="ReservationsAPI/appsettings.json" Line="14" Column="1" />
-      <File FileName="ReservationsAPI/appsettings.Development.json" Line="1" Column="1" />
-      <File FileName="ReservationsAPI/Program.cs" Line="1" Column="1" />
-      <File FileName="ReservationsAPI/Startup.cs" Line="25" Column="39" />
-    </Files>
+﻿<Properties StartupConfiguration="{4F96D45A-291E-4B3E-8E04-E668420FB686}|Default">
+  <MonoDevelop.Ide.ItemProperties.ReservationsAPI PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="ReservationsAPI" expanded="True">
-            <Node name="ReservationsAPI" expanded="True">
-              <Node name="Dependencies" expanded="True">
-                <Node name="FrameworkReferences" expanded="True" />
-                <Node name="PackageDependencies" selected="True" />
-              </Node>
-              <Node name="Controllers" expanded="True" />
-              <Node name="Properties" expanded="True" />
-              <Node name="appsettings.json" expanded="True" />
-            </Node>
+          <Node name="ReservationsAPI" expanded="True" selected="True">
+            <Node name="ReservationsAPI" expanded="True" />
           </Node>
         </State>
       </Pad>
@@ -28,8 +13,6 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints />
   <MultiItemStartupConfigurations />
 </Properties>
