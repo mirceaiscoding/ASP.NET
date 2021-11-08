@@ -270,8 +270,8 @@
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/obj/Debug/net5.0/staticwebassets/ReservationsAPI.StaticWebAssets.xml
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/obj/Debug/net5.0/scopedcss/bundle/ReservationsAPI.styles.css
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/obj/Debug/net5.0/ReservationsAPI.RazorTargetAssemblyInfo.cache
-/Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/obj/Debug/net5.0/ReservationsAPI.csproj.CopyComplete
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/obj/Debug/net5.0/ReservationsAPI.dll
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/obj/Debug/net5.0/ref/ReservationsAPI.dll
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/obj/Debug/net5.0/ReservationsAPI.pdb
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/obj/Debug/net5.0/ReservationsAPI.genruntimeconfig.cache
+/Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/obj/Debug/net5.0/ReservationsAPI.csproj.AssemblyReference.cache
