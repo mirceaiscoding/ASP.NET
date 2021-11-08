@@ -8,6 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using ReservationsAPI.DAL.Entities;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Mvc;
+using ReservationsAPI.DAL;
+using ReservationsAPI.DAL.Interfaces;
+using ReservationsAPI.DAL.Repositories;
 
 namespace ReservationsAPI
 {
@@ -25,7 +28,7 @@ namespace ReservationsAPI
             services.AddControllers();
 
             services.AddDbContext<ReservationsContext>(opt =>
-                                               opt.UseSqlServer("Server=localhost,1433; Database=ReservationsDB; User=sa; Password =Maestru18!;"));
+                                               opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ReservationsApi", Version = "v1" });
@@ -34,6 +37,12 @@ namespace ReservationsAPI
             services.AddControllersWithViews()
                 .AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
+            // Just in case: services.AddHttpContextAccessor();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -46,6 +55,7 @@ namespace ReservationsAPI
             }
 
             app.UseHttpsRedirection();
+
             app.UseRouting();
 
             app.UseAuthorization();

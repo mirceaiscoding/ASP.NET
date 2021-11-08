@@ -6,116 +6,104 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ReservationsAPI.DAL.Entities;
+using ReservationsAPI.DAL.Interfaces;
 
 namespace ReservationsAPI.DAL.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AppointmentsController : ControllerBase
+    public class AppointmentsController : Controller
     {
-        private readonly ReservationsContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public AppointmentsController(ReservationsContext context)
+        public AppointmentsController(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
         }
 
-        // GET: api/Appointments
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Appointment>>> GetAppointments()
+        [HttpGet()]
+        public IEnumerable<Appointment> GetModify()
         {
-            return await _context.Appointments.ToListAsync();
+            var list = _unitOfWork.AppointmentsRepository.GetAll().ToList();
+            return list;
         }
 
-        // GET: api/Appointments/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Appointment>> GetAppointment(long id)
-        {
-            var appointment = await _context.Appointments.FindAsync(id);
 
-            if (appointment == null)
-            {
-                return NotFound();
-            }
+        //        // PUT: api/Appointments/5
+        //        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        //        [HttpPut("{id}")]
+        //        public async Task<IActionResult> PutAppointment(long id, Appointment appointment)
+        //        {
+        //            if (id != appointment.DoctorId)
+        //            {
+        //                return BadRequest();
+        //            }
 
-            return appointment;
-        }
+        //            _context.Entry(appointment).State = EntityState.Modified;
 
-        // PUT: api/Appointments/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutAppointment(long id, Appointment appointment)
-        {
-            if (id != appointment.DoctorId)
-            {
-                return BadRequest();
-            }
+        //            try
+        //            {
+        //                await _context.SaveChangesAsync();
+        //            }
+        //            catch (DbUpdateConcurrencyException)
+        //            {
+        //                if (!AppointmentExists(id))
+        //                {
+        //                    return NotFound();
+        //                }
+        //                else
+        //                {
+        //                    throw;
+        //                }
+        //            }
 
-            _context.Entry(appointment).State = EntityState.Modified;
+        //            return NoContent();
+        //        }
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!AppointmentExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //        // POST: api/Appointments
+        //        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        //        [HttpPost]
+        //        public async Task<ActionResult<Appointment>> PostAppointment(Appointment appointment)
+        //        {
+        //            _context.Appointments.Add(appointment);
+        //            try
+        //            {
+        //                await _context.SaveChangesAsync();
+        //            }
+        //            catch (DbUpdateException)
+        //            {
+        //                if (AppointmentExists(appointment.DoctorId))
+        //                {
+        //                    return Conflict();
+        //                }
+        //                else
+        //                {
+        //                    throw;
+        //                }
+        //            }
 
-            return NoContent();
-        }
+        //            return CreatedAtAction("GetAppointment", new { id = appointment.DoctorId }, appointment);
+        //        }
 
-        // POST: api/Appointments
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Appointment>> PostAppointment(Appointment appointment)
-        {
-            _context.Appointments.Add(appointment);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (AppointmentExists(appointment.DoctorId))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //        // DELETE: api/Appointments/5
+        //        [HttpDelete("{id}")]
+        //        public async Task<IActionResult> DeleteAppointment(long id)
+        //        {
+        //            var appointment = await _context.Appointments.FindAsync(id);
+        //            if (appointment == null)
+        //            {
+        //                return NotFound();
+        //            }
 
-            return CreatedAtAction("GetAppointment", new { id = appointment.DoctorId }, appointment);
-        }
+        //            _context.Appointments.Remove(appointment);
+        //            await _context.SaveChangesAsync();
 
-        // DELETE: api/Appointments/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAppointment(long id)
-        {
-            var appointment = await _context.Appointments.FindAsync(id);
-            if (appointment == null)
-            {
-                return NotFound();
-            }
+        //            return NoContent();
+        //        }
 
-            _context.Appointments.Remove(appointment);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool AppointmentExists(long id)
-        {
-            return _context.Appointments.Any(e => e.DoctorId == id);
-        }
+        //        private bool AppointmentExists(long id)
+        //        {
+        //            return _context.Appointments.Any(e => e.DoctorId == id);
+        //        }
     }
 }

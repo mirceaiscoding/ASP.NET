@@ -2135,26 +2135,6 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
-      },
-      "ReservationsAPI.DAL/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
-        "dependencies": {
-          "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "5.0.11",
-          "Microsoft.EntityFrameworkCore": "5.0.11",
-          "Microsoft.EntityFrameworkCore.Relational": "5.0.11",
-          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.11",
-          "Microsoft.Extensions.DependencyInjection": "5.0.2"
-        },
-        "compile": {
-          "bin/placeholder/ReservationsAPI.DAL.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/ReservationsAPI.DAL.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
       }
     }
   },
@@ -7475,11 +7455,6 @@
         "system.xml.xmlserializer.4.3.0.nupkg.sha512",
         "system.xml.xmlserializer.nuspec"
       ]
-    },
-    "ReservationsAPI.DAL/1.0.0": {
-      "type": "project",
-      "path": "../../ReservationsAPI.DAL/ReservationsAPI.DAL/ReservationsAPI.DAL.csproj",
-      "msbuildProject": "../../ReservationsAPI.DAL/ReservationsAPI.DAL/ReservationsAPI.DAL.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -7492,7 +7467,6 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.11",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.11",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 5.0.2",
-      "ReservationsAPI.DAL >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.2.3",
       "Swashbuckle.AspNetCore.Swagger >= 6.2.3"
     ]
@@ -7521,11 +7495,7 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {
-            "/Users/binamircea/ASP.NET/ReservationsAPI.DAL/ReservationsAPI.DAL/ReservationsAPI.DAL.csproj": {
-              "projectPath": "/Users/binamircea/ASP.NET/ReservationsAPI.DAL/ReservationsAPI.DAL/ReservationsAPI.DAL.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {

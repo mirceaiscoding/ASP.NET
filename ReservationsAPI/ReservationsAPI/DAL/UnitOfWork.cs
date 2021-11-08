@@ -1,12 +1,14 @@
 ﻿using System;
 using ReservationsAPI.DAL.Entities;
+using ReservationsAPI.DAL.Interfaces;
 using ReservationsAPI.DAL.Repositories;
 
 namespace ReservationsAPI.DAL
 {
-    public class UnitOfWork : IDisposable
+    public class UnitOfWork : IUnitOfWork
     {
         private ReservationsContext _context;
+
         private GenericRepository<Appointment> appointmentsRepository;
         private GenericRepository<Doctor> doctorsRepository;
         private GenericRepository<Pacient> pacientsRepository;
@@ -19,7 +21,7 @@ namespace ReservationsAPI.DAL
             _context = context;
         }
 
-        public GenericRepository<Appointment> AppointmentsRepository
+        public IGenericRepository<Appointment> AppointmentsRepository
         {
             get
             {
@@ -32,7 +34,7 @@ namespace ReservationsAPI.DAL
             }
         }
 
-        public GenericRepository<Doctor> DoctorsRepository
+        public IGenericRepository<Doctor> DoctorsRepository
         {
             get
             {
@@ -45,7 +47,7 @@ namespace ReservationsAPI.DAL
             }
         }
 
-        public GenericRepository<Pacient> PacientsRepository
+        public IGenericRepository<Pacient> PacientsRepository
         {
             get
             {
@@ -58,7 +60,7 @@ namespace ReservationsAPI.DAL
             }
         }
 
-        public GenericRepository<Procedure> ProceduresRepository
+        public IGenericRepository<Procedure> ProceduresRepository
         {
             get
             {
@@ -71,7 +73,7 @@ namespace ReservationsAPI.DAL
             }
         }
 
-        public GenericRepository<WorkDaySchedule> WorkDaySchedulesRepository
+        public IGenericRepository<WorkDaySchedule> WorkDaySchedulesRepository
         {
             get
             {
@@ -84,7 +86,7 @@ namespace ReservationsAPI.DAL
             }
         }
 
-        public GenericRepository<WorkSchedule> WorkSchedulesRepository
+        public IGenericRepository<WorkSchedule> WorkSchedulesRepository
         {
             get
             {
