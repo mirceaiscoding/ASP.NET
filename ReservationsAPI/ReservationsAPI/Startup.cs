@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 using ReservationsAPI.DAL;
 using ReservationsAPI.DAL.Interfaces;
 using ReservationsAPI.DAL.Repositories;
+using ReservationsAPI.BLL.Interfaces;
+using ReservationsAPI.BLL.Managers;
 
 namespace ReservationsAPI
 {
@@ -38,6 +40,7 @@ namespace ReservationsAPI
                 .AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
+            services.AddTransient<IPacientsManager, PacientsManager>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
