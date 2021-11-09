@@ -7484,7 +7484,7 @@
       "outputPath": "/Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/binamircea/.nuget/NuGet/NuGet.Config"
+        "/Users/binamircea/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"

@@ -7,7 +7,6 @@
   <ItemGroup>
     <None Remove="Newtonsoft.Json" />
     <None Remove="Swashbuckle.AspNetCore" />
-    <None Remove="Models\" />
     <None Remove="Swashbuckle.AspNetCore.Swagger" />
     <None Remove="Microsoft.EntityFrameworkCore" />
     <None Remove="Microsoft.EntityFrameworkCore.Relational" />
@@ -17,6 +16,10 @@
     <None Remove="DAL\Entities\" />
     <None Remove="DAL\Interfaces\" />
     <None Remove="DAL\Repositories\" />
+    <None Remove="DAL\Models\" />
+    <None Remove="BLL\" />
+    <None Remove="BLL\Interfaces\" />
+    <None Remove="BLL\Managers\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.11">
@@ -37,10 +40,13 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.11" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="DAL\" />
     <Folder Include="DAL\Entities\" />
     <Folder Include="DAL\Interfaces\" />
     <Folder Include="DAL\Repositories\" />
+    <Folder Include="DAL\Models\" />
+    <Folder Include="BLL\" />
+    <Folder Include="BLL\Interfaces\" />
+    <Folder Include="BLL\Managers\" />
   </ItemGroup>
 </Project>
