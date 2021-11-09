@@ -12,20 +12,16 @@ namespace ReservationsAPI.DAL
 
         public DbSet<Pacient> Pacients { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
-        public DbSet<WorkSchedule> WorkSchedules { get; set; }
         public DbSet<WorkDaySchedule> WorkDaySchedules { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Procedure> Procedures { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Doctor>()
-                .HasOne(d => d.WorkSchedule)
-                .WithOne(ws => ws.Doctor);
 
             builder.Entity<WorkDaySchedule>()
-                .HasOne(wds => wds.WorkSchedule)
-                .WithMany(ws => ws.WorkDaySchedules);
+                .HasOne(wds => wds.Doctor)
+                .WithMany(d => d.WorkDaySchedules);
 
             builder.Entity<Appointment>()
                 .HasKey(a => new { a.DoctorId, a.PacientId, a.ProcedureId, a.StartTime });

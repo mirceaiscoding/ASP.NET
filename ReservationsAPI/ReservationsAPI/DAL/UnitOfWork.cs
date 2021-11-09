@@ -14,7 +14,6 @@ namespace ReservationsAPI.DAL
         private GenericRepository<Pacient> pacientsRepository;
         private GenericRepository<Procedure> proceduresRepository;
         private GenericRepository<WorkDaySchedule> workDaySchedulesRepository;
-        private GenericRepository<WorkSchedule> workSchedulesRepository;
 
         public UnitOfWork(ReservationsContext context)
         {
@@ -83,19 +82,6 @@ namespace ReservationsAPI.DAL
                     this.workDaySchedulesRepository = new GenericRepository<WorkDaySchedule>(_context);
                 }
                 return workDaySchedulesRepository;
-            }
-        }
-
-        public IGenericRepository<WorkSchedule> WorkSchedulesRepository
-        {
-            get
-            {
-
-                if (this.workSchedulesRepository == null)
-                {
-                    this.workSchedulesRepository = new GenericRepository<WorkSchedule>(_context);
-                }
-                return workSchedulesRepository;
             }
         }
 

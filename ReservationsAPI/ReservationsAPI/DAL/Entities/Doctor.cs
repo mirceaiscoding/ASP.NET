@@ -11,7 +11,7 @@ namespace ReservationsAPI.DAL.Entities
         public string PhoneNumber { get; set; }
         public string JobDescription { get; set; }
 
-        public virtual WorkSchedule WorkSchedule { get; set; }
+        public virtual ICollection<WorkDaySchedule> WorkDaySchedules { get; set; }
         public virtual ICollection<Appointment> Appointments { get; set; }
     }
 }
