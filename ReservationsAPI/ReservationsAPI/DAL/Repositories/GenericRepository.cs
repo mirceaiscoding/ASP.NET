@@ -17,6 +17,11 @@ namespace ReservationsAPI.DAL.Repositories
             entities = _context.Set<TEntity>();
         }
 
+        public virtual IQueryable<TEntity> GetQueryable()
+        {
+            return entities;
+        }
+
         public virtual IEnumerable<TEntity> GetAll()
         {
             return entities;
