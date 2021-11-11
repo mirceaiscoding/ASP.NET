@@ -152,7 +152,13 @@
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/ReservationsAPI.dll
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/ref/ReservationsAPI.dll
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/ReservationsAPI.pdb
+/Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/AutoMapper.dll
+/Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/Humanizer.dll
+/Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+/Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+/Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/Microsoft.AspNetCore.JsonPatch.dll
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/Microsoft.AspNetCore.Razor.Language.dll
@@ -170,6 +176,8 @@
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/Microsoft.EntityFrameworkCore.Relational.dll
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/Microsoft.EntityFrameworkCore.SqlServer.dll
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/Microsoft.Extensions.DependencyInjection.dll
+/Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/Microsoft.Extensions.Identity.Core.dll
+/Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/Microsoft.Extensions.Identity.Stores.dll
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/Microsoft.Identity.Client.dll
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/Microsoft.IdentityModel.JsonWebTokens.dll
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/Microsoft.IdentityModel.Logging.dll
@@ -275,6 +283,3 @@
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/obj/Debug/net5.0/ReservationsAPI.pdb
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/obj/Debug/net5.0/ReservationsAPI.genruntimeconfig.cache
 /Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/obj/Debug/net5.0/ReservationsAPI.csproj.AssemblyReference.cache
-/Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/AutoMapper.dll
-/Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/bin/Debug/net5.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
-/Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/obj/Debug/net5.0/ReservationsAPI.csproj.CopyComplete
