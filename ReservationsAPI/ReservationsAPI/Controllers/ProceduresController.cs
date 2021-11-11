@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ReservationsAPI.DAL.Entities;
+using ReservationsAPI.BLL.Interfaces;
 
 namespace ReservationsAPI.DAL.Controllers
 {
@@ -13,95 +13,18 @@ namespace ReservationsAPI.DAL.Controllers
     [ApiController]
     public class ProceduresController : ControllerBase
     {
-        private readonly ReservationsContext _context;
+        private readonly IProceduresManager _proceduresManager;
 
-        public ProceduresController(ReservationsContext context)
+        public ProceduresController(IProceduresManager proceduresManager)
         {
-            _context = context;
+            _proceduresManager = proceduresManager;
         }
 
-        // GET: api/Procedures
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Procedure>>> GetProcedures()
+        [HttpGet()]
+        public async Task<IActionResult> GetAll()
         {
-            return await _context.Procedures.ToListAsync();
-        }
-
-        // GET: api/Procedures/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Procedure>> GetProcedure(long id)
-        {
-            var procedure = await _context.Procedures.FindAsync(id);
-
-            if (procedure == null)
-            {
-                return NotFound();
-            }
-
-            return procedure;
-        }
-
-        // PUT: api/Procedures/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutProcedure(long id, Procedure procedure)
-        {
-            if (id != procedure.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(procedure).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProcedureExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Procedures
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Procedure>> PostProcedure(Procedure procedure)
-        {
-            _context.Procedures.Add(procedure);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetProcedure", new { id = procedure.Id }, procedure);
-        }
-
-        // DELETE: api/Procedures/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProcedure(long id)
-        {
-            var procedure = await _context.Procedures.FindAsync(id);
-            if (procedure == null)
-            {
-                return NotFound();
-            }
-
-            _context.Procedures.Remove(procedure);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool ProcedureExists(long id)
-        {
-            return _context.Procedures.Any(e => e.Id == id);
+            var appointments = await _proceduresManager.GetAll();
+            return Ok(appointments);
         }
     }
 }

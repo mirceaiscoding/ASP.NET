@@ -14,7 +14,7 @@
         "outputPath": "/Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/binamircea/.config/NuGet/NuGet.Config"
+          "/Users/binamircea/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -38,6 +38,14 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[10.1.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
             "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
               "target": "Package",
               "version": "[5.0.11, )"

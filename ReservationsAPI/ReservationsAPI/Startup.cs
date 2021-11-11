@@ -41,9 +41,12 @@ namespace ReservationsAPI
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddTransient<IPacientsManager, PacientsManager>();
+            services.AddTransient<IProceduresManager, ProceduresManager>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
+            services.AddAutoMapper(typeof(Startup));
 
             // Just in case: services.AddHttpContextAccessor();
         }

@@ -10,5 +10,6 @@ namespace ReservationsAPI.DAL.Interfaces
         IGenericRepository<Pacient> PacientsRepository { get; }
         IGenericRepository<Procedure> ProceduresRepository { get; }
         IGenericRepository<WorkDaySchedule> WorkDaySchedulesRepository { get; }
+        IGenericRepository<VacationDay> VacationDaysRepository { get; }
     }
 }
