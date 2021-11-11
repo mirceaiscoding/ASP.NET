@@ -1,6 +1,17 @@
 ﻿<Properties StartupConfiguration="{4F96D45A-291E-4B3E-8E04-E668420FB686}|Default">
   <MonoDevelop.Ide.ItemProperties.ReservationsAPI PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Startup.cs">
+    <Files>
+      <File FileName="BLL/Managers/ProceduresManager.cs" Line="23" Column="53" />
+      <File FileName="DAL/Interfaces/IGenericRepository.cs" Line="10" Column="30" />
+      <File FileName="DAL/Repositories/GenericRepository.cs" Line="1" Column="1" />
+      <File FileName="BLL/Managers/PacientsManager.cs" Line="1" Column="1" />
+      <File FileName="Controllers/ProceduresController.cs" Line="26" Column="66" />
+      <File FileName="Controllers/DoctorsController.cs" Line="1" Column="1" />
+      <File FileName="Controllers/PacientsController.cs" Line="17" Column="9" />
+      <File FileName="BLL/Interfaces/IProceduresManager.cs" Line="10" Column="40" />
+      <File FileName="Startup.cs" Line="44" Column="53" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
@@ -10,15 +21,15 @@
                 <Node name="Interfaces" expanded="True" />
                 <Node name="Managers" expanded="True" />
               </Node>
-              <Node name="Controllers" expanded="True">
-                <Node name="PacientsController.cs" selected="True" />
-              </Node>
+              <Node name="Controllers" expanded="True" />
               <Node name="DAL" expanded="True">
-                <Node name="Entities" expanded="True" />
                 <Node name="Interfaces" expanded="True" />
-                <Node name="Models" expanded="True" />
+                <Node name="Models" expanded="True">
+                  <Node name="DataTransferObjects" expanded="True" />
+                </Node>
                 <Node name="Repositories" expanded="True" />
               </Node>
+              <Node name="Startup.cs" selected="True" />
             </Node>
           </Node>
         </State>

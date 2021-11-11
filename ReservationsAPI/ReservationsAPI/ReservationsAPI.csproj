@@ -20,6 +20,9 @@
     <None Remove="BLL\" />
     <None Remove="BLL\Interfaces\" />
     <None Remove="BLL\Managers\" />
+    <None Remove="AutoMapper" />
+    <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
+    <None Remove="DAL\Models\DataTransferObjects\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.11">
@@ -38,6 +41,8 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.11" />
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DAL\" />
@@ -48,5 +53,6 @@
     <Folder Include="BLL\" />
     <Folder Include="BLL\Interfaces\" />
     <Folder Include="BLL\Managers\" />
+    <Folder Include="DAL\Models\DataTransferObjects\" />
   </ItemGroup>
 </Project>

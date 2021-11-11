@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "csPjrqOzGPV8B1pAQqEmM8Xl/9d4a+IYYdWd8/lobjApH/MYI0RHz97urXk8y3Eq54OM8xgVcFQCehZviy0T6w==",
+  "dgSpecHash": "4uW7A8NI7y0nnccYnjq5pbYOw12FWtZ38rFL9Xv2h5vJe6F+cL3ccP/OwAOdqw9bOVGnfab1to/T/93cv3+7PQ==",
   "success": true,
   "projectFilePath": "/Users/binamircea/ASP.NET/ReservationsAPI/ReservationsAPI/ReservationsAPI.csproj",
   "expectedPackageFiles": [
+    "/Users/binamircea/.nuget/packages/automapper/10.1.1/automapper.10.1.1.nupkg.sha512",
+    "/Users/binamircea/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/8.1.1/automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
     "/Users/binamircea/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
     "/Users/binamircea/.nuget/packages/microsoft.aspnetcore.html.abstractions/2.2.0/microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "/Users/binamircea/.nuget/packages/microsoft.aspnetcore.jsonpatch/5.0.11/microsoft.aspnetcore.jsonpatch.5.0.11.nupkg.sha512",
@@ -101,7 +103,7 @@
     "/Users/binamircea/.nuget/packages/system.private.datacontractserialization/4.3.0/system.private.datacontractserialization.4.3.0.nupkg.sha512",
     "/Users/binamircea/.nuget/packages/system.private.uri/4.3.2/system.private.uri.4.3.2.nupkg.sha512",
     "/Users/binamircea/.nuget/packages/system.reflection/4.3.0/system.reflection.4.3.0.nupkg.sha512",
-    "/Users/binamircea/.nuget/packages/system.reflection.emit/4.3.0/system.reflection.emit.4.3.0.nupkg.sha512",
+    "/Users/binamircea/.nuget/packages/system.reflection.emit/4.7.0/system.reflection.emit.4.7.0.nupkg.sha512",
     "/Users/binamircea/.nuget/packages/system.reflection.emit.ilgeneration/4.3.0/system.reflection.emit.ilgeneration.4.3.0.nupkg.sha512",
     "/Users/binamircea/.nuget/packages/system.reflection.emit.lightweight/4.3.0/system.reflection.emit.lightweight.4.3.0.nupkg.sha512",
     "/Users/binamircea/.nuget/packages/system.reflection.extensions/4.3.0/system.reflection.extensions.4.3.0.nupkg.sha512",
