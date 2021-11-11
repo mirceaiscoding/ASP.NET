@@ -1,10 +1,20 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ReservationsAPI.DAL.Entities;
 
 namespace ReservationsAPI.DAL
 {
-    public class ReservationsContext : DbContext
+    public class ReservationsContext : IdentityDbContext<
+        User,
+        Role,
+        int,
+        IdentityUserClaim<int>,
+        UserRole,
+        IdentityUserLogin<int>,
+        IdentityRoleClaim<int>,
+        IdentityUserToken<int>>
     {
         public ReservationsContext(DbContextOptions<ReservationsContext> options) : base(options)
         {
