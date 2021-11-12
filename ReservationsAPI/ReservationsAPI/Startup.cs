@@ -13,6 +13,12 @@ using ReservationsAPI.DAL.Interfaces;
 using ReservationsAPI.DAL.Repositories;
 using ReservationsAPI.BLL.Interfaces;
 using ReservationsAPI.BLL.Managers;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ReservationsAPI
 {
@@ -47,6 +53,44 @@ namespace ReservationsAPI
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             services.AddAutoMapper(typeof(Startup));
+
+            services.AddIdentity<User, Role>()
+                .AddEntityFrameworkStores<ReservationsContext>()
+                .AddDefaultTokenProviders();
+
+            services
+                .AddAuthentication(options =>
+                {
+
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer("AuthScheme", options =>
+                {
+                    options.RequireHttpsMetadata = true;
+                    options.SaveToken = true;
+                    var secret = Configuration.GetSection("Jwt").GetSection("Token").Get<String>();
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        ValidateLifetime = true,
+                        RequireExpirationTime = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret)),
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+                    };
+                    options.Events = new JwtBearerEvents
+                    {
+                        OnAuthenticationFailed = context =>
+                        {
+                            if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
+                            {
+                                context.Response.Headers.Add("Token-Expired", "true");
+                            }
+                            return Task.CompletedTask;
+                        }
+                    };
+                });
 
             // Just in case: services.AddHttpContextAccessor();
         }

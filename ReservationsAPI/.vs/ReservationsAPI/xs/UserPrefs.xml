@@ -1,40 +1,16 @@
 ﻿<Properties StartupConfiguration="{4F96D45A-291E-4B3E-8E04-E668420FB686}|Default">
   <MonoDevelop.Ide.ItemProperties.ReservationsAPI PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Migrations/20211111202321_AddedAuthEntities.cs">
-    <Files>
-      <File FileName="BLL/Managers/ProceduresManager.cs" Line="27" Column="2" />
-      <File FileName="DAL/Interfaces/IGenericRepository.cs" Line="10" Column="30" />
-      <File FileName="DAL/Repositories/GenericRepository.cs" Line="1" Column="1" />
-      <File FileName="BLL/Managers/PacientsManager.cs" Line="1" Column="1" />
-      <File FileName="Controllers/ProceduresController.cs" Line="27" Column="23" />
-      <File FileName="Controllers/DoctorsController.cs" Line="1" Column="1" />
-      <File FileName="Controllers/PacientsController.cs" Line="17" Column="9" />
-      <File FileName="BLL/Interfaces/IProceduresManager.cs" Line="10" Column="40" />
-      <File FileName="Startup.cs" Line="67" Column="36" />
-      <File FileName="DAL/Entities/User.cs" Line="12" Column="1" />
-      <File FileName="DAL/Entities/Role.cs" Line="9" Column="69" />
-      <File FileName="DAL/Entities/UserRole.cs" Line="9" Column="47" />
-      <File FileName="DAL/ReservationsContext.cs" Line="18" Column="6" />
-      <File FileName="Migrations/20211111202321_AddedAuthEntities.cs" Line="1" Column="1" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="ReservationsAPI" expanded="True">
             <Node name="ReservationsAPI" expanded="True">
               <Node name="BLL" expanded="True">
+                <Node name="Helpers" expanded="True" />
                 <Node name="Interfaces" expanded="True" />
-                <Node name="Managers" expanded="True" />
               </Node>
               <Node name="Controllers" expanded="True" />
-              <Node name="DAL" expanded="True">
-                <Node name="Entities" expanded="True" />
-                <Node name="Interfaces" expanded="True" />
-                <Node name="Models" expanded="True">
-                  <Node name="DataTransferObjects" expanded="True" />
-                </Node>
-                <Node name="Repositories" expanded="True" />
-              </Node>
               <Node name="Migrations" expanded="True">
                 <Node name="20211111202321_AddedAuthEntities.cs" selected="True" />
               </Node>

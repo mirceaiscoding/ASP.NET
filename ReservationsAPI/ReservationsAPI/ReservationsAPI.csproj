@@ -25,6 +25,7 @@
     <None Remove="DAL\Models\DataTransferObjects\" />
     <None Remove="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
     <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <None Remove="BLL\Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.11">
@@ -58,5 +59,6 @@
     <Folder Include="BLL\Interfaces\" />
     <Folder Include="BLL\Managers\" />
     <Folder Include="DAL\Models\DataTransferObjects\" />
+    <Folder Include="BLL\Helpers\" />
   </ItemGroup>
 </Project>
