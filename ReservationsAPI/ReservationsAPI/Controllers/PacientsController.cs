@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ReservationsAPI.BLL.Interfaces;
 using ReservationsAPI.DAL.Entities;
+using ReservationsAPI.DAL.Models.DataTransferObjects;
 
 namespace ReservationsAPI.DAL.Controllers
 {
@@ -21,11 +22,10 @@ namespace ReservationsAPI.DAL.Controllers
             _pacientsManager = pacientsManager;
         }
 
-        [HttpGet("{id}/Appointments")]
-        public async Task<IActionResult> GetPacientAppointments([FromRoute] long id)
+        [HttpGet("get-number-of-future-appointments")]
+        public async Task<IActionResult> GetNumberOfFutureAppointments(long pacientId)
         {
-            var appointments = await _pacientsManager.GetAppointments(id);
-            return Ok(appointments);
+            return Ok(await _pacientsManager.GetNumberOfFutureAppointments(pacientId));
         }
     }
 }

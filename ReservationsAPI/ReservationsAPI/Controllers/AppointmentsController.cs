@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ReservationsAPI.BLL.Interfaces;
 using ReservationsAPI.DAL.Entities;
 using ReservationsAPI.DAL.Interfaces;
 
@@ -14,18 +15,23 @@ namespace ReservationsAPI.DAL.Controllers
     [ApiController]
     public class AppointmentsController : Controller
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IAppointmentsManager _appointmentsManager;
 
-        public AppointmentsController(IUnitOfWork unitOfWork)
+        public AppointmentsController(IAppointmentsManager appointmentsManager)
         {
-            _unitOfWork = unitOfWork;
+            _appointmentsManager = appointmentsManager;
         }
 
-        [HttpGet()]
-        public IEnumerable<Appointment> GetModify()
+        [HttpGet("doctor-appointments/{id}")]
+        public async Task<IActionResult> GetDoctorAppointments(long id)
         {
-            var list = _unitOfWork.AppointmentsRepository.GetAll().ToList();
-            return list;
+            return Ok(await _appointmentsManager.GetDoctorAppointments(id));
+        }
+
+        [HttpGet("pacient-appointments/{id}")]
+        public async Task<IActionResult> GetPacientAppointments(long id)
+        {
+            return Ok(await _appointmentsManager.GetPacientAppointments(id));
         }
 
 
