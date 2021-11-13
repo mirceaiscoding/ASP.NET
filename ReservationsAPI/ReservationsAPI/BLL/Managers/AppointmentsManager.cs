@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using ReservationsAPI.BLL.Interfaces;
+using ReservationsAPI.DAL.Entities;
 using ReservationsAPI.DAL.Interfaces;
 using ReservationsAPI.DAL.Models;
+using ReservationsAPI.DAL.Models.DataTransferObjects;
 
 namespace ReservationsAPI.BLL.Managers
 {
@@ -17,6 +19,13 @@ namespace ReservationsAPI.BLL.Managers
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+        }
+
+        public async Task<List<AppointmentDTO>> GetAll()
+        {
+            var appointments = _unitOfWork.AppointmentsRepository.GetAll();
+            var appointmentDTOs = _mapper.Map<IEnumerable<Appointment>, List<AppointmentDTO>>(appointments);
+            return appointmentDTOs;
         }
 
         public Task<List<DoctorAppointmentsModel>> GetDoctorAppointments(long doctorId)

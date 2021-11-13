@@ -34,6 +34,13 @@ namespace ReservationsAPI.DAL.Controllers
             return Ok(await _appointmentsManager.GetPacientAppointments(id));
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAllAppointments()
+        {
+            return Ok(await _appointmentsManager.GetAll());
+        }
+
+
 
         //        // PUT: api/Appointments/5
         //        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

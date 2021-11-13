@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ReservationsAPI.DAL.Models;
+using ReservationsAPI.DAL.Models.DataTransferObjects;
 
 namespace ReservationsAPI.BLL.Interfaces
 {
@@ -10,5 +11,7 @@ namespace ReservationsAPI.BLL.Interfaces
         Task<List<DoctorAppointmentsModel>> GetDoctorAppointments(long doctorId);
 
         Task<List<PacientAppointmentsModel>> GetPacientAppointments(long pacientId);
+
+        Task<List<AppointmentDTO>> GetAll();
     }
 }
