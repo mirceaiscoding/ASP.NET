@@ -13,6 +13,11 @@ namespace ReservationsAPI.DAL.Repositories
     {
         public AppointmentsRepository(ReservationsContext context) : base(context) { }
 
+        public async Task<Appointment> GetByCompositeKeyAsync(object[] id)
+        {
+            return await entities.FindAsync(id);
+        }
+
         public async Task<List<DoctorAppointmentsModel>> GetDoctorAppointments(long doctorId)
         {
             var pacientAppointmentsModels = await entities
