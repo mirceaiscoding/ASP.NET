@@ -7,7 +7,7 @@ namespace ReservationsAPI.DAL.Interfaces
     public interface IUnitOfWork : IDisposable
     {
         IAppointmentsRepository AppointmentsRepository { get; }
-        IGenericRepository<Doctor> DoctorsRepository { get; }
+        IDoctorsRepository DoctorsRepository { get; }
         IPacientsRepository PacientsRepository { get; }
         IGenericRepository<Procedure> ProceduresRepository { get; }
         IGenericRepository<WorkDaySchedule> WorkDaySchedulesRepository { get; }

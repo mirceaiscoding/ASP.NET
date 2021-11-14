@@ -11,7 +11,7 @@ namespace ReservationsAPI.DAL
         private ReservationsContext _context;
 
         private AppointmentsRepository appointmentsRepository;
-        private GenericRepository<Doctor> doctorsRepository;
+        private DoctorsRepository doctorsRepository;
         private PacientsRepository pacientsRepository;
         private GenericRepository<Procedure> proceduresRepository;
         private GenericRepository<WorkDaySchedule> workDaySchedulesRepository;
@@ -35,14 +35,14 @@ namespace ReservationsAPI.DAL
             }
         }
 
-        public IGenericRepository<Doctor> DoctorsRepository
+        public IDoctorsRepository DoctorsRepository
         {
             get
             {
 
                 if (this.doctorsRepository == null)
                 {
-                    this.doctorsRepository = new GenericRepository<Doctor>(_context);
+                    this.doctorsRepository = new DoctorsRepository(_context);
                 }
                 return doctorsRepository;
             }

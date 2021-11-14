@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ReservationsAPI.BLL.Interfaces;
 using ReservationsAPI.DAL.Entities;
 
 namespace ReservationsAPI.DAL.Controllers
@@ -13,95 +14,18 @@ namespace ReservationsAPI.DAL.Controllers
     [ApiController]
     public class DoctorsController : ControllerBase
     {
-        private readonly ReservationsContext _context;
+        private readonly IDoctorsManager _doctorsManager;
 
-        public DoctorsController(ReservationsContext context)
+        public DoctorsController(IDoctorsManager doctorsManager)
         {
-            _context = context;
+            _doctorsManager = doctorsManager;
         }
 
-        // GET: api/Doctors
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Doctor>>> GetDoctors()
+        [HttpGet("get-is-working")]
+        public async Task<IActionResult> GetNumberOfFutureAppointments(long doctorId, DateTime date)
         {
-            return await _context.Doctors.ToListAsync();
+            return Ok(await _doctorsManager.IsWorking(doctorId, date));
         }
-
-        // GET: api/Doctors/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Doctor>> GetDoctor(long id)
-        {
-            var doctor = await _context.Doctors.FindAsync(id);
-
-            if (doctor == null)
-            {
-                return NotFound();
-            }
-
-            return doctor;
-        }
-
-        // PUT: api/Doctors/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutDoctor(long id, Doctor doctor)
-        {
-            if (id != doctor.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(doctor).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!DoctorExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Doctors
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Doctor>> PostDoctor(Doctor doctor)
-        {
-            _context.Doctors.Add(doctor);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetDoctor", new { id = doctor.Id }, doctor);
-        }
-
-        // DELETE: api/Doctors/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDoctor(long id)
-        {
-            var doctor = await _context.Doctors.FindAsync(id);
-            if (doctor == null)
-            {
-                return NotFound();
-            }
-
-            _context.Doctors.Remove(doctor);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool DoctorExists(long id)
-        {
-            return _context.Doctors.Any(e => e.Id == id);
-        }
+        
     }
 }
