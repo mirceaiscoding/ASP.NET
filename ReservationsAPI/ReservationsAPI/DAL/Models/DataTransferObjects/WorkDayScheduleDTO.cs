@@ -6,9 +6,9 @@ namespace ReservationsAPI.DAL.Models.DataTransferObjects
         public long Id { get; set; }
         public long DoctorId { get; set; }
         public int DayOfWeek { get; set; }
-        public DateTime StartHour { get; set; }
-        public DateTime EndHour { get; set; }
-        public DateTime BreakStartHour { get; set; }
-        public DateTime BreakEndHour { get; set; }
+        public TimeSpan StartHour { get; set; }
+        public TimeSpan EndHour { get; set; }
+        public TimeSpan BreakStartHour { get; set; }
+        public TimeSpan BreakEndHour { get; set; }
     }
 }
