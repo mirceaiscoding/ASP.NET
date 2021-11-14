@@ -1,13 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using ReservationsAPI.BLL.Interfaces;
-using ReservationsAPI.DAL.Entities;
-using ReservationsAPI.DAL.Interfaces;
+using ReservationsAPI.DAL.Models.DataTransferObjects;
 
 namespace ReservationsAPI.DAL.Controllers
 {
@@ -22,101 +17,65 @@ namespace ReservationsAPI.DAL.Controllers
             _appointmentsManager = appointmentsManager;
         }
 
-        [HttpGet("doctor-appointments/{id}")]
+        [HttpGet("get-doctor-appointments/{id}")]
         public async Task<IActionResult> GetDoctorAppointments(long id)
         {
             return Ok(await _appointmentsManager.GetDoctorAppointments(id));
         }
 
-        [HttpGet("pacient-appointments/{id}")]
+        [HttpGet("get-pacient-appointments/{id}")]
         public async Task<IActionResult> GetPacientAppointments(long id)
         {
             return Ok(await _appointmentsManager.GetPacientAppointments(id));
         }
 
-        [HttpGet]
+        [HttpGet("get-all-appointments")]
         public async Task<IActionResult> GetAllAppointments()
         {
             return Ok(await _appointmentsManager.GetAll());
         }
 
+        [HttpGet("get-appointment")]
+        public async Task<IActionResult> GetAppointmentById(long pacientId, long doctorId, long procedureId, DateTime startTime)
+        {
+            try
+            {
+                var appointment = await _appointmentsManager.GetById(pacientId, doctorId, procedureId, startTime);
+                return Ok(appointment);
+            }
+            catch
+            {
+                return BadRequest("One or more Ids do not match!");
+            }
+        }
 
+        [HttpPost("insert-appointment")]
+        public async Task<IActionResult> PostAppointment(AppointmentDTO appointmentDTO)
+        {
+            try
+            {
+                var insertedAppointmentDTO = await _appointmentsManager.Insert(appointmentDTO);
+                return Ok(insertedAppointmentDTO);
+            }
+            catch
+            {
+                return BadRequest("One or more Ids do not match!");
+            }
+        }
 
-        //        // PUT: api/Appointments/5
-        //        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        //        [HttpPut("{id}")]
-        //        public async Task<IActionResult> PutAppointment(long id, Appointment appointment)
-        //        {
-        //            if (id != appointment.DoctorId)
-        //            {
-        //                return BadRequest();
-        //            }
-
-        //            _context.Entry(appointment).State = EntityState.Modified;
-
-        //            try
-        //            {
-        //                await _context.SaveChangesAsync();
-        //            }
-        //            catch (DbUpdateConcurrencyException)
-        //            {
-        //                if (!AppointmentExists(id))
-        //                {
-        //                    return NotFound();
-        //                }
-        //                else
-        //                {
-        //                    throw;
-        //                }
-        //            }
-
-        //            return NoContent();
-        //        }
-
-        //        // POST: api/Appointments
-        //        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        //        [HttpPost]
-        //        public async Task<ActionResult<Appointment>> PostAppointment(Appointment appointment)
-        //        {
-        //            _context.Appointments.Add(appointment);
-        //            try
-        //            {
-        //                await _context.SaveChangesAsync();
-        //            }
-        //            catch (DbUpdateException)
-        //            {
-        //                if (AppointmentExists(appointment.DoctorId))
-        //                {
-        //                    return Conflict();
-        //                }
-        //                else
-        //                {
-        //                    throw;
-        //                }
-        //            }
-
-        //            return CreatedAtAction("GetAppointment", new { id = appointment.DoctorId }, appointment);
-        //        }
-
-        //        // DELETE: api/Appointments/5
-        //        [HttpDelete("{id}")]
-        //        public async Task<IActionResult> DeleteAppointment(long id)
-        //        {
-        //            var appointment = await _context.Appointments.FindAsync(id);
-        //            if (appointment == null)
-        //            {
-        //                return NotFound();
-        //            }
-
-        //            _context.Appointments.Remove(appointment);
-        //            await _context.SaveChangesAsync();
-
-        //            return NoContent();
-        //        }
-
-        //        private bool AppointmentExists(long id)
-        //        {
-        //            return _context.Appointments.Any(e => e.DoctorId == id);
-        //        }
+        // The new EndTime will be set based on the old time span!
+        [HttpPut("update-appointment-time")]
+        public async Task<IActionResult> UpdateAppointment(long pacientId, long doctorId, long procedureId, DateTime startTime, DateTime newStartTime)
+        {
+            try
+            {
+                var updatedAppointmentDTO = await _appointmentsManager.UpdateTime(pacientId, doctorId, procedureId, startTime, newStartTime);
+                return Ok(updatedAppointmentDTO);
+            }
+            catch
+            {
+                return BadRequest("One or more Ids do not match!");
+            }
+        }
     }
 }
