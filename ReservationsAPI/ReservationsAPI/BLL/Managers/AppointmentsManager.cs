@@ -40,6 +40,14 @@ namespace ReservationsAPI.BLL.Managers
             return appointmentDTO;
         }
 
+        public async Task<AppointmentDTO> Delete(AppointmentDTO appointmentDTO)
+        {
+            var appointment = _mapper.Map<Appointment>(appointmentDTO);
+            _unitOfWork.AppointmentsRepository.Delete(appointment);
+            await _unitOfWork.SaveAsync();
+            return appointmentDTO;
+        }
+
         public async Task<List<AppointmentDTO>> GetAll()
         {
             var appointments = await _unitOfWork.AppointmentsRepository.GetAllAsync();

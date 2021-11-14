@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using ReservationsAPI.DAL.Entities;
 using ReservationsAPI.DAL.Interfaces;
 using ReservationsAPI.DAL.Repositories;
@@ -104,6 +105,11 @@ namespace ReservationsAPI.DAL
             _context.SaveChanges();
         }
 
+        public async Task SaveAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
+
         private bool disposed = false;
 
         protected virtual void Dispose(bool disposing)
@@ -123,5 +129,6 @@ namespace ReservationsAPI.DAL
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
     }
 }

@@ -19,5 +19,7 @@ namespace ReservationsAPI.BLL.Interfaces
         Task<AppointmentDTO> Insert(AppointmentDTO appointmentDTO);
 
         Task<AppointmentDTO> UpdateTime(long pacientId, long doctorId, long procedureId, DateTime startTime, DateTime newStartTime);
+
+        Task<AppointmentDTO> Delete(AppointmentDTO appointmentDTO);
     }
 }

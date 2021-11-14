@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using ReservationsAPI.DAL.Entities;
 
 namespace ReservationsAPI.DAL.Interfaces
@@ -11,5 +12,8 @@ namespace ReservationsAPI.DAL.Interfaces
         IGenericRepository<Procedure> ProceduresRepository { get; }
         IGenericRepository<WorkDaySchedule> WorkDaySchedulesRepository { get; }
         IGenericRepository<VacationDay> VacationDaysRepository { get; }
+
+        void Save();
+        Task SaveAsync();
     }
 }

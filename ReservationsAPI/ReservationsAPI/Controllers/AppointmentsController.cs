@@ -77,5 +77,19 @@ namespace ReservationsAPI.DAL.Controllers
                 return BadRequest("One or more Ids do not match!");
             }
         }
+
+        [HttpDelete("delete-appointment")]
+        public async Task<IActionResult> DeleteAppointment(AppointmentDTO appointmentDTO)
+        {
+            try
+            {
+                var deletedAppointmentDTO = await _appointmentsManager.Delete(appointmentDTO);
+                return Ok(deletedAppointmentDTO);
+            }
+            catch
+            {
+                return BadRequest("One or more Ids do not match!");
+            }
+        }
     }
 }
