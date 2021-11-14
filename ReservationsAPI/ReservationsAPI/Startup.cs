@@ -42,13 +42,16 @@ namespace ReservationsAPI
 
             services.AddTransient<IPacientsManager, PacientsManager>();
             services.AddTransient<IProceduresManager, ProceduresManager>();
+            services.AddTransient<IAppointmentsManager, AppointmentsManager>();
+
+            services.AddTransient<IPacientsRepository, PacientsRepository>();
+            services.AddTransient<IAppointmentsRepository, AppointmentsRepository>();
+
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             services.AddAutoMapper(typeof(Startup));
-
-            // Just in case: services.AddHttpContextAccessor();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

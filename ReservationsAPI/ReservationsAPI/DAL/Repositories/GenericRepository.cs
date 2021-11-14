@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ReservationsAPI.DAL.Interfaces;
 
@@ -27,7 +28,7 @@ namespace ReservationsAPI.DAL.Repositories
             return entities;
         }
 
-        public virtual TEntity GetByID(long id)
+        public virtual TEntity GetByID(object id)
         {
             return entities.Find(id);
         }
@@ -58,5 +59,20 @@ namespace ReservationsAPI.DAL.Repositories
             _context.Entry(entityToUpdate).State = EntityState.Modified;
         }
 
+        public async Task<List<TEntity>> GetAllAsync()
+        {
+            return await entities.AsNoTracking().ToListAsync();
+        }
+
+        public async Task<TEntity> GetByIdAsync(object id)
+        {
+            return await entities.FindAsync(id);
+        }
+
+        public async Task InsertAsync(TEntity entity)
+        {
+            await entities.AddAsync(entity);
+            await _context.SaveChangesAsync();
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using ReservationsAPI.DAL.Entities;
 using ReservationsAPI.DAL.Interfaces;
 using ReservationsAPI.DAL.Repositories;
@@ -9,9 +10,9 @@ namespace ReservationsAPI.DAL
     {
         private ReservationsContext _context;
 
-        private GenericRepository<Appointment> appointmentsRepository;
+        private AppointmentsRepository appointmentsRepository;
         private GenericRepository<Doctor> doctorsRepository;
-        private GenericRepository<Pacient> pacientsRepository;
+        private PacientsRepository pacientsRepository;
         private GenericRepository<Procedure> proceduresRepository;
         private GenericRepository<WorkDaySchedule> workDaySchedulesRepository;
         private GenericRepository<VacationDay> vacationDaysRepository;
@@ -21,14 +22,14 @@ namespace ReservationsAPI.DAL
             _context = context;
         }
 
-        public IGenericRepository<Appointment> AppointmentsRepository
+        public IAppointmentsRepository AppointmentsRepository
         {
             get
             {
 
                 if (this.appointmentsRepository == null)
                 {
-                    this.appointmentsRepository = new GenericRepository<Appointment>(_context);
+                    this.appointmentsRepository = new AppointmentsRepository(_context);
                 }
                 return appointmentsRepository;
             }
@@ -47,14 +48,14 @@ namespace ReservationsAPI.DAL
             }
         }
 
-        public IGenericRepository<Pacient> PacientsRepository
+        public IPacientsRepository PacientsRepository
         {
             get
             {
 
                 if (this.pacientsRepository == null)
                 {
-                    this.pacientsRepository = new GenericRepository<Pacient>(_context);
+                    this.pacientsRepository = new PacientsRepository(_context);
                 }
                 return pacientsRepository;
             }
@@ -104,6 +105,11 @@ namespace ReservationsAPI.DAL
             _context.SaveChanges();
         }
 
+        public async Task SaveAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
+
         private bool disposed = false;
 
         protected virtual void Dispose(bool disposing)
@@ -123,5 +129,6 @@ namespace ReservationsAPI.DAL
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
     }
 }

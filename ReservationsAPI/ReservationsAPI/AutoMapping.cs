@@ -20,12 +20,12 @@ namespace ReservationsAPI
 
         public AutoMapping()
         {
-            CreateMap<Appointment, AppointmentDTO>();
-            CreateMap<Doctor, DoctorDTO>();
-            CreateMap<Pacient, PacientDTO>();
-            CreateMap<Procedure, ProcedureDTO>();
-            CreateMap<VacationDay, VacationDayDTO>();
-            CreateMap<WorkDaySchedule, WorkDayScheduleDTO>();
+            CreateMap<Appointment, AppointmentDTO>().ReverseMap();
+            CreateMap<Doctor, DoctorDTO>().ReverseMap();
+            CreateMap<Pacient, PacientDTO>().ReverseMap();
+            CreateMap<Procedure, ProcedureDTO>().ReverseMap();
+            CreateMap<VacationDay, VacationDayDTO>().ReverseMap();
+            CreateMap<WorkDaySchedule, WorkDayScheduleDTO>().ReverseMap();
         }
     }
 }
