@@ -16,20 +16,17 @@ namespace ReservationsAPI.DAL.Repositories
             var doctorWorkData =
                 await entities
                 .Include(x => x.VacationDays)
-                .Include(x => x.WorkDaySchedules
-                .Where(x => x.DayOfWeek == ((int)date.DayOfWeek)))
-                .Where(x => x.Id == doctorId)
-                .Where(x => x.VacationDays.AsQueryable().Where(y => y.Date == date) == null)
-                .ToListAsync();
+                .Include(x => x.WorkDaySchedules.Where(x => x.DayOfWeek == ((int)date.DayOfWeek)))
+                .FirstOrDefaultAsync(x => x.Id == doctorId);
 
-            if(doctorWorkData.Capacity == 0)
-            {
-                return false;
-            } else
+            if(doctorWorkData.VacationDays.Where(x => x.Date == date).Count() == 0 // Is not on vacation
+                && doctorWorkData.WorkDaySchedules.Count != 0) // Has a schedule for this weekday
             {
                 return true;
+            } else
+            {
+                return false;
             }
-
         }
     }
 }

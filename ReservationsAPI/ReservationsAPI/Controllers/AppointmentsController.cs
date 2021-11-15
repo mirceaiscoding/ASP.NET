@@ -43,9 +43,9 @@ namespace ReservationsAPI.DAL.Controllers
                 var appointment = await _appointmentsManager.GetById(pacientId, doctorId, procedureId, startTime);
                 return Ok(appointment);
             }
-            catch
+            catch (Exception e)
             {
-                return BadRequest("One or more Ids do not match!");
+                return BadRequest(e.Message);
             }
         }
 
@@ -57,9 +57,9 @@ namespace ReservationsAPI.DAL.Controllers
                 var insertedAppointmentDTO = await _appointmentsManager.Insert(appointmentDTO);
                 return Ok(insertedAppointmentDTO);
             }
-            catch
+            catch (Exception e)
             {
-                return BadRequest("One or more Ids do not match!");
+                return BadRequest(e.Message);
             }
         }
 
@@ -72,9 +72,9 @@ namespace ReservationsAPI.DAL.Controllers
                 var updatedAppointmentDTO = await _appointmentsManager.UpdateTime(pacientId, doctorId, procedureId, startTime, newStartTime);
                 return Ok(updatedAppointmentDTO);
             }
-            catch
+            catch (Exception e)
             {
-                return BadRequest("One or more Ids do not match!");
+                return BadRequest(e.Message);
             }
         }
 
@@ -86,9 +86,9 @@ namespace ReservationsAPI.DAL.Controllers
                 var deletedAppointmentDTO = await _appointmentsManager.Delete(appointmentDTO);
                 return Ok(deletedAppointmentDTO);
             }
-            catch
+            catch (Exception e)
             {
-                return BadRequest("One or more Ids do not match!");
+                return BadRequest(e.Message);
             }
         }
     }

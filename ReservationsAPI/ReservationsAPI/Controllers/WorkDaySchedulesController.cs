@@ -5,7 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ReservationsAPI.BLL.Interfaces;
 using ReservationsAPI.DAL.Entities;
+using ReservationsAPI.DAL.Models;
+using ReservationsAPI.DAL.Models.DataTransferObjects;
 
 namespace ReservationsAPI.DAL.Controllers
 {
@@ -13,95 +16,100 @@ namespace ReservationsAPI.DAL.Controllers
     [ApiController]
     public class WorkDaySchedulesController : ControllerBase
     {
-        private readonly ReservationsContext _context;
+        private readonly IWorkDayScheduleManager _workDayScheduleManager;
 
-        public WorkDaySchedulesController(ReservationsContext context)
+        public WorkDaySchedulesController(IWorkDayScheduleManager workDayScheduleManager)
         {
-            _context = context;
+            _workDayScheduleManager = workDayScheduleManager;
         }
 
-        // GET: api/WorkDaySchedules
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<WorkDaySchedule>>> GetWorkDaySchedules()
+        [HttpGet("get-doctor-work-schedule")]
+        public async Task<IActionResult> GetWorkSchedule(long doctorId)
         {
-            return await _context.WorkDaySchedules.ToListAsync();
-        }
-
-        // GET: api/WorkDaySchedules/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<WorkDaySchedule>> GetWorkDaySchedule(long id)
-        {
-            var workDaySchedule = await _context.WorkDaySchedules.FindAsync(id);
-
-            if (workDaySchedule == null)
-            {
-                return NotFound();
-            }
-
-            return workDaySchedule;
-        }
-
-        // PUT: api/WorkDaySchedules/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutWorkDaySchedule(long id, WorkDaySchedule workDaySchedule)
-        {
-            if (id != workDaySchedule.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(workDaySchedule).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                var workSchedule = await _workDayScheduleManager.GetWorkSchedule(doctorId);
+                return Ok(workSchedule);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception e)
             {
-                if (!WorkDayScheduleExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return BadRequest(e.Message);
             }
-
-            return NoContent();
         }
 
-        // POST: api/WorkDaySchedules
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<WorkDaySchedule>> PostWorkDaySchedule(WorkDaySchedule workDaySchedule)
+        [HttpGet("get-doctor-work-day-schedule")]
+        public async Task<IActionResult> GetWorkDaySchedule(long doctorId, int dayOfWeek)
         {
-            _context.WorkDaySchedules.Add(workDaySchedule);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetWorkDaySchedule", new { id = workDaySchedule.Id }, workDaySchedule);
-        }
-
-        // DELETE: api/WorkDaySchedules/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteWorkDaySchedule(long id)
-        {
-            var workDaySchedule = await _context.WorkDaySchedules.FindAsync(id);
-            if (workDaySchedule == null)
+            try
             {
-                return NotFound();
+                var workDaySchedule = await _workDayScheduleManager.GetWorkDaySchedule(doctorId, dayOfWeek);
+                return Ok(workDaySchedule);
             }
-
-            _context.WorkDaySchedules.Remove(workDaySchedule);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
-        private bool WorkDayScheduleExists(long id)
+        [HttpGet("get-doctor-work-day-schedule-by-id")]
+        public async Task<IActionResult> GetWorkDayScheduleById(long id)
         {
-            return _context.WorkDaySchedules.Any(e => e.Id == id);
+            try
+            {
+                var workDaySchedule = await _workDayScheduleManager.GetById(id);
+                return Ok(workDaySchedule);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPost("insert-work-day-schedule")]
+        public async Task<IActionResult> InsertWorkDaySchedule(WorkDaySchedulePostModel postModel)
+        {
+            try
+            {
+                var workDayScheduleDTO = new WorkDayScheduleDTO
+                {
+                    DayOfWeek = postModel.DayOfWeek,
+                    DoctorId = postModel.DoctorId,
+                    StartHour = TimeSpan.Parse(postModel.StartHour),
+                    EndHour = TimeSpan.Parse(postModel.EndHour),
+                    BreakStartHour = TimeSpan.Parse(postModel.BreakStartHour),
+                    BreakEndHour = TimeSpan.Parse(postModel.BreakEndHour),
+                };
+                var insertedWorkDaySchedule = await _workDayScheduleManager.Insert(workDayScheduleDTO);
+                return Ok(insertedWorkDaySchedule);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPut("update-work-day-schedule")]
+        public async Task<IActionResult> UpdateWorkDaySchedule(long id, WorkDaySchedulePostModel postModel)
+        {
+            try
+            {
+                var workDayScheduleDTO = new WorkDayScheduleDTO
+                {
+                    Id = postModel.Id,
+                    DayOfWeek = postModel.DayOfWeek,
+                    DoctorId = postModel.DoctorId,
+                    StartHour = TimeSpan.Parse(postModel.StartHour),
+                    EndHour = TimeSpan.Parse(postModel.EndHour),
+                    BreakStartHour = TimeSpan.Parse(postModel.BreakStartHour),
+                    BreakEndHour = TimeSpan.Parse(postModel.BreakEndHour),
+                };
+                var updatedWorkDaySchedule = await _workDayScheduleManager.Update(id, workDayScheduleDTO);
+                return Ok(updatedWorkDaySchedule);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }
