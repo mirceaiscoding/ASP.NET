@@ -34,5 +34,17 @@ namespace ReservationsAPI.BLL.Managers
         {
             return await _unitOfWork.DoctorsRepository.IsWorking(doctorId, date);
         }
+
+        public async Task<List<DoctorDTO>> GetAll()
+        {
+            var doctors = await _unitOfWork.DoctorsRepository.GetAllAsync();
+            return _mapper.Map<List<Doctor>, List<DoctorDTO>>(doctors);
+        }
+
+        public async Task<DoctorDTO> GetById(long id)
+        {
+            var doctor = await _unitOfWork.DoctorsRepository.GetByIdAsync(id);
+            return _mapper.Map<DoctorDTO>(doctor);
+        }
     }
 }
