@@ -8,6 +8,7 @@ using ReservationsAPI.BLL.Interfaces;
 using ReservationsAPI.DAL.Entities;
 using ReservationsAPI.DAL.Interfaces;
 using ReservationsAPI.DAL.Models;
+using ReservationsAPI.DAL.Models.DataTransferObjects;
 
 namespace ReservationsAPI.BLL.Managers
 {
@@ -20,6 +21,13 @@ namespace ReservationsAPI.BLL.Managers
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+        }
+
+        public async Task<DoctorDTO> Insert(DoctorDTO doctorDTO)
+        {
+            var doctor = _mapper.Map<Doctor>(doctorDTO);
+            await _unitOfWork.DoctorsRepository.InsertAsync(doctor);
+            return doctorDTO;
         }
 
         public async Task<bool> IsWorking(long doctorId, DateTime date)
