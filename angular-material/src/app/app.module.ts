@@ -15,7 +15,7 @@ import { HomepageComponent } from './homepage/homepage.component';
   declarations: [
     AppComponent,
     NavbarComponent,
-    HomepageComponent
+    HomepageComponent,
   ],
   imports: [
     BrowserModule,
