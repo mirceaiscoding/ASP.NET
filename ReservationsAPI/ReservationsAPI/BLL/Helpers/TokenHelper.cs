@@ -22,7 +22,7 @@ namespace ReservationsAPI.BLL.Helpers
             _configuration = configuration;
         }
 
-        public async Task<String> CreateAccessToken(User user)
+        public async Task<string> CreateAccessToken(User user)
         {
             var userId = user.Id.ToString();
 

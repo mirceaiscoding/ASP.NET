@@ -6,6 +6,6 @@ namespace ReservationsAPI.BLL.Interfaces
 {
     public interface ITokenHelper
     {
-        Task<String> CreateAccessToke(User user);
+        Task<string> CreateAccessToke(User user);
     }
 }
