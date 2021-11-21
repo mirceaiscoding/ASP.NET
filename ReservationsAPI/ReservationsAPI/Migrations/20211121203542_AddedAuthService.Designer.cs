@@ -10,8 +10,8 @@ using ReservationsAPI.DAL;
 namespace ReservationsAPI.Migrations
 {
     [DbContext(typeof(ReservationsContext))]
-    [Migration("20211111202321_AddedAuthEntities")]
-    partial class AddedAuthEntities
+    [Migration("20211121203542_AddedAuthService")]
+    partial class AddedAuthService
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -109,10 +109,10 @@ namespace ReservationsAPI.Migrations
 
             modelBuilder.Entity("ReservationsAPI.DAL.Entities.Appointment", b =>
                 {
-                    b.Property<long>("DoctorId")
+                    b.Property<long>("PacientId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("PacientId")
+                    b.Property<long>("DoctorId")
                         .HasColumnType("bigint");
 
                     b.Property<long>("ProcedureId")
@@ -124,9 +124,9 @@ namespace ReservationsAPI.Migrations
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("DoctorId", "PacientId", "ProcedureId", "StartTime");
+                    b.HasKey("PacientId", "DoctorId", "ProcedureId", "StartTime");
 
-                    b.HasIndex("PacientId");
+                    b.HasIndex("DoctorId");
 
                     b.HasIndex("ProcedureId");
 
@@ -272,6 +272,9 @@ namespace ReservationsAPI.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("RefreshToken")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -347,11 +350,11 @@ namespace ReservationsAPI.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("BreakEndHour")
-                        .HasColumnType("datetime2");
+                    b.Property<TimeSpan>("BreakEndHour")
+                        .HasColumnType("time");
 
-                    b.Property<DateTime>("BreakStartHour")
-                        .HasColumnType("datetime2");
+                    b.Property<TimeSpan>("BreakStartHour")
+                        .HasColumnType("time");
 
                     b.Property<int>("DayOfWeek")
                         .HasColumnType("int");
@@ -359,11 +362,11 @@ namespace ReservationsAPI.Migrations
                     b.Property<long>("DoctorId")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("EndHour")
-                        .HasColumnType("datetime2");
+                    b.Property<TimeSpan>("EndHour")
+                        .HasColumnType("time");
 
-                    b.Property<DateTime>("StartHour")
-                        .HasColumnType("datetime2");
+                    b.Property<TimeSpan>("StartHour")
+                        .HasColumnType("time");
 
                     b.HasKey("Id");
 

@@ -18,6 +18,7 @@ using System;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Threading.Tasks;
+using ReservationsAPI.BLL.Helpers;
 
 namespace ReservationsAPI
 {
@@ -51,6 +52,11 @@ namespace ReservationsAPI
             services.AddTransient<IPacientsManager, PacientsManager>();
             services.AddTransient<IProceduresManager, ProceduresManager>();
             services.AddTransient<IWorkDayScheduleManager, WorkDayScheduleManager>();
+
+            services.AddTransient<ITokenHelper, TokenHelper>();
+            services.AddTransient<IAuthManager, AuthManager>();
+
+            services.AddTransient<InitialSeed>();
 
             services.AddTransient<IAppointmentsRepository, AppointmentsRepository>();
             services.AddTransient<IDoctorsRepository, DoctorsRepository>();
@@ -100,10 +106,17 @@ namespace ReservationsAPI
                     };
                 });
 
+            services.AddAuthorization(opt =>
+            {
+                opt.AddPolicy("Admin", policy => policy.RequireRole("Admin").RequireAuthenticatedUser().AddAuthenticationSchemes("AuthScheme").Build());
+                opt.AddPolicy("Doctor", policy => policy.RequireRole("Doctor").RequireAuthenticatedUser().AddAuthenticationSchemes("AuthScheme").Build());
+                opt.AddPolicy("Pacient", policy => policy.RequireRole("Pacient").RequireAuthenticatedUser().AddAuthenticationSchemes("AuthScheme").Build());
+            });
+
             // Just in case: services.AddHttpContextAccessor();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, InitialSeed initialSeed)
         {
             if (env.IsDevelopment())
             {
@@ -122,6 +135,9 @@ namespace ReservationsAPI
             {
                 endpoints.MapControllers();
             });
+
+            // Uncomment if roles are not in database
+            // initialSeed.CreateRoles();
         }
     }
 }

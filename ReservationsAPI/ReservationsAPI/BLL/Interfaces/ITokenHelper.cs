@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Security.Claims;
 using System.Threading.Tasks;
 using ReservationsAPI.DAL.Entities;
 
@@ -6,6 +6,8 @@ namespace ReservationsAPI.BLL.Interfaces
 {
     public interface ITokenHelper
     {
-        Task<String> CreateAccessToke(User user);
+        Task<string> CreateAccessToken(User user);
+        string CreateRefreshToken();
+        ClaimsPrincipal GetPrincipalFromExpiredToken(string _Token);
     }
 }
