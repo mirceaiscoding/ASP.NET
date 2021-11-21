@@ -8,6 +8,6 @@ namespace ReservationsAPI.BLL.Interfaces
 {
     public interface IPacientsManager
     {
-        Task<List<PacientAppointmentsModel>> GetAppointments(long pacientId);
+        Task<int> GetNumberOfFutureAppointments(long pacientId);
     }
 }

@@ -7,7 +7,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using ReservationsAPI.DAL.Entities;
 using Microsoft.OpenApi.Models;
-using Microsoft.AspNetCore.Mvc;
 using ReservationsAPI.DAL;
 using ReservationsAPI.DAL.Interfaces;
 using ReservationsAPI.DAL.Repositories;
@@ -40,14 +39,23 @@ namespace ReservationsAPI
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ReservationsApi", Version = "v1" });
+                c.MapType<TimeSpan?>(() => new OpenApiSchema { Type = "string", Example = new Microsoft.OpenApi.Any.OpenApiString("00:00:00") });
             });
 
             services.AddControllersWithViews()
                 .AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
+            services.AddTransient<IAppointmentsManager, AppointmentsManager>();
+            services.AddTransient<IDoctorsManager, DoctorsManager>();
             services.AddTransient<IPacientsManager, PacientsManager>();
             services.AddTransient<IProceduresManager, ProceduresManager>();
+            services.AddTransient<IWorkDayScheduleManager, WorkDayScheduleManager>();
+
+            services.AddTransient<IAppointmentsRepository, AppointmentsRepository>();
+            services.AddTransient<IDoctorsRepository, DoctorsRepository>();
+            services.AddTransient<IPacientsRepository, PacientsRepository>();
+
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));

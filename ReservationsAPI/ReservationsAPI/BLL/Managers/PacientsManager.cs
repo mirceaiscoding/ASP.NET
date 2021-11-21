@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using ReservationsAPI.BLL.Interfaces;
 using ReservationsAPI.DAL.Entities;
@@ -13,29 +14,15 @@ namespace ReservationsAPI.BLL.Managers
     public class PacientsManager : IPacientsManager
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public PacientsManager(IUnitOfWork unitOfWork)
+        public PacientsManager(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
-
-        public async Task<List<PacientAppointmentsModel>> GetAppointments(long pacientId)
-        {
-            var pacientAppointmentsModels = await _unitOfWork
-                .AppointmentsRepository
-                .GetQueryable()
-                .Include(x => x.Doctor)
-                .Include(x => x.Pacient)
-                .Include(x => x.Procedure)
-                .Where(x => x.PacientId == pacientId)
-                .Select(x => new PacientAppointmentsModel {
-                    ProcedureName = x.Procedure.ProcedureName,
-                    StartTime = x.StartTime,
-                    EndTime = x.EndTime,
-                    DoctorName = x.Doctor.LastName + " " + x.Doctor.FirstName })
-                .ToListAsync();
-            return pacientAppointmentsModels;
-        }
+        public async Task<int> GetNumberOfFutureAppointments(long pacientId) =>
+            await _unitOfWork.PacientsRepository.GetNumberOfFutureAppointments(pacientId);
     }
 }

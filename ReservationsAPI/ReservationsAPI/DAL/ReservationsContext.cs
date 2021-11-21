@@ -39,7 +39,7 @@ namespace ReservationsAPI.DAL
                 .WithMany(d => d.VacationDays);
 
             builder.Entity<Appointment>()
-                .HasKey(a => new { a.DoctorId, a.PacientId, a.ProcedureId, a.StartTime });
+                .HasKey(a => new { a.PacientId, a.DoctorId, a.ProcedureId, a.StartTime });
 
             builder.Entity<Appointment>()
                 .HasOne<Doctor>(a => a.Doctor)

@@ -1,19 +1,25 @@
 ﻿<Properties StartupConfiguration="{4F96D45A-291E-4B3E-8E04-E668420FB686}|Default">
   <MonoDevelop.Ide.ItemProperties.ReservationsAPI PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="BLL/Helpers/TokenHelper.cs">
+    <Files>
+      <File FileName="BLL/Interfaces/IDoctorsManager.cs" Line="19" Column="1" />
+      <File FileName="Startup.cs" Line="64" Column="1" />
+      <File FileName="BLL/Helpers/TokenHelper.cs" Line="14" Column="32" />
+      <File FileName="BLL/Interfaces/ITokenHelper.cs" Line="1" Column="1" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="ReservationsAPI" expanded="True">
             <Node name="ReservationsAPI" expanded="True">
               <Node name="BLL" expanded="True">
-                <Node name="Helpers" expanded="True" />
+                <Node name="Helpers" expanded="True">
+                  <Node name="TokenHelper.cs" selected="True" />
+                </Node>
                 <Node name="Interfaces" expanded="True" />
+                <Node name="Managers" expanded="True" />
               </Node>
               <Node name="Controllers" expanded="True" />
-              <Node name="Migrations" expanded="True">
-                <Node name="20211111202321_AddedAuthEntities.cs" selected="True" />
-              </Node>
             </Node>
           </Node>
         </State>

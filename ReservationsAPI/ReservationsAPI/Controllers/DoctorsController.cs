@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ReservationsAPI.BLL.Interfaces;
 using ReservationsAPI.DAL.Entities;
+using ReservationsAPI.DAL.Models.DataTransferObjects;
 
 namespace ReservationsAPI.DAL.Controllers
 {
@@ -13,95 +15,51 @@ namespace ReservationsAPI.DAL.Controllers
     [ApiController]
     public class DoctorsController : ControllerBase
     {
-        private readonly ReservationsContext _context;
+        private readonly IDoctorsManager _doctorsManager;
 
-        public DoctorsController(ReservationsContext context)
+        public DoctorsController(IDoctorsManager doctorsManager)
         {
-            _context = context;
+            _doctorsManager = doctorsManager;
         }
 
-        // GET: api/Doctors
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Doctor>>> GetDoctors()
+        [HttpGet("get-is-working")]
+        public async Task<IActionResult> GetNumberOfFutureAppointments(long doctorId, DateTime date)
         {
-            return await _context.Doctors.ToListAsync();
+            return Ok(await _doctorsManager.IsWorking(doctorId, date));
         }
 
-        // GET: api/Doctors/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Doctor>> GetDoctor(long id)
+        [HttpGet("get-all-doctors")]
+        public async Task<IActionResult> GetAllDoctors()
         {
-            var doctor = await _context.Doctors.FindAsync(id);
-
-            if (doctor == null)
-            {
-                return NotFound();
-            }
-
-            return doctor;
+            return Ok(await _doctorsManager.GetAll());
         }
 
-        // PUT: api/Doctors/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutDoctor(long id, Doctor doctor)
+        [HttpGet("get-doctor-by-id/{id}")]
+        public async Task<IActionResult> GetDoctorById(long id)
         {
-            if (id != doctor.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(doctor).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                return Ok(await _doctorsManager.GetById(id));
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception e)
             {
-                if (!DoctorExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return BadRequest(e.Message);
             }
-
-            return NoContent();
         }
 
-        // POST: api/Doctors
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Doctor>> PostDoctor(Doctor doctor)
+        [HttpPost("insert-doctor")]
+        public async Task<IActionResult> InsertDoctor(DoctorDTO doctorDTO)
         {
-            _context.Doctors.Add(doctor);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetDoctor", new { id = doctor.Id }, doctor);
-        }
-
-        // DELETE: api/Doctors/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDoctor(long id)
-        {
-            var doctor = await _context.Doctors.FindAsync(id);
-            if (doctor == null)
+            try
             {
-                return NotFound();
+                var insertedDoctorDTO = await _doctorsManager.Insert(doctorDTO);
+                return Ok(insertedDoctorDTO);
             }
-
-            _context.Doctors.Remove(doctor);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
-        private bool DoctorExists(long id)
-        {
-            return _context.Doctors.Any(e => e.Id == id);
-        }
     }
 }

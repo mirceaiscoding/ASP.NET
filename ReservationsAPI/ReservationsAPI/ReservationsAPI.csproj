@@ -23,9 +23,6 @@
     <None Remove="AutoMapper" />
     <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
     <None Remove="DAL\Models\DataTransferObjects\" />
-    <None Remove="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
-    <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
-    <None Remove="BLL\Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.11">
@@ -46,8 +43,6 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.11" />
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.11" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.11" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DAL\" />
@@ -59,6 +54,5 @@
     <Folder Include="BLL\Interfaces\" />
     <Folder Include="BLL\Managers\" />
     <Folder Include="DAL\Models\DataTransferObjects\" />
-    <Folder Include="BLL\Helpers\" />
   </ItemGroup>
 </Project>

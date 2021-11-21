@@ -22,7 +22,7 @@ namespace ReservationsAPI.BLL.Managers
 
         public async Task<List<ProcedureDTO>> GetAll()
         {
-            var procedures = _unitOfWork.ProceduresRepository.GetAll();
+            var procedures = await _unitOfWork.ProceduresRepository.GetAllAsync();
             var procedureDTOs = _mapper.Map<IEnumerable<Procedure>, List<ProcedureDTO>>(procedures);
             return procedureDTOs;
         }
