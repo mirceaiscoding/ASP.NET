@@ -29,7 +29,7 @@ namespace ReservationsAPI.DAL.Controllers
         }
 
         [HttpGet("get-pacient-by-id/{id}")]
-        public async Task<IActionResult> GetDoctorById(long id)
+        public async Task<IActionResult> GetPacientById(long id)
         {
             try
             {
