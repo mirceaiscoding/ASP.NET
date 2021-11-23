@@ -38,6 +38,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { AppRoutingModule } from './app-routing.module';
 
 const materialModules = [
   CdkTreeModule,
@@ -83,7 +84,8 @@ const materialModules = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    materialModules
+    materialModules,
+    AppRoutingModule
   ],
   exports: [
     materialModules
