@@ -61,5 +61,18 @@ namespace ReservationsAPI.DAL.Controllers
             }
         }
 
+        [HttpDelete("delete-doctor")]
+        public async Task<IActionResult> DeleteDoctor(DoctorDTO doctorDTO)
+        {
+            try
+            {
+                var deletedDoctorDto = await _doctorsManager.Delete(doctorDTO);
+                return Ok(deletedDoctorDto);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }

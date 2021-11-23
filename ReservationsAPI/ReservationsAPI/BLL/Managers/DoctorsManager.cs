@@ -50,5 +50,14 @@ namespace ReservationsAPI.BLL.Managers
             }
             return _mapper.Map<DoctorDTO>(doctor);
         }
+
+        public async Task<DoctorDTO> Delete(DoctorDTO doctorDTO)
+        {
+            var doctor = _mapper.Map<Doctor>(doctorDTO);
+            _unitOfWork.DoctorsRepository.Delete(doctor);
+            await _unitOfWork.SaveAsync();
+            return doctorDTO;
+        }
+
     }
 }
