@@ -15,5 +15,8 @@ namespace ReservationsAPI.BLL.Interfaces
 
         Task<PacientDTO> Update(long pacientId, PacientDTO pacientDTO);
 
+        Task<List<PacientDTO>> GetAll();
+
+        Task<PacientDTO> GetById(long id);
     }
 }

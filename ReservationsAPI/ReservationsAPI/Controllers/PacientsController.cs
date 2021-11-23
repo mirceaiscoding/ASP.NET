@@ -22,6 +22,25 @@ namespace ReservationsAPI.DAL.Controllers
             _pacientsManager = pacientsManager;
         }
 
+        [HttpGet("get-all-pacients")]
+        public async Task<IActionResult> GetAllPacients()
+        {
+            return Ok(await _pacientsManager.GetAll());
+        }
+
+        [HttpGet("get-pacient-by-id/{id}")]
+        public async Task<IActionResult> GetDoctorById(long id)
+        {
+            try
+            {
+                return Ok(await _pacientsManager.GetById(id));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
         [HttpGet("get-number-of-future-appointments")]
         public async Task<IActionResult> GetNumberOfFutureAppointments(long pacientId)
         {

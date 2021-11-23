@@ -50,5 +50,21 @@ namespace ReservationsAPI.BLL.Managers
             await _unitOfWork.SaveAsync();
             return pacientDTO;
         }
+
+        public async Task<List<PacientDTO>> GetAll()
+        {
+            var pacients = await _unitOfWork.PacientsRepository.GetAllAsync();
+            return _mapper.Map<List<Pacient>, List<PacientDTO>>(pacients);
+        }
+
+        public async Task<PacientDTO> GetById(long id)
+        {
+            var pacient = await _unitOfWork.PacientsRepository.GetByIdAsync(id);
+            if (pacient == null)
+            {
+                throw new ArgumentException("No Pacient with this id exists!");
+            }
+            return _mapper.Map<PacientDTO>(pacient);
+        }
     }
 }
