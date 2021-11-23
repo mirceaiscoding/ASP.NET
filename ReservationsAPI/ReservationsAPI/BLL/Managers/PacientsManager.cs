@@ -8,6 +8,7 @@ using ReservationsAPI.BLL.Interfaces;
 using ReservationsAPI.DAL.Entities;
 using ReservationsAPI.DAL.Interfaces;
 using ReservationsAPI.DAL.Models;
+using ReservationsAPI.DAL.Models.DataTransferObjects;
 
 namespace ReservationsAPI.BLL.Managers
 {
@@ -22,7 +23,20 @@ namespace ReservationsAPI.BLL.Managers
             _mapper = mapper;
         }
 
-        public async Task<int> GetNumberOfFutureAppointments(long pacientId) =>
-            await _unitOfWork.PacientsRepository.GetNumberOfFutureAppointments(pacientId);
+        public async Task<int> GetNumberOfFutureAppointments(long pacientId)
+        {
+            if (await _unitOfWork.PacientsRepository.GetByIdAsync(pacientId) == null)
+            {
+                throw new ArgumentException("No Pacient with this id exists!");
+            }
+            return await _unitOfWork.PacientsRepository.GetNumberOfFutureAppointments(pacientId);
+        }
+
+        public async Task<PacientDTO> Insert(PacientDTO pacientDTO)
+        {
+            var pacient = _mapper.Map<Pacient>(pacientDTO);
+            await _unitOfWork.PacientsRepository.InsertAsync(pacient);
+            return pacientDTO;
+        }
     }
 }

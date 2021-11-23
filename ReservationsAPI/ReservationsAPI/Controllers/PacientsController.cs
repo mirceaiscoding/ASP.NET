@@ -25,7 +25,29 @@ namespace ReservationsAPI.DAL.Controllers
         [HttpGet("get-number-of-future-appointments")]
         public async Task<IActionResult> GetNumberOfFutureAppointments(long pacientId)
         {
-            return Ok(await _pacientsManager.GetNumberOfFutureAppointments(pacientId));
+            try
+            {
+                var numberOfFutureAppointments = await _pacientsManager.GetNumberOfFutureAppointments(pacientId);
+                return Ok(numberOfFutureAppointments);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPost("insert-pacient")]
+        public async Task<IActionResult> InsertPacient(PacientDTO pacientDTO)
+        {
+            try
+            {
+                var insertedDoctorDTO = await _pacientsManager.Insert(pacientDTO);
+                return Ok(insertedDoctorDTO);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }
