@@ -13,5 +13,7 @@ namespace ReservationsAPI.BLL.Interfaces
 
         Task<PacientDTO> Insert(PacientDTO pacientDTO);
 
+        Task<PacientDTO> Update(long pacientId, PacientDTO pacientDTO);
+
     }
 }

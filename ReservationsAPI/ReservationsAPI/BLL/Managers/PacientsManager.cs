@@ -38,5 +38,17 @@ namespace ReservationsAPI.BLL.Managers
             await _unitOfWork.PacientsRepository.InsertAsync(pacient);
             return pacientDTO;
         }
+
+        public async Task<PacientDTO> Update(long pacientId, PacientDTO pacientDTO)
+        {
+            if (pacientDTO.Id != pacientId)
+            {
+                throw new ArgumentException("Updated Pacient does not have the correct id!");
+            }
+            var pacient = _mapper.Map<Pacient>(pacientDTO);
+            _unitOfWork.PacientsRepository.Update(pacient);
+            await _unitOfWork.SaveAsync();
+            return pacientDTO;
+        }
     }
 }

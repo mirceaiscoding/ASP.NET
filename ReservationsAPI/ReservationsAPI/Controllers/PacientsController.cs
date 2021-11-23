@@ -49,5 +49,19 @@ namespace ReservationsAPI.DAL.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [HttpPut("update-pacient")]
+        public async Task<IActionResult> UpdatePacient(long id, PacientDTO pacientDTO)
+        {
+            try
+            {
+                var updatedPacient = await _pacientsManager.Update(id, pacientDTO);
+                return Ok(updatedPacient);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }
