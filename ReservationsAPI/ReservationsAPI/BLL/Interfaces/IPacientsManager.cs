@@ -18,5 +18,7 @@ namespace ReservationsAPI.BLL.Interfaces
         Task<List<PacientDTO>> GetAll();
 
         Task<PacientDTO> GetById(long id);
+
+        Task<PacientDTO> Delete(PacientDTO pacientDTO);
     }
 }
