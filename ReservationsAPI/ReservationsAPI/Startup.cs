@@ -18,6 +18,7 @@ using System;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Threading.Tasks;
+using ReservationsAPI.BLL.Helpers;
 
 namespace ReservationsAPI
 {
@@ -62,9 +63,22 @@ namespace ReservationsAPI
 
             services.AddAutoMapper(typeof(Startup));
 
+            // AUTH
+            services.AddTransient<ITokenHelper, TokenHelper>();
+            services.AddTransient<IAuthManager, AuthManager>();
+
+            services.AddAuthorization(opt =>
+            {
+                opt.AddPolicy("Admin", policy => policy.RequireRole("Admin").RequireAuthenticatedUser().AddAuthenticationSchemes("AuthScheme").Build());
+                opt.AddPolicy("Doctor", policy => policy.RequireRole("Doctor").RequireAuthenticatedUser().AddAuthenticationSchemes("AuthScheme").Build());
+                opt.AddPolicy("Pacient", policy => policy.RequireRole("Pacient").RequireAuthenticatedUser().AddAuthenticationSchemes("AuthScheme").Build());
+            });
+
             services.AddIdentity<User, Role>()
                 .AddEntityFrameworkStores<ReservationsContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddTransient<InitialSeed>();
 
             services
                 .AddAuthentication(options =>
@@ -103,7 +117,7 @@ namespace ReservationsAPI
             // Just in case: services.AddHttpContextAccessor();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, InitialSeed initialSeed)
         {
             if (env.IsDevelopment())
             {
@@ -122,6 +136,8 @@ namespace ReservationsAPI
             {
                 endpoints.MapControllers();
             });
+
+            initialSeed.CreateRoles();
         }
     }
 }

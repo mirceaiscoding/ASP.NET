@@ -17,7 +17,8 @@ namespace ReservationsAPI.BLL.Helpers
         private readonly IConfiguration _configuration;
         private readonly UserManager<User> _userManager;
 
-        TokenHelper(IConfiguration configuration, UserManager<User> userManager)
+        public TokenHelper(IConfiguration configuration,
+            UserManager<User> userManager)
         {
             _userManager = userManager;
             _configuration = configuration;
