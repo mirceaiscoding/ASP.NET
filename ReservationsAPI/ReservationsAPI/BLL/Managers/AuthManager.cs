@@ -22,22 +22,41 @@ namespace ReservationsAPI.BLL.Managers
             _tokenHelper = tokenHelper;
         }
 
-        public async Task<string> Login(LoginModel loginModel)
+        public async Task<LoginResult> Login(LoginModel loginModel)
         {
             var user = await _userManager.FindByEmailAsync(loginModel.Email);
             if (user == null)
             {
-                return "Email not found";
+                return new LoginResult
+                {
+                    Success = false,
+                    Message = "Email not found"
+                };
+
             }
 
             var result = await _signInManager.CheckPasswordSignInAsync(user, loginModel.Password, false);
             if (result.Succeeded)
             {
                 var token = await _tokenHelper.CreateAccessToken(user);
+                var refreshToken = _tokenHelper.CreateRefreshToken();
+
+                user.RefreshToken = refreshToken;
                 await _userManager.UpdateAsync(user);
-                return token;
+
+                return new LoginResult
+                {
+                    Success = true,
+                    Message = "Logged in",
+                    AccessToken = token,
+                    RefreshToken = refreshToken
+                };
             }
-            return "Wrong password";
+            return new LoginResult
+            {
+                Success = false,
+                Message = "Wrong password"
+            };
         }
 
         public async Task<bool> Register(RegisterModel registerModel)
@@ -57,6 +76,21 @@ namespace ReservationsAPI.BLL.Managers
                 return true;
             }
             return false;
+        }
+
+        public async Task<string> Refresh(RefreshModel refreshModel)
+        {
+            var principal = _tokenHelper.GetPrincipalFromExpiredToken(refreshModel.AccessToken);
+            var username = principal.Identity.Name;
+
+            var user = await _userManager.FindByEmailAsync(username);
+
+            if (user.RefreshToken != refreshModel.RefreshToken)
+                return "Bad Refresh";
+
+            var newJwtToken = await _tokenHelper.CreateAccessToken(user);
+
+            return newJwtToken;
         }
     }
 }
