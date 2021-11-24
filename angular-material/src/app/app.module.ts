@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { RouterModule } from '@angular/router';
 
 import { CdkTreeModule } from '@angular/cdk/tree';
 import { OverlayModule } from '@angular/cdk/overlay';
@@ -39,6 +40,9 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { AppRoutingModule } from './app-routing.module';
+import { DoctorsPresentationComponent } from './doctors-presentation/doctors-presentation.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { DoctorCardComponent } from './doctors-presentation/doctor-card/doctor-card.component';
 
 const materialModules = [
   CdkTreeModule,
@@ -72,7 +76,13 @@ const materialModules = [
   MatGridListModule,
   MatRadioModule,
   MatDatepickerModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatGridListModule,
+  MatCardModule,
+  MatMenuModule,
+  MatIconModule,
+  MatButtonModule,
+  LayoutModule
 ];
 
 @NgModule({
@@ -80,12 +90,15 @@ const materialModules = [
     AppComponent,
     NavbarComponent,
     HomepageComponent,
+    DoctorsPresentationComponent,
+    DoctorCardComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     materialModules,
-    AppRoutingModule
+    AppRoutingModule,
+    RouterModule
   ],
   exports: [
     materialModules
