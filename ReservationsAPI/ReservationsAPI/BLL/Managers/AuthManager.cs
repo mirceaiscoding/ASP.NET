@@ -22,9 +22,22 @@ namespace ReservationsAPI.BLL.Managers
             _tokenHelper = tokenHelper;
         }
 
-        public Task<string> Login(LoginModel loginModel)
+        public async Task<string> Login(LoginModel loginModel)
         {
-            throw new NotImplementedException();
+            var user = await _userManager.FindByEmailAsync(loginModel.Email);
+            if (user == null)
+            {
+                return "Email not found";
+            }
+
+            var result = await _signInManager.CheckPasswordSignInAsync(user, loginModel.Password, false);
+            if (result.Succeeded)
+            {
+                var token = await _tokenHelper.CreateAccessToken(user);
+                await _userManager.UpdateAsync(user);
+                return token;
+            }
+            return "Wrong password";
         }
 
         public async Task<bool> Register(RegisterModel registerModel)

@@ -29,5 +29,12 @@ namespace ReservationsAPI.Controllers
             }
         }
 
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
+        {
+            var result = await _authManage.Login(loginModel);
+            return Ok(result);
+        }
+
     }
 }
