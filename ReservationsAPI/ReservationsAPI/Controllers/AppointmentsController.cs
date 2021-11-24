@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ReservationsAPI.BLL.Interfaces;
 using ReservationsAPI.DAL.Models.DataTransferObjects;
@@ -29,6 +30,7 @@ namespace ReservationsAPI.DAL.Controllers
             return Ok(await _appointmentsManager.GetPacientAppointments(id));
         }
 
+        [Authorize("Admin")]
         [HttpGet("get-all-appointments")]
         public async Task<IActionResult> GetAllAppointments()
         {
