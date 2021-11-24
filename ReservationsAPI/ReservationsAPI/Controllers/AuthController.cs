@@ -8,17 +8,17 @@ namespace ReservationsAPI.Controllers
 {
     public class AuthController : ControllerBase
     {
-        private readonly IAuthManager _authManage;
+        private readonly IAuthManager _authManager;
 
         public AuthController(IAuthManager authManager)
         {
-            _authManage = authManager;
+            _authManager = authManager;
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody]RegisterModel registerModel)
+        public async Task<IActionResult> Register([FromBody] RegisterModel registerModel)
         {
-            var result = await _authManage.Register(registerModel);
+            var result = await _authManager.Register(registerModel);
             if (result)
             {
                 return Ok("Registered");
@@ -32,7 +32,7 @@ namespace ReservationsAPI.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
         {
-            var result = await _authManage.Login(loginModel);
+            var result = await _authManager.Login(loginModel);
             return Ok(result);
         }
 
