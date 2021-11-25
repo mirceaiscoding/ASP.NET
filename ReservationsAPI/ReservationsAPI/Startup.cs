@@ -85,6 +85,7 @@ namespace ReservationsAPI
             services.AddTransient<IAppointmentsRepository, AppointmentsRepository>();
             services.AddTransient<IDoctorsRepository, DoctorsRepository>();
             services.AddTransient<IPacientsRepository, PacientsRepository>();
+            services.AddTransient<IProceduresRepository, ProceduresRepository>();
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 

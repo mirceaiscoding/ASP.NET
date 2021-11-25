@@ -44,7 +44,20 @@ namespace ReservationsAPI.BLL.Managers
         public async Task<DoctorDTO> GetById(long id)
         {
             var doctor = await _unitOfWork.DoctorsRepository.GetByIdAsync(id);
+            if (doctor == null)
+            {
+                throw new ArgumentException("No Doctor with this id exists!");
+            }
             return _mapper.Map<DoctorDTO>(doctor);
         }
+
+        public async Task<DoctorDTO> Delete(DoctorDTO doctorDTO)
+        {
+            var doctor = _mapper.Map<Doctor>(doctorDTO);
+            _unitOfWork.DoctorsRepository.Delete(doctor);
+            await _unitOfWork.SaveAsync();
+            return doctorDTO;
+        }
+
     }
 }

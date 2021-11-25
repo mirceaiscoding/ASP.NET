@@ -72,6 +72,7 @@ namespace ReservationsAPI.BLL.Managers
 
             var updatedAppointment = _mapper.Map<Appointment>(updatedAppointmentDTO);
             _unitOfWork.AppointmentsRepository.Update(updatedAppointment);
+            await _unitOfWork.SaveAsync();
             return updatedAppointmentDTO;
 
         }

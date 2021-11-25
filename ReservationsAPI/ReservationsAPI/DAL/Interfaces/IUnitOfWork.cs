@@ -9,7 +9,7 @@ namespace ReservationsAPI.DAL.Interfaces
         IAppointmentsRepository AppointmentsRepository { get; }
         IDoctorsRepository DoctorsRepository { get; }
         IPacientsRepository PacientsRepository { get; }
-        IGenericRepository<Procedure> ProceduresRepository { get; }
+        IProceduresRepository ProceduresRepository { get; }
         IGenericRepository<WorkDaySchedule> WorkDaySchedulesRepository { get; }
         IGenericRepository<VacationDay> VacationDaysRepository { get; }
 

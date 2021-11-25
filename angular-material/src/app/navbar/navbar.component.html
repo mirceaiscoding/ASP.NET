@@ -4,18 +4,24 @@
       <mat-icon>menu</mat-icon>
     </button> -->
 
-  <span> 
-    <button mat-button class="toolbar-button">
-      <img src="assets/dentart-logo.svg" alt="logo" id="toolbar-logo" />
-    </button> 
-  </span>
+  <a routerLink="">
+    <span> 
+      <button mat-button class="toolbar-button">
+        <img src="assets/dentart-logo.svg" alt="logo" id="toolbar-logo" />
+      </button> 
+    </span>
+  </a>
   <span class="example-spacer"></span>
-  <button mat-button class="toolbar-button">
-    DOCTORS
-  </button>
-  <button mat-button class="toolbar-button">
-    SERVICES
-  </button>
+  <a routerLink="doctors">
+    <button mat-button class="toolbar-button">
+      DOCTORS
+    </button>
+  </a>
+  <a routerLink="services">
+    <button mat-button class="toolbar-button">
+      SERVICES
+    </button>
+  </a>
   <button mat-icon-button class="toolbar-button place-icon" aria-label="icon-button with place icon">
     <mat-icon>place</mat-icon>
   </button>
