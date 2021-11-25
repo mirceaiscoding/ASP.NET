@@ -38,11 +38,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { HomepageComponent } from './homepage/homepage.component';
+import { HomepageComponent } from './pages/homepage/homepage.component';
 import { AppRoutingModule } from './app-routing.module';
-import { DoctorsPresentationComponent } from './doctors-presentation/doctors-presentation.component';
+import { DoctorsPresentationComponent } from './pages/doctors-presentation/doctors-presentation.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { DoctorCardComponent } from './doctors-presentation/doctor-card/doctor-card.component';
 
 const materialModules = [
   CdkTreeModule,
@@ -91,7 +90,6 @@ const materialModules = [
     NavbarComponent,
     HomepageComponent,
     DoctorsPresentationComponent,
-    DoctorCardComponent,
   ],
   imports: [
     BrowserModule,

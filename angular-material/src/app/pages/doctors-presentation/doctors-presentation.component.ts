@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Doctor } from '../shared/models/doctor.model';
 
 @Component({
   selector: 'app-doctors-presentation',
@@ -11,7 +10,6 @@ export class DoctorsPresentationComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    var doctors = [Doctor];
   }
 
 }
