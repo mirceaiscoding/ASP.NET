@@ -36,12 +36,15 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DoctorsPresentationComponent } from './pages/doctors-presentation/doctors-presentation.component';
 import { LayoutModule } from '@angular/cdk/layout';
+import { LoginComponent } from './pages/login/login.component';
 
 const materialModules = [
   CdkTreeModule,
@@ -90,13 +93,16 @@ const materialModules = [
     NavbarComponent,
     HomepageComponent,
     DoctorsPresentationComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     materialModules,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     materialModules

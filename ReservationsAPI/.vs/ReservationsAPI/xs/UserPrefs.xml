@@ -3,16 +3,16 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="BLL/LoginResult.cs">
     <Files>
       <File FileName="BLL/Managers/AuthManager.cs" Line="75" Column="10" />
-      <File FileName="Controllers/AuthController.cs" Line="35" Column="44" />
-      <File FileName="Controllers/AppointmentsController.cs" Line="38" Column="10" />
-      <File FileName="Startup.cs" Line="43" Column="1" />
-      <File FileName="DAL/Models/RefreshModel.cs" Line="7" Column="1" />
-      <File FileName="DAL/Entities/User.cs" Line="13" Column="2" />
-      <File FileName="Migrations/20211124161527_AddedRefreshToken.cs" Line="1" Column="1" />
-      <File FileName="BLL/Helpers/TokenHelper.cs" Line="77" Column="1" />
-      <File FileName="BLL/Interfaces/ITokenHelper.cs" Line="16" Column="2" />
-      <File FileName="BLL/Interfaces/IAuthManager.cs" Line="13" Column="57" />
-      <File FileName="BLL/Managers/AppointmentsManager.cs" Line="1" Column="1" />
+      <File FileName="Controllers/AuthController.cs" />
+      <File FileName="Controllers/AppointmentsController.cs" />
+      <File FileName="Startup.cs" />
+      <File FileName="DAL/Models/RefreshModel.cs" />
+      <File FileName="DAL/Entities/User.cs" />
+      <File FileName="Migrations/20211124161527_AddedRefreshToken.cs" />
+      <File FileName="BLL/Helpers/TokenHelper.cs" />
+      <File FileName="BLL/Interfaces/ITokenHelper.cs" />
+      <File FileName="BLL/Interfaces/IAuthManager.cs" />
+      <File FileName="BLL/Managers/AppointmentsManager.cs" />
       <File FileName="BLL/LoginResult.cs" Line="1" Column="1" />
     </Files>
     <Pads>
