@@ -46,6 +46,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { DoctorsPresentationComponent } from './pages/doctors-presentation/doctors-presentation.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 const materialModules = [
   CdkTreeModule,
@@ -95,6 +96,7 @@ const materialModules = [
     HomepageComponent,
     DoctorsPresentationComponent,
     LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
