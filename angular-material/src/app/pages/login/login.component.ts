@@ -40,15 +40,14 @@ export class LoginComponent implements OnInit {
     // APELAM SERVICIU LOGIN
     this.authService.login(loginData).subscribe((response: any) => {
       console.log(response);
-      // if (response && response.token) {
-      //   localStorage.setItem('token', response.token);
-      //   this.router.navigate(['/home']);
-      // }
+      if (response && response['accessToken'] && response['refreshToken']) {
+        localStorage.setItem('accessToken', response['accessToken']);
+        localStorage.setItem('refreshToken', response['refreshToken']);
+        this.router.navigate(['/home']);
+      } else {
+        alert(response['message']);
+      }
     });
-    console.log("Login complete!");
-    // } else {
-    //   console.log("Email is not valid!");
-    //   this.error = "Email is not valid!";
   }
 
 }
