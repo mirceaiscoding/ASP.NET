@@ -24,6 +24,7 @@
 .register-option{
   text-align: center;
   font-size: x-small;
-  padding: 10px;
+  margin-top: 20px;
   color: gray;
+  cursor: pointer;
 }

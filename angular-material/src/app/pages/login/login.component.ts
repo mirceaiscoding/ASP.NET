@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
-
+import { Router } from '@angular/router';
+import { AuthModel } from 'src/app/interfaces/auth-model';
+import { AuthService } from 'src/app/services/auth.service';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -9,33 +11,46 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService,
+    private router: Router,
+    private formBuilder: FormBuilder) { }
 
-  ngOnInit(): void {
-  }
+  emailRegx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-  email = new FormControl('', [Validators.required, Validators.email]);
+  // loginForm: FormGroup = this.formBuilder.group({
+  //   email: [null, [Validators.required, Validators.pattern(this.emailRegx)]],
+  //   password: [null, Validators.required]
+  // });
 
-  getEmailErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'You must enter a value';
+  loginForm = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.pattern(this.emailRegx)]),
+    password: new FormControl('', Validators.required)
+  });
+
+  ngOnInit() : void {}
+
+  submit() {
+    if (!this.loginForm.valid) {
+      console.log("Invalid form!");
+      return;
     }
-
-    return this.email.hasError('email') ? 'Not a valid email' : '';
-  }
-
-  submitLogin(event) {
-    console.log(event);
-    // this._currentUser.createFromFirebaseData(this.detailsForm.value);
-    // this._db.UpdateUser(this._currentUser)
-    // .then( result => {
-    //   this.busy = false;
-    //   this._popUp.showInfo('Perfil guardado');
-    // })
-    // .catch( error => {
-    //   this.busy = false;
-    //   this._popUp.showError(error);
-    // });
+    var loginData: AuthModel = this.loginForm.value;
+    console.log(loginData);
+    
+    // if (this.validateEmail(this.user.email)) {
+      // APELAM SERVICIU LOGIN
+      // this.authService.login(this.user).subscribe((response: any) => {
+      //   console.log(response);
+      //   if (response && response.token) {
+      //     localStorage.setItem('token', response.token);
+      //     this.router.navigate(['/home']);
+      //   }
+      // });
+    //   console.log("Login complete!");
+    // } else {
+    //   console.log("Email is not valid!");
+    //   this.error = "Email is not valid!";
+    // }
   }
 
 }
