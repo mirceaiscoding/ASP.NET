@@ -1,11 +1,11 @@
 ﻿<Properties StartupConfiguration="{4F96D45A-291E-4B3E-8E04-E668420FB686}|Default">
   <MonoDevelop.Ide.ItemProperties.ReservationsAPI PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="DAL/InitialSeed.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Startup.cs">
     <Files>
       <File FileName="BLL/Managers/AuthManager.cs" Line="75" Column="10" />
       <File FileName="Controllers/AuthController.cs" />
       <File FileName="Controllers/AppointmentsController.cs" />
-      <File FileName="Startup.cs" />
+      <File FileName="Startup.cs" Line="169" Column="1" />
       <File FileName="DAL/Models/RefreshModel.cs" />
       <File FileName="DAL/Entities/User.cs" />
       <File FileName="Migrations/20211124161527_AddedRefreshToken.cs" />
@@ -21,15 +21,8 @@
         <State name="__root__">
           <Node name="ReservationsAPI" expanded="True">
             <Node name="ReservationsAPI" expanded="True">
-              <Node name="Dependencies" expanded="True" />
-              <Node name="BLL" expanded="True" />
-              <Node name="Controllers" expanded="True" />
-              <Node name="DAL" expanded="True">
-                <Node name="Entities" expanded="True" />
-                <Node name="Models" expanded="True" />
-                <Node name="InitialSeed.cs" selected="True" />
-              </Node>
-              <Node name="Migrations" expanded="True" />
+              <Node name="DAL" expanded="True" />
+              <Node name="Startup.cs" selected="True" />
             </Node>
           </Node>
         </State>
