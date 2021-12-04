@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', Validators.required)
   });
 
-  ngOnInit() : void {}
+  ngOnInit(): void { }
 
   submit() {
     if (!this.loginForm.valid) {
@@ -36,21 +36,19 @@ export class LoginComponent implements OnInit {
     }
     var loginData: AuthModel = this.loginForm.value;
     console.log(loginData);
-    
-    // if (this.validateEmail(this.user.email)) {
-      // APELAM SERVICIU LOGIN
-      // this.authService.login(this.user).subscribe((response: any) => {
-      //   console.log(response);
-      //   if (response && response.token) {
-      //     localStorage.setItem('token', response.token);
-      //     this.router.navigate(['/home']);
-      //   }
-      // });
-    //   console.log("Login complete!");
+
+    // APELAM SERVICIU LOGIN
+    this.authService.login(loginData).subscribe((response: any) => {
+      console.log(response);
+      // if (response && response.token) {
+      //   localStorage.setItem('token', response.token);
+      //   this.router.navigate(['/home']);
+      // }
+    });
+    console.log("Login complete!");
     // } else {
     //   console.log("Email is not valid!");
     //   this.error = "Email is not valid!";
-    // }
   }
 
 }

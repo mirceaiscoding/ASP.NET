@@ -20,7 +20,7 @@ export class AuthService {
 
   login(authModel: AuthModel){
     return this.http.post(
-      this.baseUrl + 'api/auth/login',
+      this.baseUrl + 'login',
       authModel,
       this.privateHttpHeaders
     );
