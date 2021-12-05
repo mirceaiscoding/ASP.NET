@@ -16,6 +16,13 @@ export class AuthService {
     })
   };
 
+  private registerPrivateHttpHeaders = {
+    headers: new HttpHeaders({
+      'content-type': 'application/json',
+      'response-type': 'text'
+    })
+  };
+
   constructor(private http: HttpClient) { }
 
   login(authModel: AuthModel){
@@ -26,4 +33,19 @@ export class AuthService {
     );
   }
 
+  // You can only register as a pacient from the website
+  register(authModel: AuthModel){
+    type RegisterModel = AuthModel & {role: string}
+    var registerModel: RegisterModel = {
+      email: authModel.email,
+      password: authModel.password,
+      role: 'Pacient'
+    };
+    console.log(registerModel);
+    return this.http.post(
+      this.baseUrl + 'register',
+      registerModel,
+      this.registerPrivateHttpHeaders
+    );
+  }
 }

@@ -19,14 +19,7 @@ namespace ReservationsAPI.Controllers
         public async Task<IActionResult> Register([FromBody] RegisterModel registerModel)
         {
             var result = await _authManager.Register(registerModel);
-            if (result)
-            {
-                return Ok("Registered");
-            }
-            else
-            {
-                return BadRequest("Not registered");
-            }
+            return Ok(result);
         }
 
         [HttpPost("login")]

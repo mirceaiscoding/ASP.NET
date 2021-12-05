@@ -1,37 +1,43 @@
+.form-field-container {
+  text-align: center;
+  font-size: smaller;
+}
 
-.form-field-container{
-    text-align: center;
-    font-size: smaller;
-  }
-  
-  .submit-container{
-    text-align: center;
-  }
+.page-title{
+  text-align: center;
+  font-size: x-large;
+  margin-top: 20px;
+}
 
-  #submit-button{
-    -moz-transition: all .2s ease-in;
-    -o-transition: all .2s ease-in;
-    -webkit-transition: all .2s ease-in;
-    transition: all .2s ease-in;
-  }
-  
-  .login-form-container {
-    width: 300px;
-    margin: 0 auto;
-    padding-top: 10vh;
-  }
-  
-  .login-form{
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-direction: column;
-  }
-  
-  .register-option, .login-option{
-    text-align: center;
-    font-size: x-small;
-    margin-top: 20px;
-    color: gray;
-    cursor: pointer;
-  }
+.submit-container {
+  text-align: center;
+}
+
+#submit-button {
+  -moz-transition: all .2s ease-in;
+  -o-transition: all .2s ease-in;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+
+.login-form-container {
+  width: 300px;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+.login-form {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+
+.register-option,
+.login-option {
+  text-align: center;
+  font-size: x-small;
+  margin-top: 20px;
+  color: gray;
+  cursor: pointer;
+}

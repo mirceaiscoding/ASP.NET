@@ -1,14 +1,19 @@
-
-.form-field-container{
+.form-field-container {
   text-align: center;
   font-size: smaller;
 }
 
-.submit-container{
+.page-title{
+  text-align: center;
+  font-size: x-large;
+  margin-top: 20px;
+}
+
+.submit-container {
   text-align: center;
 }
 
-#submit-button{
+#submit-button {
   -moz-transition: all .2s ease-in;
   -o-transition: all .2s ease-in;
   -webkit-transition: all .2s ease-in;
@@ -18,17 +23,18 @@
 .login-form-container {
   width: 300px;
   margin: 0 auto;
-  padding-top: 10vh;
+  padding-top: 20px;
 }
 
-.login-form{
+.login-form {
   display: flex;
   justify-content: center;
   align-content: center;
   flex-direction: column;
 }
 
-.register-option{
+.register-option,
+.login-option {
   text-align: center;
   font-size: x-small;
   margin-top: 20px;

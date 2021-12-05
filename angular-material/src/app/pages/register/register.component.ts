@@ -49,14 +49,12 @@ export class RegisterComponent implements OnInit {
     console.log(loginData);
 
     // Call auth service
-    this.authService.login(loginData).subscribe((response: any) => {
+    this.authService.register(loginData).subscribe((response: any) => {
       console.log(response);
-      if (response && response['accessToken'] && response['refreshToken']) {
-        localStorage.setItem('accessToken', response['accessToken']);
-        localStorage.setItem('refreshToken', response['refreshToken']);
-        this.router.navigate(['/home']);
+      if (response == true) {
+        this.router.navigate(['/login']);
       } else {
-        alert(response['message']);
+        alert("Email already used by another account!");
       }
     });
   }
