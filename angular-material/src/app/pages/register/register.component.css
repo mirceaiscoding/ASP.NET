@@ -1,0 +1,30 @@
+
+.form-field-container{
+    text-align: center;
+    font-size: smaller;
+  }
+  
+  .submit-container{
+    text-align: center;
+  }
+  
+  .login-form-container {
+    width: 300px;
+    margin: 0 auto;
+    padding-top: 10vh;
+  }
+  
+  .login-form{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+  }
+  
+  .register-option, .login-option{
+    text-align: center;
+    font-size: x-small;
+    margin-top: 20px;
+    color: gray;
+    cursor: pointer;
+  }
