@@ -16,6 +16,7 @@ export class RegisterComponent implements OnInit {
     private router: Router) { }
 
   emailRegx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  passwordRegx = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})/
 
   // Checks that the password matches the confirmedPassword
   checkPasswords: ValidatorFn = (group: AbstractControl):  ValidationErrors | null => { 
@@ -28,7 +29,7 @@ export class RegisterComponent implements OnInit {
 
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.pattern(this.emailRegx)]),
-    password: new FormControl('', Validators.required),
+    password: new FormControl('', [Validators.required, Validators.pattern(this.passwordRegx)]),
     confirmedPassword: new FormControl('', Validators.required)
   }, {validators: this.checkPasswords});
 

@@ -15,7 +15,7 @@
           <mat-label>Enter your password</mat-label>
           <input matInput type="password" formControlName="password">
           <mat-error *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].invalid">
-            Enter your password!
+            Password is not strong enough!
           </mat-error>
         </mat-form-field>
       </div>
