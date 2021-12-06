@@ -49,7 +49,7 @@ export class RegisterComponent implements OnInit {
     console.log(loginData);
 
     // Call auth service
-    this.authService.register(loginData).subscribe((response: any) => {
+    this.authService.registerAsPacient(loginData).subscribe((response: any) => {
       console.log(response);
       if (response == true) {
         this.router.navigate(['/login']);

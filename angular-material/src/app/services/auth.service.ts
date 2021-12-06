@@ -34,17 +34,10 @@ export class AuthService {
   }
 
   // You can only register as a pacient from the website
-  register(authModel: AuthModel){
-    type RegisterModel = AuthModel & {role: string}
-    var registerModel: RegisterModel = {
-      email: authModel.email,
-      password: authModel.password,
-      role: 'Pacient'
-    };
-    console.log(registerModel);
+  registerAsPacient(authModel: AuthModel){
     return this.http.post(
-      this.baseUrl + 'register',
-      registerModel,
+      this.baseUrl + 'register-as-pacient',
+      authModel,
       this.registerPrivateHttpHeaders
     );
   }
