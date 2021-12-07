@@ -3,20 +3,26 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using ReservationsAPI.BLL.Interfaces;
 using ReservationsAPI.DAL.Entities;
+using ReservationsAPI.DAL.Interfaces;
 using ReservationsAPI.DAL.Models;
+using ReservationsAPI.DAL.Models.DataTransferObjects;
 
 namespace ReservationsAPI.BLL.Managers
 {
     public class AuthManager : IAuthManager
     {
+        private readonly IUnitOfWork _unitOfWork;
+
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly ITokenHelper _tokenHelper;
 
-        public AuthManager(UserManager<User> userManager,
+        public AuthManager(IUnitOfWork unitOfWork,
+            UserManager<User> userManager,
             SignInManager<User> signInManager,
             ITokenHelper tokenHelper)
         {
+            _unitOfWork = unitOfWork;
             _userManager = userManager;
             _signInManager = signInManager;
             _tokenHelper = tokenHelper;
@@ -73,6 +79,26 @@ namespace ReservationsAPI.BLL.Managers
             if (result.Succeeded)
             {
                 await _userManager.AddToRoleAsync(user, registerModel.Role);
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<bool> RegisterAsPacient(RegisterModel registerModel, PacientDTO pacientDTO)
+        {
+            var user = new PacientUser
+            {
+                Email = registerModel.Email,
+                UserName = registerModel.Email,
+                PacientId = pacientDTO.Id
+            };
+
+            // Encrypt password
+            var result = await _userManager.CreateAsync(user, registerModel.Password);
+
+            if (result.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(user, "Pacient");
                 return true;
             }
             return false;

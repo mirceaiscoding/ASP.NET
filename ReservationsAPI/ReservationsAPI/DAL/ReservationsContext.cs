@@ -20,6 +20,10 @@ namespace ReservationsAPI.DAL
         {
         }
 
+        // Not necessary?
+        //public DbSet<PacientUser> PacientUsers { get; set; }
+        //public DbSet<DoctorUser> DoctorUsers { get; set; }
+
         public DbSet<Pacient> Pacients { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<WorkDaySchedule> WorkDaySchedules { get; set; }

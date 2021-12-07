@@ -4,16 +4,19 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ReservationsAPI.BLL.Interfaces;
 using ReservationsAPI.DAL.Models;
+using ReservationsAPI.DAL.Models.DataTransferObjects;
 
 namespace ReservationsAPI.Controllers
 {
     public class AuthController : ControllerBase
     {
         private readonly IAuthManager _authManager;
+        private readonly IPacientsManager _pacientsManager;
 
-        public AuthController(IAuthManager authManager)
+        public AuthController(IAuthManager authManager, IPacientsManager pacientsManager)
         {
             _authManager = authManager;
+            _pacientsManager = pacientsManager;
         }
 
         [Authorize("Admin")]
@@ -26,10 +29,10 @@ namespace ReservationsAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost("register-as-pacient")]
-        public async Task<IActionResult> RegisterAsPacient([FromBody] RegisterModel registerModel)
+        public async Task<IActionResult> RegisterAsPacient([FromBody] PacientUserPostModel pacientUserPostModel)
         {
-            registerModel.Role = "Pacient";
-            var result = await _authManager.Register(registerModel);
+            var insertedPacientDTO = await _pacientsManager.Insert(pacientUserPostModel.PacientDTO);
+            var result = await _authManager.RegisterAsPacient(pacientUserPostModel.registerModel, insertedPacientDTO);
             return Ok(result);
         }
 

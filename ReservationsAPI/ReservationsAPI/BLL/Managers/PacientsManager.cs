@@ -36,7 +36,7 @@ namespace ReservationsAPI.BLL.Managers
         {
             var pacient = _mapper.Map<Pacient>(pacientDTO);
             await _unitOfWork.PacientsRepository.InsertAsync(pacient);
-            return pacientDTO;
+            return _mapper.Map<PacientDTO>(pacient);
         }
 
         public async Task<PacientDTO> Update(long pacientId, PacientDTO pacientDTO)
