@@ -107,11 +107,11 @@ namespace ReservationsAPI.Migrations
 
             modelBuilder.Entity("ReservationsAPI.DAL.Entities.Appointment", b =>
                 {
-                    b.Property<long>("PacientId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("PacientId")
+                        .HasColumnType("int");
 
-                    b.Property<long>("DoctorId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("DoctorId")
+                        .HasColumnType("int");
 
                     b.Property<long>("ProcedureId")
                         .HasColumnType("bigint");
@@ -129,54 +129,6 @@ namespace ReservationsAPI.Migrations
                     b.HasIndex("ProcedureId");
 
                     b.ToTable("Appointments");
-                });
-
-            modelBuilder.Entity("ReservationsAPI.DAL.Entities.Doctor", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("JobDescription")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Doctors");
-                });
-
-            modelBuilder.Entity("ReservationsAPI.DAL.Entities.Pacient", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Pacients");
                 });
 
             modelBuilder.Entity("ReservationsAPI.DAL.Entities.Procedure", b =>
@@ -331,8 +283,8 @@ namespace ReservationsAPI.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("DoctorId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("DoctorId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -360,6 +312,9 @@ namespace ReservationsAPI.Migrations
                     b.Property<long>("DoctorId")
                         .HasColumnType("bigint");
 
+                    b.Property<int?>("DoctorId1")
+                        .HasColumnType("int");
+
                     b.Property<TimeSpan>("EndHour")
                         .HasColumnType("time");
 
@@ -368,9 +323,47 @@ namespace ReservationsAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DoctorId");
+                    b.HasIndex("DoctorId1");
 
                     b.ToTable("WorkDaySchedules");
+                });
+
+            modelBuilder.Entity("ReservationsAPI.DAL.Entities.Doctor", b =>
+                {
+                    b.HasBaseType("ReservationsAPI.DAL.Entities.User");
+
+                    b.Property<string>("DoctorPhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("JobDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("Doctors");
+                });
+
+            modelBuilder.Entity("ReservationsAPI.DAL.Entities.Pacient", b =>
+                {
+                    b.HasBaseType("ReservationsAPI.DAL.Entities.User");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PacientPhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("Pacients");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -478,25 +471,27 @@ namespace ReservationsAPI.Migrations
                 {
                     b.HasOne("ReservationsAPI.DAL.Entities.Doctor", "Doctor")
                         .WithMany("WorkDaySchedules")
-                        .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DoctorId1");
 
                     b.Navigation("Doctor");
                 });
 
             modelBuilder.Entity("ReservationsAPI.DAL.Entities.Doctor", b =>
                 {
-                    b.Navigation("Appointments");
-
-                    b.Navigation("VacationDays");
-
-                    b.Navigation("WorkDaySchedules");
+                    b.HasOne("ReservationsAPI.DAL.Entities.User", null)
+                        .WithOne()
+                        .HasForeignKey("ReservationsAPI.DAL.Entities.Doctor", "Id")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ReservationsAPI.DAL.Entities.Pacient", b =>
                 {
-                    b.Navigation("Appointments");
+                    b.HasOne("ReservationsAPI.DAL.Entities.User", null)
+                        .WithOne()
+                        .HasForeignKey("ReservationsAPI.DAL.Entities.Pacient", "Id")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ReservationsAPI.DAL.Entities.Procedure", b =>
@@ -512,6 +507,20 @@ namespace ReservationsAPI.Migrations
             modelBuilder.Entity("ReservationsAPI.DAL.Entities.User", b =>
                 {
                     b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("ReservationsAPI.DAL.Entities.Doctor", b =>
+                {
+                    b.Navigation("Appointments");
+
+                    b.Navigation("VacationDays");
+
+                    b.Navigation("WorkDaySchedules");
+                });
+
+            modelBuilder.Entity("ReservationsAPI.DAL.Entities.Pacient", b =>
+                {
+                    b.Navigation("Appointments");
                 });
 #pragma warning restore 612, 618
         }

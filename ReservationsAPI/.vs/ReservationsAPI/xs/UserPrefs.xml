@@ -1,35 +1,38 @@
 ﻿<Properties StartupConfiguration="{4F96D45A-291E-4B3E-8E04-E668420FB686}|Default">
-  <MonoDevelop.Ide.ItemProperties.ReservationsAPI PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/AuthController.cs">
+  <MonoDevelop.Ide.ItemProperties.ReservationsAPI PreferredExecutionTarget="/Applications/Firefox.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="BLL/Interfaces/IAuthManager.cs">
     <Files>
-      <File FileName="BLL/Managers/AuthManager.cs" Line="77" Column="14" />
-      <File FileName="Controllers/AuthController.cs" Line="25" Column="36" />
-      <File FileName="Controllers/AppointmentsController.cs" />
-      <File FileName="Startup.cs" />
-      <File FileName="DAL/Models/RefreshModel.cs" />
-      <File FileName="DAL/Entities/User.cs" />
-      <File FileName="Migrations/20211124161527_AddedRefreshToken.cs" />
-      <File FileName="BLL/Helpers/TokenHelper.cs" />
-      <File FileName="BLL/Interfaces/ITokenHelper.cs" />
-      <File FileName="BLL/Interfaces/IAuthManager.cs" />
-      <File FileName="BLL/Managers/AppointmentsManager.cs" />
-      <File FileName="BLL/LoginResult.cs" />
-      <File FileName="DAL/InitialSeed.cs" />
-      <File FileName="Controllers/DoctorsController.cs" />
-      <File FileName="Controllers/PacientsController.cs" Line="1" Column="1" />
+      <File FileName="DAL/Entities/User.cs" Line="12" Column="69" />
+      <File FileName="DAL/Entities/Pacient.cs" Line="14" Column="1" />
+      <File FileName="DAL/Entities/Doctor.cs" Line="18" Column="1" />
+      <File FileName="DAL/Entities/Appointment.cs" Line="16" Column="2" />
+      <File FileName="DAL/ReservationsContext.cs" Line="34" Column="1" />
+      <File FileName="DAL/Entities/Role.cs" Line="1" Column="1" />
+      <File FileName="DAL/Entities/Procedure.cs" Line="1" Column="1" />
+      <File FileName="DAL/Entities/UserRole.cs" Line="1" Column="1" />
+      <File FileName="DAL/Entities/VacationDay.cs" Line="7" Column="19" />
+      <File FileName="BLL/Managers/AuthManager.cs" Line="10" Column="38" />
+      <File FileName="BLL/LoginResult.cs" Line="6" Column="1" />
+      <File FileName="BLL/RegisterResult.cs" Line="10" Column="1" />
+      <File FileName="Controllers/WorkDaySchedulesController.cs" Line="1" Column="1" />
+      <File FileName="Controllers/AuthController.cs" Line="37" Column="28" />
+      <File FileName="BLL/Interfaces/IAuthManager.cs" Line="9" Column="28" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="ReservationsAPI" expanded="True">
             <Node name="ReservationsAPI" expanded="True">
+              <Node name="Dependencies" expanded="True" />
               <Node name="BLL" expanded="True">
+                <Node name="Interfaces" expanded="True">
+                  <Node name="IAuthManager.cs" selected="True" />
+                </Node>
                 <Node name="Managers" expanded="True" />
               </Node>
-              <Node name="Controllers" expanded="True">
-                <Node name="AuthController.cs" selected="True" />
+              <Node name="DAL" expanded="True">
+                <Node name="Models" expanded="True" />
               </Node>
-              <Node name="DAL" expanded="True" />
             </Node>
           </Node>
         </State>

@@ -59,7 +59,7 @@ namespace ReservationsAPI.BLL.Managers
             };
         }
 
-        public async Task<bool> Register(RegisterModel registerModel)
+        public async Task<RegisterResult> Register(RegisterModel registerModel)
         {
             var user = new User
             {
@@ -73,9 +73,16 @@ namespace ReservationsAPI.BLL.Managers
             if (result.Succeeded)
             {
                 await _userManager.AddToRoleAsync(user, registerModel.Role);
-                return true;
+                return new RegisterResult
+                {
+                    Success = true,
+                    UserId = user.Id
+                };
             }
-            return false;
+            return new RegisterResult
+            {
+                Success = false
+            };
         }
 
         public async Task<string> Refresh(RefreshModel refreshModel)

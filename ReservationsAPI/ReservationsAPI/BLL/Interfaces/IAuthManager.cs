@@ -6,7 +6,7 @@ namespace ReservationsAPI.BLL.Interfaces
 {
     public interface IAuthManager
     {
-        Task<bool> Register(RegisterModel registerModel);
+        Task<RegisterResult> Register(RegisterModel registerModel);
 
         Task<LoginResult> Login(LoginModel loginModel);
 
