@@ -30,6 +30,9 @@ namespace ReservationsAPI.DAL
         protected override void OnModelCreating(ModelBuilder builder)
         {
 
+            builder.Entity<PacientUser>().ToTable("PacientUsers");
+            builder.Entity<DoctorUser>().ToTable("DoctorUsers");
+
             builder.Entity<WorkDaySchedule>()
                 .HasOne(wds => wds.Doctor)
                 .WithMany(d => d.WorkDaySchedules);
