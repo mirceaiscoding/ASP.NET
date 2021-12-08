@@ -1,4 +1,4 @@
-# ASP.NET
+# DentArt
 Dental clinic website with reservations functionality.
 
 # Diagram
