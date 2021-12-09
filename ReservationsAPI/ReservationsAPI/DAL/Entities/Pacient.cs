@@ -12,5 +12,7 @@ namespace ReservationsAPI.DAL.Entities
         public DateTime DateOfBirth { get; set; }
 
         public virtual ICollection<Appointment> Appointments { get; set; }
+
+        public virtual PacientUser PacientUser { get; set; }
     }
 }

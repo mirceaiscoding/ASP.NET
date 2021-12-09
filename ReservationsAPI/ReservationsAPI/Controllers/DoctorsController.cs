@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ReservationsAPI.BLL.Interfaces;
 using ReservationsAPI.DAL.Entities;
+using ReservationsAPI.DAL.Models.DataTransferObjects;
 
 namespace ReservationsAPI.DAL.Controllers
 {
@@ -26,6 +27,52 @@ namespace ReservationsAPI.DAL.Controllers
         {
             return Ok(await _doctorsManager.IsWorking(doctorId, date));
         }
-        
+
+        [HttpGet("get-all-doctors")]
+        public async Task<IActionResult> GetAllDoctors()
+        {
+            return Ok(await _doctorsManager.GetAll());
+        }
+
+        [HttpGet("get-doctor-by-id/{id}")]
+        public async Task<IActionResult> GetDoctorById(long id)
+        {
+            try
+            {
+                return Ok(await _doctorsManager.GetById(id));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPost("insert-doctor")]
+        public async Task<IActionResult> InsertDoctor(DoctorDTO doctorDTO)
+        {
+            try
+            {
+                var insertedDoctorDTO = await _doctorsManager.Insert(doctorDTO);
+                return Ok(insertedDoctorDTO);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpDelete("delete-doctor")]
+        public async Task<IActionResult> DeleteDoctor(DoctorDTO doctorDTO)
+        {
+            try
+            {
+                var deletedDoctorDto = await _doctorsManager.Delete(doctorDTO);
+                return Ok(deletedDoctorDto);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }

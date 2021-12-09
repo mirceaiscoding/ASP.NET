@@ -1,14 +1,28 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ReservationsAPI.DAL.Entities;
 
 namespace ReservationsAPI.DAL
 {
-    public class ReservationsContext : DbContext
+    public class ReservationsContext : IdentityDbContext<
+        User,
+        Role,
+        int,
+        IdentityUserClaim<int>,
+        UserRole,
+        IdentityUserLogin<int>,
+        IdentityRoleClaim<int>,
+        IdentityUserToken<int>>
     {
         public ReservationsContext(DbContextOptions<ReservationsContext> options) : base(options)
         {
         }
+
+        // Not necessary?
+        //public DbSet<PacientUser> PacientUsers { get; set; }
+        //public DbSet<DoctorUser> DoctorUsers { get; set; }
 
         public DbSet<Pacient> Pacients { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
@@ -19,6 +33,9 @@ namespace ReservationsAPI.DAL
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+
+            builder.Entity<PacientUser>().ToTable("PacientUsers");
+            builder.Entity<DoctorUser>().ToTable("DoctorUsers");
 
             builder.Entity<WorkDaySchedule>()
                 .HasOne(wds => wds.Doctor)

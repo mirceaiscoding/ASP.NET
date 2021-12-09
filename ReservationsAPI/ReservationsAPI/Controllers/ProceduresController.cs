@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ReservationsAPI.BLL.Interfaces;
+using ReservationsAPI.DAL.Models.DataTransferObjects;
 
 namespace ReservationsAPI.DAL.Controllers
 {
@@ -20,11 +21,80 @@ namespace ReservationsAPI.DAL.Controllers
             _proceduresManager = proceduresManager;
         }
 
-        [HttpGet()]
-        public async Task<IActionResult> GetAll()
+        [HttpGet("get-all-procedures")]
+        public async Task<IActionResult> GetAllProcedures()
         {
-            var appointments = await _proceduresManager.GetAll();
-            return Ok(appointments);
+            return Ok(await _proceduresManager.GetAll());
         }
+
+        [HttpGet("get-procedure-by-id/{id}")]
+        public async Task<IActionResult> GetProcedureById(long id)
+        {
+            try
+            {
+                return Ok(await _proceduresManager.GetById(id));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPost("insert-procedure")]
+        public async Task<IActionResult> InsertProcedure(ProcedureDTO procedureDTO)
+        {
+            try
+            {
+                var insertedProcedureDTO = await _proceduresManager.Insert(procedureDTO);
+                return Ok(insertedProcedureDTO);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPut("update-procedure")]
+        public async Task<IActionResult> UpdateProcedure(long id, ProcedureDTO procedureDTO)
+        {
+            try
+            {
+                var updatedProcedure = await _proceduresManager.Update(id, procedureDTO);
+                return Ok(updatedProcedure);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPut("update-procedure-cost")]
+        public async Task<IActionResult> UpdateProcedureCost(long id, int newCost)
+        {
+            try
+            {
+                var updatedProcedure = await _proceduresManager.UpdateCost(id, newCost);
+                return Ok(updatedProcedure);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpDelete("delete-procedure")]
+        public async Task<IActionResult> DeleteProcedure(ProcedureDTO procedureDTO)
+        {
+            try
+            {
+                var deletedProcedureDto = await _proceduresManager.Delete(procedureDTO);
+                return Ok(deletedProcedureDto);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
     }
 }

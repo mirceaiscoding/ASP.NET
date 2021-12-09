@@ -32,6 +32,7 @@ namespace ReservationsAPI.DAL.Repositories
                     EndTime = x.EndTime,
                     PacientName = x.Pacient.LastName + " " + x.Pacient.FirstName
                 })
+                .OrderBy(x => x.StartTime)
                 .ToListAsync();
             return pacientAppointmentsModels;
         }
@@ -50,6 +51,7 @@ namespace ReservationsAPI.DAL.Repositories
                     EndTime = x.EndTime,
                     DoctorName = x.Doctor.LastName + " " + x.Doctor.FirstName
                 })
+                .OrderBy(x => x.StartTime)
                 .ToListAsync();
             return pacientAppointmentsModels;
         }

@@ -8,6 +8,7 @@ using ReservationsAPI.BLL.Interfaces;
 using ReservationsAPI.DAL.Entities;
 using ReservationsAPI.DAL.Interfaces;
 using ReservationsAPI.DAL.Models;
+using ReservationsAPI.DAL.Models.DataTransferObjects;
 
 namespace ReservationsAPI.BLL.Managers
 {
@@ -22,9 +23,41 @@ namespace ReservationsAPI.BLL.Managers
             _mapper = mapper;
         }
 
+        public async Task<DoctorDTO> Insert(DoctorDTO doctorDTO)
+        {
+            var doctor = _mapper.Map<Doctor>(doctorDTO);
+            await _unitOfWork.DoctorsRepository.InsertAsync(doctor);
+            return doctorDTO;
+        }
+
         public async Task<bool> IsWorking(long doctorId, DateTime date)
         {
             return await _unitOfWork.DoctorsRepository.IsWorking(doctorId, date);
         }
+
+        public async Task<List<DoctorDTO>> GetAll()
+        {
+            var doctors = await _unitOfWork.DoctorsRepository.GetAllAsync();
+            return _mapper.Map<List<Doctor>, List<DoctorDTO>>(doctors);
+        }
+
+        public async Task<DoctorDTO> GetById(long id)
+        {
+            var doctor = await _unitOfWork.DoctorsRepository.GetByIdAsync(id);
+            if (doctor == null)
+            {
+                throw new ArgumentException("No Doctor with this id exists!");
+            }
+            return _mapper.Map<DoctorDTO>(doctor);
+        }
+
+        public async Task<DoctorDTO> Delete(DoctorDTO doctorDTO)
+        {
+            var doctor = _mapper.Map<Doctor>(doctorDTO);
+            _unitOfWork.DoctorsRepository.Delete(doctor);
+            await _unitOfWork.SaveAsync();
+            return doctorDTO;
+        }
+
     }
 }

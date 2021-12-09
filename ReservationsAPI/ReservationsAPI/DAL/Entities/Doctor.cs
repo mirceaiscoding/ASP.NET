@@ -14,5 +14,7 @@ namespace ReservationsAPI.DAL.Entities
         public virtual ICollection<WorkDaySchedule> WorkDaySchedules { get; set; }
         public virtual ICollection<VacationDay> VacationDays { get; set; }
         public virtual ICollection<Appointment> Appointments { get; set; }
+
+        public virtual DoctorUser DoctorUser { get; set; }
     }
 }
