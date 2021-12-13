@@ -1,1 +1,15 @@
-<p>doctors-presentation works!</p>
+<div class="doctors-container">
+
+  <ul class="doctors-list">
+    <div *ngFor="let doctor of doctors">
+      <div class="doctor-card" (click)="onSelect(doctor)">
+        <img src="assets/ALEXA_BUTARU_PHOTO.jpg" alt="Avatar" class="doctor-photo">
+        <div class="container">
+          <h4><b>{{doctor.lastName}} {{doctor.firstName}}</b></h4>
+          <p>{{doctor.jobDescription}}</p>
+        </div>
+      </div>
+    </div>
+  </ul>
+
+</div>

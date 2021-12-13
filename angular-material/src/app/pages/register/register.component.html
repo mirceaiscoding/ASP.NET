@@ -35,12 +35,12 @@
 
       <div class="form-field-container">
         <mat-form-field appearance="fill">
-          <mat-label>Choose a date</mat-label>
+          <mat-label>Enter your date of birth</mat-label>
           <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
           <mat-error *ngIf="loginForm.controls['dateOfBirth'].touched && loginForm.controls['dateOfBirth'].invalid">
-            Enter your phone number!
+            Enter your date of birth!
           </mat-error>
         </mat-form-field>
       </div>
