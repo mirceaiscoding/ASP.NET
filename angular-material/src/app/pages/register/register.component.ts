@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthModel } from 'src/app/interfaces/auth-model';
+import { PacientModel } from 'src/app/interfaces/pacient-model';
+import { PacientRegistrationModel } from 'src/app/interfaces/pacient-registration-model';
 import { AuthService } from 'src/app/services/auth.service';
 import { CustomErrorStateMatcher } from 'src/app/utils/custom-error-state-matcher';
 
@@ -28,6 +30,10 @@ export class RegisterComponent implements OnInit {
   customErrorStateMatcher = new CustomErrorStateMatcher();
 
   loginForm = new FormGroup({
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
+    phoneNumber: new FormControl('', []),
+    dateOfBirth: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.pattern(this.emailRegx)]),
     password: new FormControl('', [Validators.required, Validators.pattern(this.passwordRegx)]),
     confirmedPassword: new FormControl('', Validators.required)
@@ -45,11 +51,25 @@ export class RegisterComponent implements OnInit {
       console.log("Invalid form!");
       return;
     }
-    var loginData: AuthModel = this.loginForm.value;
-    console.log(loginData);
+    var formData = this.loginForm.value;
+    var pacientData: PacientModel = {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      phoneNumber: formData.phoneNumber,
+      dateOfBirth: formData.dateOfBirth
+    };
+    var loginData: AuthModel = {
+      email: formData.email,
+      password: formData.password
+    };
+    var registerData: PacientRegistrationModel = {
+      registerModel: loginData,
+      pacientDTO: pacientData
+    };
+    console.log(registerData);
 
     // Call auth service
-    this.authService.registerAsPacient(loginData).subscribe((response: any) => {
+    this.authService.registerAsPacient(registerData).subscribe((response: any) => {
       console.log(response);
       if (response == true) {
         this.router.navigate(['/login']);

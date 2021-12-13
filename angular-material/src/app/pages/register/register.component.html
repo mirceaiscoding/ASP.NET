@@ -2,6 +2,49 @@
 
 <div class="login-form-container">
     <form class="login-form" [formGroup]="loginForm" (submit)="submit()">
+
+      <div class="form-field-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter your first name</mat-label>
+          <input matInput placeholder="First Name" formControlName="firstName">
+          <mat-error *ngIf="loginForm.controls['firstName'].touched && loginForm.controls['firstName'].invalid">
+            Enter your first name!
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-field-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter your last name</mat-label>
+          <input matInput placeholder="Last Name" formControlName="lastName">
+          <mat-error *ngIf="loginForm.controls['lastName'].touched && loginForm.controls['lastName'].invalid">
+            Enter your last name!
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-field-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter your phone number</mat-label>
+          <input matInput placeholder="07 xxx xxx xxx" formControlName="phoneNumber">
+          <mat-error *ngIf="loginForm.controls['phoneNumber'].touched && loginForm.controls['phoneNumber'].invalid">
+            Enter your phone number!
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-field-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="loginForm.controls['dateOfBirth'].touched && loginForm.controls['dateOfBirth'].invalid">
+            Enter your phone number!
+          </mat-error>
+        </mat-form-field>
+      </div>
+
       <div class="form-field-container">
         <mat-form-field appearance="fill">
           <mat-label>Enter your email</mat-label>
@@ -11,7 +54,7 @@
           </mat-error>
         </mat-form-field>
       </div>
-
+      
       <div class="form-field-container">
         <mat-form-field appearance="fill">
           <mat-label>Enter your password</mat-label>

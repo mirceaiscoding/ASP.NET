@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AuthModel } from '../interfaces/auth-model';
+import { PacientRegistrationModel } from '../interfaces/pacient-registration-model';
 
 @Injectable({
   providedIn: 'root'
@@ -34,10 +35,10 @@ export class AuthService {
   }
 
   // You can only register as a pacient from the website
-  registerAsPacient(authModel: AuthModel){
+  registerAsPacient(pacientRegistrationModel: PacientRegistrationModel){
     return this.http.post(
       this.baseUrl + 'register-as-pacient',
-      authModel,
+      pacientRegistrationModel,
       this.registerPrivateHttpHeaders
     );
   }

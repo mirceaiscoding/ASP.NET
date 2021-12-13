@@ -2,13 +2,12 @@
   <MonoDevelop.Ide.ItemProperties.ReservationsAPI PreferredExecutionTarget="/Applications/Safari.app" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/AuthController.cs">
     <Files>
-      <File FileName="BLL/Managers/AuthManager.cs" Line="94" Column="15" />
-      <File FileName="DAL/Models/DataTransferObjects/PacientUserDTO.cs" Line="12" Column="6" />
-      <File FileName="AutoMapping.cs" Line="26" Column="1" />
-      <File FileName="DAL/Models/RegisterModel.cs" Line="7" Column="1" />
-      <File FileName="BLL/Interfaces/IAuthManager.cs" Line="20" Column="1" />
-      <File FileName="Controllers/AuthController.cs" Line="29" Column="42" />
-      <File FileName="BLL/Managers/PacientsManager.cs" Line="1" Column="1" />
+      <File FileName="BLL/Interfaces/IAuthManager.cs" Line="15" Column="22" />
+      <File FileName="BLL/LoginResult.cs" />
+      <File FileName="BLL/Managers/AuthManager.cs" Line="121" Column="6" />
+      <File FileName="DAL/UnitOfWork.cs" />
+      <File FileName="Controllers/AppointmentsController.cs" Line="1" Column="1" />
+      <File FileName="Controllers/AuthController.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

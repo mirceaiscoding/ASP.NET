@@ -1,6 +1,11 @@
 .form-field-container {
+  flex-grow: 1;
   text-align: center;
   font-size: smaller;
+}
+
+mat-form-field {
+  width: 100%;
 }
 
 .page-title{
