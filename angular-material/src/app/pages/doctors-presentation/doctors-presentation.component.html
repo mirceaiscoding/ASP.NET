@@ -1,9 +1,12 @@
-<div class="doctors-container">
+<div class="page-title">DOCTORS</div>
 
+<div class="doctors-container">
   <div class="doctors-list">
     <div *ngFor="let doctor of doctors">
       <div class="doctor-card" (click)="onSelect(doctor)">
-        <img class="doctor-photo" [src]="getImagePath(doctor)" alt=""/>
+        <div class="doctor-photo-container">
+            <img class="doctor-photo" [src]="getImagePath(doctor)" alt=""/>
+        </div>
         <div class="container">
           <h4><b>{{doctor.lastName}} {{doctor.firstName}}</b></h4>
           <p>{{doctor.jobDescription}}</p>

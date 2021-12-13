@@ -3,6 +3,7 @@
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap;
+    gap: 30px 50px;
 }
 
 .doctor-card {
@@ -12,14 +13,16 @@
   transition: 0.3s;
   text-align: center;
   padding: 5px;
-  margin: 20px;
+  cursor: pointer;
 }
 
 .doctor-photo{
     width: 100%;
+}
+
+.doctor-photo-container{
     max-height: 200px;
     overflow: hidden;
-
 }
 
 /* On mouse-over, add a deeper shadow */
