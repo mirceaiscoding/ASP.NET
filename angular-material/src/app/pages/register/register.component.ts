@@ -72,7 +72,16 @@ export class RegisterComponent implements OnInit {
     this.authService.registerAsPacient(registerData).subscribe((response: any) => {
       console.log(response);
       if (response == true) {
-        this.router.navigate(['/login']);
+        this.authService.login(loginData).subscribe((response: any) => {
+          console.log(response);
+          if (response && response['accessToken'] && response['refreshToken']) {
+            localStorage.setItem('accessToken', response['accessToken']);
+            localStorage.setItem('refreshToken', response['refreshToken']);
+            this.router.navigate(['/home']);
+          } else {
+            alert(response['message']);
+          }
+        });
       } else {
         alert("Email already used by another account!");
       }
