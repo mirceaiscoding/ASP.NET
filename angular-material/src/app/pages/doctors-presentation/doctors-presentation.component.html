@@ -3,15 +3,10 @@
 <div class="doctors-container">
   <div class="doctors-list">
     <div *ngFor="let doctor of doctors">
-      <div class="doctor-card" (click)="onSelect(doctor)">
-        <div class="doctor-photo-container">
-            <img class="doctor-photo" [src]="getImagePath(doctor)" alt=""/>
-        </div>
-        <div class="container">
-          <h4><b>{{doctor.lastName}} {{doctor.firstName}}</b></h4>
-          <p>{{doctor.jobDescription}}</p>
-        </div>
-      </div>
+      <app-doctor-info
+      [doctor]="doctor"
+      (onSelectDoctor)="selectDoctor($event)"
+      ></app-doctor-info>
     </div>
 </div>
 

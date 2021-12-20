@@ -26,7 +26,7 @@ export class DoctorsPresentationComponent implements OnInit {
     });
   }
 
-  onSelect(doctor: DoctorInformationModel)
+  selectDoctor(doctor: DoctorInformationModel)
   {
     console.log(doctor);
   }
