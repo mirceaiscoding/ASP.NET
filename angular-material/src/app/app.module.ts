@@ -47,6 +47,7 @@ import { DoctorsPresentationComponent } from './pages/doctors-presentation/docto
 import { LayoutModule } from '@angular/cdk/layout';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { SharedModule } from './shared/shared.module';
 
 const materialModules = [
   CdkTreeModule,
@@ -108,10 +109,11 @@ const materialModules = [
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   exports: [
-    materialModules
+    materialModules,
   ],
   providers: [],
   bootstrap: [AppComponent]
