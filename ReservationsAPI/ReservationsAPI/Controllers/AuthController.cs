@@ -12,11 +12,13 @@ namespace ReservationsAPI.Controllers
     {
         private readonly IAuthManager _authManager;
         private readonly IPacientsManager _pacientsManager;
+        private readonly IAuthorizationService _authorizationService;
 
-        public AuthController(IAuthManager authManager, IPacientsManager pacientsManager)
+        public AuthController(IAuthManager authManager, IPacientsManager pacientsManager, IAuthorizationService authorizationService)
         {
             _authManager = authManager;
             _pacientsManager = pacientsManager;
+            _authorizationService = authorizationService;
         }
 
         [Authorize("Admin")]

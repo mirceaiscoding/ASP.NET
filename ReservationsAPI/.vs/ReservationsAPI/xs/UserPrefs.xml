@@ -1,32 +1,23 @@
 ﻿<Properties StartupConfiguration="{4F96D45A-291E-4B3E-8E04-E668420FB686}|Default">
   <MonoDevelop.Ide.ItemProperties.ReservationsAPI PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="DAL/InitialSeed.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PacientDataAuthorizationHandler.cs">
     <Files>
       <File FileName="BLL/Interfaces/IAuthManager.cs" Line="15" Column="22" />
       <File FileName="BLL/LoginResult.cs" />
       <File FileName="BLL/Managers/AuthManager.cs" />
       <File FileName="DAL/UnitOfWork.cs" />
       <File FileName="Controllers/AppointmentsController.cs" />
-      <File FileName="Controllers/AuthController.cs" Line="1" Column="1" />
+      <File FileName="Controllers/AuthController.cs" Line="15" Column="49" />
       <File FileName="DAL/InitialSeed.cs" Line="33" Column="1" />
+      <File FileName="SameUserRequirement.cs" Line="8" Column="1" />
+      <File FileName="PacientDataAuthorizationHandler.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="ReservationsAPI" expanded="True">
             <Node name="ReservationsAPI" expanded="True">
-              <Node name="Dependencies" expanded="True" />
-              <Node name="BLL" expanded="True">
-                <Node name="Interfaces" expanded="True" />
-                <Node name="Managers" expanded="True" />
-              </Node>
-              <Node name="Controllers" expanded="True" />
-              <Node name="DAL" expanded="True">
-                <Node name="Entities" expanded="True" />
-                <Node name="Models" expanded="True" />
-                <Node name="InitialSeed.cs" selected="True" />
-              </Node>
-              <Node name="Migrations" expanded="True" />
+              <Node name="PacientDataAuthorizationHandler.cs" selected="True" />
             </Node>
           </Node>
         </State>
