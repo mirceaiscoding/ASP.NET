@@ -52,7 +52,7 @@ namespace ReservationsAPI.BLL.Helpers
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.Now.AddMinutes(5),
+                Expires = DateTime.Now.AddMinutes(1),   // 1 minutes until token expires
                 SigningCredentials = creds
             };
 

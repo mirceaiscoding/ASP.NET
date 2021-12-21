@@ -104,7 +104,7 @@ namespace ReservationsAPI.BLL.Managers
             return false;
         }
 
-        public async Task<string> Refresh(RefreshModel refreshModel)
+        public async Task<RefreshTokenResult> Refresh(RefreshModel refreshModel)
         {
             var principal = _tokenHelper.GetPrincipalFromExpiredToken(refreshModel.AccessToken);
             var username = principal.Identity.Name;
@@ -112,11 +112,20 @@ namespace ReservationsAPI.BLL.Managers
             var user = await _userManager.FindByEmailAsync(username);
 
             if (user.RefreshToken != refreshModel.RefreshToken)
-                return "Bad Refresh";
+            {
+                return new RefreshTokenResult
+                {
+                    Success = false
+                };
+            }
 
             var newJwtToken = await _tokenHelper.CreateAccessToken(user);
 
-            return newJwtToken;
+            return new RefreshTokenResult
+            {
+                Success = true,
+                NewAccessToken = newJwtToken
+            };
         }
     }
 }

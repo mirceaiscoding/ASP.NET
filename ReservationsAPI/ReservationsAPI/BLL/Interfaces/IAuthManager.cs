@@ -14,6 +14,6 @@ namespace ReservationsAPI.BLL.Interfaces
 
         Task<LoginResult> Login(LoginModel loginModel);
 
-        Task<string> Refresh(RefreshModel refreshModel);
+        Task<RefreshTokenResult> Refresh(RefreshModel refreshModel);
     }
 }
