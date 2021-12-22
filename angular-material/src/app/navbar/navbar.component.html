@@ -12,6 +12,13 @@
     </span>
   </a>
   <span class="example-spacer"></span>
+  <div *ngIf="role === 'Admin'">
+    <a routerLink="appointments">
+      <button mat-button class="toolbar-button">
+        APPOINTMENTS
+      </button>
+    </a>
+  </div>
   <a routerLink="doctors">
     <button mat-button class="toolbar-button">
       DOCTORS

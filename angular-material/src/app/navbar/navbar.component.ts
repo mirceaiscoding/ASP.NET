@@ -8,6 +8,8 @@ export class NavbarComponent implements OnInit {
 
   constructor() { }
 
+  role = localStorage.getItem('role');
+
   ngOnInit(): void {
   }
 

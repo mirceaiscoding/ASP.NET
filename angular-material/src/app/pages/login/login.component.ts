@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthModel } from 'src/app/interfaces/auth-model';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,8 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService,
-    private router: Router) { }
+    private router: Router,
+    private jwtHelper: JwtHelperService) { }
 
   emailRegx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -42,6 +44,8 @@ export class LoginComponent implements OnInit {
       if (response && response['accessToken'] && response['refreshToken']) {
         localStorage.setItem('accessToken', response['accessToken']);
         localStorage.setItem('refreshToken', response['refreshToken']);
+        var role = this.jwtHelper.decodeToken(response['accessToken'])['role'];
+        localStorage.setItem('role', role)
         this.router.navigate(['/home']);
       } else {
         alert(response['message']);

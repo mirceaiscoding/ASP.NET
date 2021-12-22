@@ -45,7 +45,8 @@ export class AuthService {
     this.refreshToken().subscribe((response: any) => {
       console.log(response);
       if (response['success']) {
-        localStorage.setItem('accessToken', response['newAccessToken']);
+        var newToken = response['newAccessToken']
+        localStorage.setItem('accessToken', newToken);
         return true;
       } else {
         return false;
@@ -60,6 +61,12 @@ export class AuthService {
       authModel,
       this.privateHttpHeaders
     );
+  }
+
+  logout() {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    localStorage.removeItem("role");
   }
 
   // You can only register as a pacient from the website

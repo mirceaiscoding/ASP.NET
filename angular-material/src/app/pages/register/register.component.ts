@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthModel } from 'src/app/interfaces/auth-model';
 import { PacientModel } from 'src/app/interfaces/pacient-model';
 import { PacientRegistrationModel } from 'src/app/interfaces/pacient-registration-model';
@@ -15,7 +16,8 @@ import { CustomErrorStateMatcher } from 'src/app/utils/custom-error-state-matche
 export class RegisterComponent implements OnInit {
 
   constructor(private authService: AuthService,
-    private router: Router) { }
+    private router: Router,
+    private jwtHelper: JwtHelperService) { }
 
   emailRegx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   passwordRegx = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})/
@@ -77,6 +79,8 @@ export class RegisterComponent implements OnInit {
           if (response && response['accessToken'] && response['refreshToken']) {
             localStorage.setItem('accessToken', response['accessToken']);
             localStorage.setItem('refreshToken', response['refreshToken']);
+            var role = this.jwtHelper.decodeToken(response['accessToken'])['role'];
+            localStorage.setItem('role', role)
             this.router.navigate(['/home']);
           } else {
             alert(response['message']);

@@ -51,6 +51,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { SharedModule } from './shared/shared.module';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { AppointmentsComponent } from './pages/appointments/appointments.component';
 
 const materialModules = [
   CdkTreeModule,
@@ -104,6 +105,7 @@ const materialModules = [
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
+    AppointmentsComponent,
   ],
   imports: [
     BrowserModule,
