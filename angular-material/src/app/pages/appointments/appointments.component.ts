@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminInformationsService } from 'src/app/services/admin-informations.service';
 
 @Component({
   selector: 'app-appointments',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppointmentsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private adminInformationsServie: AdminInformationsService) { }
+
+  appointments: any[] = [];
 
   ngOnInit(): void {
+    this.adminInformationsServie.getAllAppointments().subscribe(appointments => {
+      this.appointments = appointments;
+      console.log(appointments);
+    });
   }
 
 }

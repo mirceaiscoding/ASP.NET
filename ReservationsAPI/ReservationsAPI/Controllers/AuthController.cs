@@ -19,7 +19,7 @@ namespace ReservationsAPI.Controllers
             _pacientsManager = pacientsManager;
         }
 
-        [Authorize("Admin")]
+        //[Authorize("Admin")]
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel registerModel)
         {

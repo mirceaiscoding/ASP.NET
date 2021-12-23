@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AutoMapper;
 using ReservationsAPI.DAL.Entities;
 using ReservationsAPI.DAL.Interfaces;
 using ReservationsAPI.DAL.Repositories;
@@ -9,6 +10,7 @@ namespace ReservationsAPI.DAL
     public class UnitOfWork : IUnitOfWork
     {
         private ReservationsContext _context;
+        private IMapper _mapper;
 
         private AppointmentsRepository appointmentsRepository;
         private DoctorsRepository doctorsRepository;
@@ -17,9 +19,10 @@ namespace ReservationsAPI.DAL
         private GenericRepository<WorkDaySchedule> workDaySchedulesRepository;
         private GenericRepository<VacationDay> vacationDaysRepository;
 
-        public UnitOfWork(ReservationsContext context)
+        public UnitOfWork(ReservationsContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public IAppointmentsRepository AppointmentsRepository
@@ -29,7 +32,7 @@ namespace ReservationsAPI.DAL
 
                 if (this.appointmentsRepository == null)
                 {
-                    this.appointmentsRepository = new AppointmentsRepository(_context);
+                    this.appointmentsRepository = new AppointmentsRepository(_context, _mapper);
                 }
                 return appointmentsRepository;
             }

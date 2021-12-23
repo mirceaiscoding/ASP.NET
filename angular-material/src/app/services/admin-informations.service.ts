@@ -20,10 +20,10 @@ export class AdminInformationsService {
 
   private baseUrl: string = environment.baseUrl;
 
-  getDoctors(): Observable<DoctorInformationModel[]>
+  getAllAppointments(): Observable<DoctorInformationModel[]>
   {
-    return this.http.get(this.baseUrl + 'api/doctors/get-all-doctors')
-    .pipe(map((response) => <DoctorInformationModel[]> response));
+    return this.http.get(this.baseUrl + 'api/appointments/get-all-appointments')
+    .pipe(map((response) => <any[]> response));
   }
 
 }

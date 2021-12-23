@@ -48,11 +48,9 @@ namespace ReservationsAPI.BLL.Managers
             return appointmentDTO;
         }
 
-        public async Task<List<AppointmentDTO>> GetAll()
+        public Task<List<AppointmentsInformationModel>> GetAll()
         {
-            var appointments = await _unitOfWork.AppointmentsRepository.GetAllAsync();
-            var appointmentDTOs = _mapper.Map<IEnumerable<Appointment>, List<AppointmentDTO>>(appointments);
-            return appointmentDTOs;
+            return _unitOfWork.AppointmentsRepository.GetAppointmentsInformation();
         }
 
         public Task<List<DoctorAppointmentsModel>> GetDoctorAppointments(long doctorId)

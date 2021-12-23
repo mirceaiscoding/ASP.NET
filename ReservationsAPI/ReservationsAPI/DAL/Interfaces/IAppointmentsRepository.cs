@@ -10,6 +10,7 @@ namespace ReservationsAPI.DAL.Interfaces
     {
         Task<List<PacientAppointmentsModel>> GetPacientAppointments(long pacientId);
         Task<List<DoctorAppointmentsModel>> GetDoctorAppointments(long doctorId);
+        Task<List<AppointmentsInformationModel>> GetAppointmentsInformation();
 
         Task<Appointment> GetByCompositeKeyAsync(object[] id);
     }

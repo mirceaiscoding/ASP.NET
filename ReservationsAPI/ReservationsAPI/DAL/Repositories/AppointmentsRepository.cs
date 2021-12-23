@@ -2,16 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using ReservationsAPI.DAL.Entities;
 using ReservationsAPI.DAL.Interfaces;
 using ReservationsAPI.DAL.Models;
+using ReservationsAPI.DAL.Models.DataTransferObjects;
 
 namespace ReservationsAPI.DAL.Repositories
 {
     public class AppointmentsRepository : GenericRepository<Appointment>, IAppointmentsRepository
     {
-        public AppointmentsRepository(ReservationsContext context) : base(context) { }
+
+        private readonly IMapper _mapper;
+
+        public AppointmentsRepository(ReservationsContext context, IMapper mapper) : base(context)
+        {
+            _mapper = mapper;
+        }
 
         public async Task<Appointment> GetByCompositeKeyAsync(object[] id)
         {
@@ -54,6 +62,25 @@ namespace ReservationsAPI.DAL.Repositories
                 .OrderBy(x => x.StartTime)
                 .ToListAsync();
             return pacientAppointmentsModels;
+        }
+
+        public async Task<List<AppointmentsInformationModel>> GetAppointmentsInformation()
+        {
+            var appointmentsInformationModels = await entities
+                .Include(x => x.Doctor)
+                .Include(x => x.Pacient)
+                .Include(x => x.Procedure)
+                .Select(x => new AppointmentsInformationModel
+                {
+                    doctorDTO = _mapper.Map<DoctorDTO>(x.Doctor),
+                    pacientDTO = _mapper.Map<PacientDTO>(x.Pacient),
+                    procedureDTO = _mapper.Map<ProcedureDTO>(x.Procedure),
+                    StartTime = x.StartTime,
+                    EndTime = x.EndTime
+                })
+                .OrderBy(x => x.StartTime)
+                .ToListAsync();
+            return appointmentsInformationModels;
         }
     }
 }
