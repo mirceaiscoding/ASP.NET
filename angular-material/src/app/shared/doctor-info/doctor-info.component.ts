@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { DoctorInformationModel } from 'src/app/interfaces/doctor-information-model';
+import { DoctorDTO } from 'src/app/interfaces/doctor-dto';
 
 @Component({
   selector: 'app-doctor-info',
@@ -8,7 +8,7 @@ import { DoctorInformationModel } from 'src/app/interfaces/doctor-information-mo
 })
 export class DoctorInfoComponent implements OnInit {
 
-  @Input() doctor:DoctorInformationModel = {
+  @Input() doctor:DoctorDTO = {
     id: -1,
     firstName: '',
     lastName: '',
@@ -16,19 +16,19 @@ export class DoctorInfoComponent implements OnInit {
     phoneNumber: ''
   };
 
-  @Output() onSelectDoctor: EventEmitter<DoctorInformationModel> = new EventEmitter<DoctorInformationModel>();
+  @Output() onSelectDoctor: EventEmitter<DoctorDTO> = new EventEmitter<DoctorDTO>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  selectDoctor(doctor: DoctorInformationModel)
+  selectDoctor(doctor: DoctorDTO)
   {
     this.onSelectDoctor.emit(doctor);
   }
 
-  getImagePath(doctor: DoctorInformationModel): string
+  getImagePath(doctor: DoctorDTO): string
   {
     return "assets/" + (doctor.lastName + "_" + doctor.firstName + "_Photo").toUpperCase() + ".jpg";
   }

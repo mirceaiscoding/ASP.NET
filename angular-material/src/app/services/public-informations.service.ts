@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { DoctorInformationModel } from '../interfaces/doctor-information-model';
+import { DoctorDTO } from '../interfaces/doctor-dto';
 
 
 @Injectable({
@@ -22,9 +22,9 @@ export class PublicInformationsService {
     })
   };
 
-  getDoctors(): Observable<DoctorInformationModel[]>
+  getDoctors(): Observable<DoctorDTO[]>
   {
     return this.http.get(this.baseUrl + 'api/doctors/get-all-doctors')
-    .pipe(map((response) => <DoctorInformationModel[]> response));
+    .pipe(map((response) => <DoctorDTO[]> response));
   }
 }

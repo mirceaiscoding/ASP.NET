@@ -1,6 +1,6 @@
 import { UpperCasePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { DoctorInformationModel } from 'src/app/interfaces/doctor-information-model';
+import { DoctorDTO } from 'src/app/interfaces/doctor-dto';
 import { PublicInformationsService } from 'src/app/services/public-informations.service';
 
 @Component({
@@ -12,9 +12,9 @@ export class DoctorsPresentationComponent implements OnInit {
 
   constructor(private publicInformationsService:PublicInformationsService) { }
 
-  doctors: DoctorInformationModel[] = [];
+  doctors: DoctorDTO[] = [];
 
-  getImagePath(doctor: DoctorInformationModel): string
+  getImagePath(doctor: DoctorDTO): string
   {
     return "assets/" + (doctor.lastName + "_" + doctor.firstName + "_Photo").toUpperCase() + ".jpg";
   }
@@ -26,7 +26,7 @@ export class DoctorsPresentationComponent implements OnInit {
     });
   }
 
-  selectDoctor(doctor: DoctorInformationModel)
+  selectDoctor(doctor: DoctorDTO)
   {
     console.log(doctor);
   }
