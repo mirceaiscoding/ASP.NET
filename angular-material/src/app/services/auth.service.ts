@@ -90,4 +90,8 @@ export class AuthService {
       this.privateHttpHeaders
     );
   }
+
+  getRole() {
+    return localStorage.getItem('role')
+  }
 }
