@@ -1,19 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DoctorInfoComponent } from './doctor-info/doctor-info.component';
-import { AppointmentsInfoTableComponent } from './appointments-info-table/appointments-info-table.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
   declarations: [
     DoctorInfoComponent,
-    AppointmentsInfoTableComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatInputModule,
+    MatTableModule,
+    MatFormFieldModule,
   ],
   exports: [
-    DoctorInfoComponent
+    DoctorInfoComponent,
   ]
 })
 export class SharedModule { }

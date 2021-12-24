@@ -28,7 +28,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
-import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTreeModule } from '@angular/material/tree';
@@ -53,6 +52,9 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { AppointmentsComponent } from './pages/appointments/appointments.component';
 import { AuthorizeRequestInterceptor } from './interceptors/authorize-request.interceptor';
+import { MatTableModule } from '@angular/material/table';
+
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 const materialModules = [
   CdkTreeModule,
@@ -66,6 +68,7 @@ const materialModules = [
   MatIconModule,
   MatInputModule,
   MatListModule,
+  MatTableModule,
   MatMenuModule,
   MatProgressSpinnerModule,
   MatPaginatorModule,
@@ -74,7 +77,6 @@ const materialModules = [
   MatSidenavModule,
   MatSnackBarModule,
   MatSortModule,
-  MatTableModule,
   MatTabsModule,
   MatToolbarModule,
   MatFormFieldModule,
@@ -94,7 +96,7 @@ const materialModules = [
   MatButtonModule,
   LayoutModule,
   MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule,
 ];
 
 @NgModule({
@@ -109,9 +111,9 @@ const materialModules = [
     AppointmentsComponent,
   ],
   imports: [
+    materialModules,
     BrowserModule,
     BrowserAnimationsModule,
-    materialModules,
     AppRoutingModule,
     RouterModule,
     FormsModule,
@@ -137,6 +139,9 @@ const materialModules = [
       useValue: JWT_OPTIONS
     },
     JwtHelperService
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ],
   bootstrap: [AppComponent]
 })
