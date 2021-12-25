@@ -1,11 +1,12 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { AppointmentDTO } from 'src/app/interfaces/appointment-dto';
 import { AppointmentTableDataModel } from 'src/app/interfaces/appointment-table-data-model';
 import { AdminInformationsService } from 'src/app/services/admin-informations.service';
+import { ChooseTimeIntervalMatDialogComponent } from './choose-time-interval-mat-dialog/choose-time-interval-mat-dialog.component';
 
 @Component({
   selector: 'app-appointments',
@@ -55,10 +56,7 @@ export class AppointmentsComponent implements OnInit {
 
   editTime(appointment: AppointmentDTO) {
     console.log(appointment);
-    this.adminInformationsServie.deleteAppointment(appointment).subscribe(response => {
-      console.log(response);
-      
-    });
+    this.openDialog();
   }
   
   ngOnInit(): void {
@@ -80,5 +78,14 @@ export class AppointmentsComponent implements OnInit {
       console.log(this.appointmets);
       
     });
+  }
+
+  openDialog() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.autoFocus = true;
+    // dialogConfig.data = {};
+    
+    this.dialog.open(ChooseTimeIntervalMatDialogComponent, dialogConfig);
   }
 }

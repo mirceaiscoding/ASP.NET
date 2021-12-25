@@ -67,23 +67,28 @@ namespace ReservationsAPI.BLL.Managers
         {
             var currentAppointmentDTO = await GetById(pacientId, doctorId, procedureId, startTime);
             var updatedAppointmentDTO = createNewAppointmentDTO(currentAppointmentDTO, newStartTime);
-
-            var updatedAppointment = _mapper.Map<Appointment>(updatedAppointmentDTO);
-            _unitOfWork.AppointmentsRepository.Update(updatedAppointment);
             await _unitOfWork.SaveAsync();
-            return updatedAppointmentDTO;
 
+            var currentAppointment = _mapper.Map<Appointment>(currentAppointmentDTO);
+            var updatedAppointment = _mapper.Map<Appointment>(updatedAppointmentDTO);
+
+            _unitOfWork.AppointmentsRepository.Delete(currentAppointment);
+            _unitOfWork.AppointmentsRepository.Insert(updatedAppointment);
+            await _unitOfWork.SaveAsync();
+
+            return updatedAppointmentDTO;
         }
 
         public async Task<AppointmentDTO> GetById(long pacientId, long doctorId, long procedureId, DateTime startTime)
         {
             Object[] compositeKey = { pacientId, doctorId, procedureId, startTime };
-            var appointment = await _unitOfWork.AppointmentsRepository.GetByCompositeKeyAsync(compositeKey);
+            var appointment = _unitOfWork.AppointmentsRepository.GetByCompositeKeyAsync(compositeKey);
             if (appointment == null)
             {
                 throw new ArgumentException("There is no appointment with this id!");
             }
             var appointmentDTO = _mapper.Map<AppointmentDTO>(appointment);
+            await _unitOfWork.SaveAsync();
             return appointmentDTO;
         }
 

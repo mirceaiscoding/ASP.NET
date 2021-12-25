@@ -56,6 +56,7 @@ import { AuthorizeRequestInterceptor } from './interceptors/authorize-request.in
 import { MatTableModule } from '@angular/material/table';
 
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ChooseTimeIntervalMatDialogComponent } from './pages/appointments/choose-time-interval-mat-dialog/choose-time-interval-mat-dialog.component';
 
 const materialModules = [
   CdkTreeModule,
@@ -111,6 +112,7 @@ const materialModules = [
     RegisterComponent,
     DashboardComponent,
     AppointmentsComponent,
+    ChooseTimeIntervalMatDialogComponent,
   ],
   imports: [
     materialModules,

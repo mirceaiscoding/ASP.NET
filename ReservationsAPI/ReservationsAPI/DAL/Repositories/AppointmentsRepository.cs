@@ -21,9 +21,11 @@ namespace ReservationsAPI.DAL.Repositories
             _mapper = mapper;
         }
 
-        public async Task<Appointment> GetByCompositeKeyAsync(object[] id)
+        public Appointment GetByCompositeKeyAsync(object[] id)
         {
-            return await entities.FindAsync(id);
+            var appointment = entities.Find(id);
+            _context.Entry(appointment).State = EntityState.Detached;
+            return appointment;
         }
 
         public async Task<List<DoctorAppointmentsModel>> GetDoctorAppointments(long doctorId)

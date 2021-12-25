@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>New Start Time</h2>
+
+<mat-dialog-content [formGroup]="form">
+
+  <mat-form-field appearance="fill">
+    <mat-label>Enter the new start time</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="newDate">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button class="mat-raised-button" (click)="close()">Close</button>
+  <button [disabled]="form.invalid" class="mat-raised-button mat-primary" (click)="save()">Save</button>
+</mat-dialog-actions>

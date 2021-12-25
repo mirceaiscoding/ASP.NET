@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ReservationsAPI.BLL.Interfaces;
+using ReservationsAPI.DAL.Models;
 using ReservationsAPI.DAL.Models.DataTransferObjects;
 
 namespace ReservationsAPI.DAL.Controllers
@@ -68,11 +69,11 @@ namespace ReservationsAPI.DAL.Controllers
 
         // The new EndTime will be set based on the old time span!
         [HttpPut("update-appointment-time")]
-        public async Task<IActionResult> UpdateAppointment(long pacientId, long doctorId, long procedureId, DateTime startTime, DateTime newStartTime)
+        public async Task<IActionResult> UpdateAppointment(NewStartTimeAppointmentModel startTimeAppointmentModel)
         {
             try
             {
-                var updatedAppointmentDTO = await _appointmentsManager.UpdateTime(pacientId, doctorId, procedureId, startTime, newStartTime);
+                var updatedAppointmentDTO = await _appointmentsManager.UpdateTime(startTimeAppointmentModel.PacientId, startTimeAppointmentModel.DoctorId, startTimeAppointmentModel.ProcedureId, startTimeAppointmentModel.StartTime, startTimeAppointmentModel.NewStartTime);
                 return Ok(updatedAppointmentDTO);
             }
             catch (Exception e)
