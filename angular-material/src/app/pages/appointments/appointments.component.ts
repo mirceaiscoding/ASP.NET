@@ -18,12 +18,12 @@ export class AppointmentsComponent implements OnInit {
   constructor(
     private adminInformationsServie: AdminInformationsService,
     private liveAnnouncer: LiveAnnouncer,
-    public dialog: MatDialog ) { }
-  
+    public dialog: MatDialog) { }
+
   displayedColumns: string[] = ['doctorName', 'pacientName', 'procedure', 'startTime', 'endTime', 'delete', 'editStartTime'];
 
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
-  
+
   appointmets: AppointmentTableDataModel[] = [];
 
   applyFilter(event: Event) {
@@ -56,13 +56,13 @@ export class AppointmentsComponent implements OnInit {
 
   editTime(appointment: AppointmentDTO) {
     console.log(appointment);
-    this.openDialog();
+    this.openDialog(appointment);
   }
-  
+
   ngOnInit(): void {
 
     this.adminInformationsServie.getAllAppointments().subscribe(appointments => {
-      this.appointmets = appointments.map(function(appointment): AppointmentTableDataModel {
+      this.appointmets = appointments.map(function (appointment): AppointmentTableDataModel {
         return {
           pacientId: appointment.pacientDTO.id,
           doctorId: appointment.doctorDTO.id,
@@ -76,16 +76,30 @@ export class AppointmentsComponent implements OnInit {
       });
       this.dataSource.data = this.appointmets;
       console.log(this.appointmets);
-      
+
     });
   }
 
-  openDialog() {
+  openDialog(appointment: AppointmentDTO) {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.autoFocus = true;
-    // dialogConfig.data = {};
-    
-    this.dialog.open(ChooseTimeIntervalMatDialogComponent, dialogConfig);
+    dialogConfig.data = {
+      appointment: appointment
+    };
+
+    const dialogRef = this.dialog.open(ChooseTimeIntervalMatDialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(
+      data => {
+        if (data) {
+          console.log("Dialog output:", data);
+          var appointmetToUpdate = this.appointmets.filter(a => a == appointment)[0]; // TODO: Write this better!
+          console.log(appointmetToUpdate);
+          appointmetToUpdate['startTime'] = data['startTime'];
+          appointmetToUpdate['endTime'] = data['endTime'];
+        }
+      }
+    );
   }
 }

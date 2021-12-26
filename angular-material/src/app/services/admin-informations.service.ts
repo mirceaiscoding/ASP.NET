@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
@@ -33,4 +34,20 @@ export class AdminInformationsService {
     };
     return this.http.delete(this.baseUrl + 'api/appointments/delete-appointment', options)
   }
+
+  updateAppointmentTime(appointment: AppointmentDTO, newStartTime: Date)
+  {
+    var body = {
+      "pacientId": appointment.pacientId,
+      "doctorId": appointment.doctorId,
+      "procedureId": appointment.procedureId,
+      "startTime": appointment.startTime,
+      "endTime": appointment.endTime,
+      "newStartTime": formatDate(newStartTime, "yyyy-MM-dd", "en-US")
+    }
+    console.log(body);
+    return this.http.put(this.baseUrl + 'api/appointments/update-appointment-time', body)
+  }
+
+
 }
