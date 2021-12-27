@@ -35,15 +35,16 @@ export class AdminInformationsService {
     return this.http.delete(this.baseUrl + 'api/appointments/delete-appointment', options)
   }
 
-  updateAppointmentTime(appointment: AppointmentDTO, newStartTime: Date)
+  updateAppointmentTime(appointment: AppointmentDTO, newDate: Date, newTime: String)
   {
+    var formattedDate = formatDate(newDate, "yyyy-MM-dd", "en-US");
     var body = {
       "pacientId": appointment.pacientId,
       "doctorId": appointment.doctorId,
       "procedureId": appointment.procedureId,
       "startTime": appointment.startTime,
       "endTime": appointment.endTime,
-      "newStartTime": formatDate(newStartTime, "yyyy-MM-dd", "en-US")
+      "newStartTime": formattedDate + "T" + newTime
     }
     console.log(body);
     return this.http.put(this.baseUrl + 'api/appointments/update-appointment-time', body)

@@ -13,6 +13,7 @@ export class ChooseTimeIntervalMatDialogComponent implements OnInit {
 
   form = new FormGroup({
     newDate: new FormControl('', [Validators.required]),
+    newTime: new FormControl('12:00'),
   }, {});
 
   appointment!: AppointmentDTO;
@@ -26,10 +27,9 @@ export class ChooseTimeIntervalMatDialogComponent implements OnInit {
 
   ngOnInit() {}
 
-  save() {
-      if (this.form.valid)
-      {
-        this.adminInformationsServie.updateAppointmentTime(this.appointment, this.form.value['newDate']).subscribe(response => {
+  save() {      
+      if (this.form.valid) {
+        this.adminInformationsServie.updateAppointmentTime(this.appointment, this.form.value['newDate'], this.form.value['newTime']).subscribe(response => {
           console.log(response);
           this.dialogRef.close(response);
         })
