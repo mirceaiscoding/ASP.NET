@@ -5,6 +5,8 @@ import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AppointmentDTO } from '../interfaces/appointment-dto';
 import { AppointmentInformationModel } from '../interfaces/appointment-information-model';
+import { AppoointmentPostModel } from '../interfaces/appoointment-post-model';
+import { PacientDTO } from '../interfaces/pacient-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +25,12 @@ export class AdminInformationsService {
   {
     return this.http.get(this.baseUrl + 'api/appointments/get-all-appointments')
     .pipe(map((response) => <AppointmentInformationModel[]> response));
+  }
+
+  getAllPacients(): Observable<PacientDTO[]>
+  {
+    return this.http.get(this.baseUrl + 'api/pacients/get-all-pacients')
+    .pipe(map((response) => <PacientDTO[]> response));
   }
 
   deleteAppointment(appointment: AppointmentDTO)
@@ -50,5 +58,15 @@ export class AdminInformationsService {
     return this.http.put(this.baseUrl + 'api/appointments/update-appointment-time', body)
   }
 
+  addAppointment(appointment: AppoointmentPostModel)
+  {
+    console.log("POST APPOINTMENT", appointment);
+    return this.http.post(this.baseUrl + 'api/appointments/insert-appointment', appointment)
+  }
+
+  getAppointmentInfo(appointment: AppointmentDTO)
+  {
+    return this.http.post(this.baseUrl + 'api/appointments/get-appointment-information', appointment)
+  }
 
 }

@@ -5,7 +5,7 @@
       <div class="form-field-container">
         <mat-form-field appearance="fill">
           <mat-label>Enter your email</mat-label>
-          <input matInput placeholder="name@domain.com" formControlName="email" required>
+          <input matInput placeholder="name@domain.com" formControlName="email" name="username" required>
           <mat-error *ngIf="loginForm.controls['email'].touched && loginForm.controls['email'].invalid">
             Enter a valid email!
           </mat-error>
@@ -15,7 +15,7 @@
       <div class="form-field-container">
         <mat-form-field appearance="fill">
           <mat-label>Enter your password</mat-label>
-          <input matInput type="password" formControlName="password">
+          <input matInput type="password" formControlName="password" name="password">
           <mat-error *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].invalid">
             Enter your password!
           </mat-error>

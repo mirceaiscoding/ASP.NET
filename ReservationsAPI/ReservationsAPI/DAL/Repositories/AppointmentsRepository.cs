@@ -28,6 +28,26 @@ namespace ReservationsAPI.DAL.Repositories
             return appointment;
         }
 
+        public async Task<AppointmentsInformationModel> GetAppointmentInformation(long pacientId, long doctorId, long procedureId, DateTime startTime)
+        {
+            var appointment = await entities
+                .Include(x => x.Doctor)
+                .Include(x => x.Pacient)
+                .Include(x => x.Procedure)
+                .FirstOrDefaultAsync(a => a.PacientId == pacientId && a.DoctorId == doctorId && a.ProcedureId == procedureId && a.StartTime == startTime);
+            var appointmentInformation = new AppointmentsInformationModel
+            {
+                doctorDTO = _mapper.Map<DoctorDTO>(appointment.Doctor),
+                pacientDTO = _mapper.Map<PacientDTO>(appointment.Pacient),
+                procedureDTO = _mapper.Map<ProcedureDTO>(appointment.Procedure),
+                StartTime = appointment.StartTime,
+                EndTime = appointment.EndTime
+            };
+
+            _context.Entry(appointment).State = EntityState.Detached;
+            return appointmentInformation;
+        }
+
         public async Task<List<DoctorAppointmentsModel>> GetDoctorAppointments(long doctorId)
         {
             var pacientAppointmentsModels = await entities

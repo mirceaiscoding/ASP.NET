@@ -57,6 +57,7 @@ import { MatTableModule } from '@angular/material/table';
 
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ChooseTimeIntervalMatDialogComponent } from './pages/appointments/choose-time-interval-mat-dialog/choose-time-interval-mat-dialog.component';
+import { AddAppointmentMatDialogComponent } from './pages/appointments/add-appointment-mat-dialog/add-appointment-mat-dialog.component';
 
 const materialModules = [
   CdkTreeModule,
@@ -113,6 +114,7 @@ const materialModules = [
     DashboardComponent,
     AppointmentsComponent,
     ChooseTimeIntervalMatDialogComponent,
+    AddAppointmentMatDialogComponent,
   ],
   imports: [
     materialModules,

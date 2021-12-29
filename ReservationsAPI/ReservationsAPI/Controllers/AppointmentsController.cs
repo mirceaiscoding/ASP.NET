@@ -53,6 +53,21 @@ namespace ReservationsAPI.DAL.Controllers
             }
         }
 
+        [Authorize("Admin")]
+        [HttpPost("get-appointment-information")]
+        public async Task<IActionResult> GetAppointmentInformationById(AppointmentDTO appointment)
+        {
+            try
+            {
+                var appointmentInfo = await _appointmentsManager.GetAppointmentInformationById(appointment.PacientId, appointment.DoctorId, appointment.ProcedureId, appointment.StartTime);
+                return Ok(appointmentInfo);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
         [HttpPost("insert-appointment")]
         public async Task<IActionResult> PostAppointment(AppointmentDTO appointmentDTO)
         {

@@ -12,8 +12,8 @@ import { AdminInformationsService } from 'src/app/services/admin-informations.se
 export class ChooseTimeIntervalMatDialogComponent implements OnInit {
 
   form = new FormGroup({
-    newDate: new FormControl('', [Validators.required]),
-    newTime: new FormControl('12:00'),
+    newDate: new FormControl(new Date(), [Validators.required]),
+    newTime: new FormControl('12:00', [Validators.required]),
   }, {});
 
   appointment!: AppointmentDTO;

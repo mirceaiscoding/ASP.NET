@@ -4,8 +4,14 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { AppointmentDTO } from 'src/app/interfaces/appointment-dto';
+import { AppointmentInformationModel } from 'src/app/interfaces/appointment-information-model';
 import { AppointmentTableDataModel } from 'src/app/interfaces/appointment-table-data-model';
+import { DoctorDTO } from 'src/app/interfaces/doctor-dto';
+import { PacientDTO } from 'src/app/interfaces/pacient-dto';
+import { ProcedureDTO } from 'src/app/interfaces/procedure-dto';
 import { AdminInformationsService } from 'src/app/services/admin-informations.service';
+import { PublicInformationsService } from 'src/app/services/public-informations.service';
+import { AddAppointmentMatDialogComponent } from './add-appointment-mat-dialog/add-appointment-mat-dialog.component';
 import { ChooseTimeIntervalMatDialogComponent } from './choose-time-interval-mat-dialog/choose-time-interval-mat-dialog.component';
 
 @Component({
@@ -16,6 +22,7 @@ import { ChooseTimeIntervalMatDialogComponent } from './choose-time-interval-mat
 export class AppointmentsComponent implements OnInit {
 
   constructor(
+    private publicInformationsService: PublicInformationsService,
     private adminInformationsServie: AdminInformationsService,
     private liveAnnouncer: LiveAnnouncer,
     public dialog: MatDialog) { }
@@ -25,6 +32,9 @@ export class AppointmentsComponent implements OnInit {
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
 
   appointmets: AppointmentTableDataModel[] = [];
+  pacients: PacientDTO[] = [];
+  doctors: DoctorDTO[] = [];
+  procedures: ProcedureDTO[] = [];
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -56,7 +66,7 @@ export class AppointmentsComponent implements OnInit {
 
   editTime(appointment: AppointmentDTO) {
     console.log(appointment);
-    this.openDialog(appointment);
+    this.openNewTimeDialog(appointment);
   }
 
   ngOnInit(): void {
@@ -76,14 +86,65 @@ export class AppointmentsComponent implements OnInit {
       });
       this.dataSource.data = this.appointmets;
       console.log(this.appointmets);
-
     });
+
+    this.adminInformationsServie.getAllPacients().subscribe(pacients => {
+      this.pacients = pacients;
+    })
+
+    this.publicInformationsService.getAllDoctors().subscribe(doctors => {
+      this.doctors = doctors;
+    })
+
+    this.publicInformationsService.getAllProcedures().subscribe(procedures => {
+      this.procedures = procedures;
+    })
   }
 
-  openDialog(appointment: AppointmentDTO) {
+  addAppointment() {
+    this.openAddAppointmentDialog();
+  }
+
+  openAddAppointmentDialog() {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+    dialogConfig.data = {
+      doctors: this.doctors,
+      pacients: this.pacients,
+      procedures: this.procedures
+    };
+
+    const dialogRef = this.dialog.open(AddAppointmentMatDialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(
+      data => {
+        if (data) {
+          console.log("Dialog output:", data);
+          var addedAppointment: AppointmentTableDataModel = 
+          {
+            doctorName: data.doctorDTO.lastName + " " + data.doctorDTO.firstName,
+            doctorId: data.doctorDTO.id,
+            pacientName: data.pacientDTO.lastName + " " + data.pacientDTO.firstName,
+            pacientId: data.pacientDTO.id,
+            procedureName: data.procedureDTO.procedureName,
+            procedureId: data.procedureDTO.id,
+            startTime: data.startTime,
+            endTime: data.endTime,
+          }
+          this.appointmets.push(addedAppointment);
+          this.dataSource.data = this.appointmets;
+        }
+      }
+    );
+  }
+
+  openNewTimeDialog(appointment: AppointmentDTO) {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
     dialogConfig.data = {
       appointment: appointment
     };

@@ -21,7 +21,7 @@ namespace ReservationsAPI.BLL.Managers
             _mapper = mapper;
         }
 
-        public async Task<AppointmentDTO> Insert(AppointmentDTO appointmentDTO)
+        public async Task<AppointmentsInformationModel> Insert(AppointmentDTO appointmentDTO)
         {
             if (await _unitOfWork.DoctorsRepository.GetByIdAsync(appointmentDTO.DoctorId) == null)
             {
@@ -37,7 +37,14 @@ namespace ReservationsAPI.BLL.Managers
             }
             var appointment = _mapper.Map<Appointment>(appointmentDTO);
             await _unitOfWork.AppointmentsRepository.InsertAsync(appointment);
-            return appointmentDTO;
+            return new AppointmentsInformationModel
+            {
+                doctorDTO = _mapper.Map<DoctorDTO>(appointment.Doctor),
+                pacientDTO = _mapper.Map<PacientDTO>(appointment.Pacient),
+                procedureDTO = _mapper.Map<ProcedureDTO>(appointment.Procedure),
+                StartTime = appointment.StartTime,
+                EndTime = appointment.EndTime
+            };
         }
 
         public async Task<AppointmentDTO> Delete(AppointmentDTO appointmentDTO)
@@ -51,6 +58,11 @@ namespace ReservationsAPI.BLL.Managers
         public Task<List<AppointmentsInformationModel>> GetAll()
         {
             return _unitOfWork.AppointmentsRepository.GetAppointmentsInformation();
+        }
+
+        public Task<AppointmentsInformationModel> GetAppointmentInformationById(long pacientId, long doctorId, long procedureId, DateTime startTime)
+        {
+            return _unitOfWork.AppointmentsRepository.GetAppointmentInformation(pacientId, doctorId, procedureId, startTime);
         }
 
         public Task<List<DoctorAppointmentsModel>> GetDoctorAppointments(long doctorId)

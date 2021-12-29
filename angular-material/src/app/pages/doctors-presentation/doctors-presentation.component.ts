@@ -20,7 +20,7 @@ export class DoctorsPresentationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.publicInformationsService.getDoctors().subscribe(doctors => {
+    this.publicInformationsService.getAllDoctors().subscribe(doctors => {
       this.doctors = doctors;
       console.log(doctors);
     });

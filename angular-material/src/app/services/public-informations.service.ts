@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { DoctorDTO } from '../interfaces/doctor-dto';
+import { ProcedureDTO } from '../interfaces/procedure-dto';
 
 
 @Injectable({
@@ -22,9 +23,15 @@ export class PublicInformationsService {
     })
   };
 
-  getDoctors(): Observable<DoctorDTO[]>
+  getAllDoctors(): Observable<DoctorDTO[]>
   {
     return this.http.get(this.baseUrl + 'api/doctors/get-all-doctors')
     .pipe(map((response) => <DoctorDTO[]> response));
+  }
+
+  getAllProcedures(): Observable<ProcedureDTO[]>
+  {
+    return this.http.get(this.baseUrl + 'api/procedures/get-all-procedures')
+    .pipe(map((response) => <ProcedureDTO[]> response));
   }
 }
