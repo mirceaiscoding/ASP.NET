@@ -18,10 +18,12 @@ import { AdminInformationsService } from 'src/app/services/admin-informations.se
 })
 export class AddAppointmentMatDialogComponent implements OnInit {
 
+  startWithIdRegx: RegExp = /(^#[0-9]{1,}:[a-zA-Z ]*)/
+
   form = new FormGroup({
-    doctor: new FormControl('', [Validators.required]),
-    pacient: new FormControl('', [Validators.required]),
-    procedure: new FormControl('', [Validators.required]),
+    doctor: new FormControl('', [Validators.required, Validators.pattern(this.startWithIdRegx)]),
+    pacient: new FormControl('', [Validators.required, Validators.pattern(this.startWithIdRegx)]),
+    procedure: new FormControl('', [Validators.required, Validators.pattern(this.startWithIdRegx)]),
     date: new FormControl(new Date(), [Validators.required]),
     startTime: new FormControl('12:00', [Validators.required]),
     endTime: new FormControl('13:00', [Validators.required]),
@@ -45,15 +47,15 @@ export class AddAppointmentMatDialogComponent implements OnInit {
   }
 
   findDoctor(val: string) {
-    return this.doctors.filter(x => (x.lastName + " " + x.firstName).toLowerCase().includes(val.toLowerCase()));
+    return this.doctors.filter(x => ("#" + x.id + ": " + x.lastName + " " + x.firstName).toLowerCase().includes(val.toLowerCase()));
   }
 
   findPacient(val: string) {
-    return this.pacients.filter(x => (x.lastName + " " + x.firstName).toLowerCase().includes(val.toLowerCase()));
+    return this.pacients.filter(x => ("#" + x.id + ": " + x.lastName + " " + x.firstName).toLowerCase().includes(val.toLowerCase()));
   }
 
   findProcedure(val: string) {
-    return this.procedures.filter(x => (x.procedureName).toLowerCase().includes(val.toLowerCase()));
+    return this.procedures.filter(x => ("#" + x.id + ": " + x.procedureName).toLowerCase().includes(val.toLowerCase()));
   }
 
 

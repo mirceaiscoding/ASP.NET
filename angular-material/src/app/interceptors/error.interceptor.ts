@@ -25,8 +25,10 @@ export class ErrorInterceptor implements HttpInterceptor {
         } else {
           // The backend returned an unsuccessful response code.
           console.error(`Backend returned code ${error.status}, body was: ${error.error}`);
+          if (error.status == 401) {
+            this.router.navigate(['login']);
+          }
         }
-        this.router.navigate(['login']);
         return EMPTY;
       })
     );  
