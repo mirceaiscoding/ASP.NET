@@ -68,10 +68,13 @@
     </tr>
   </table>
 
-  <div class="button-container">    
+  <mat-paginator [pageSizeOptions]="[10]" showFirstLastButtons aria-label="Select page of appointments">
+  </mat-paginator>
+
+  <div class="button-container">
     <button id="submit-button" mat-button mat-raised-button color="accent" (click)="addAppointment()">
       NEW APPOINTMENT
     </button>
   </div>
-  
+
 </div>
