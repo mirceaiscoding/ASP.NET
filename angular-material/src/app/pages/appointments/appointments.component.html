@@ -23,7 +23,7 @@
 
     <!-- Procedure name -->
     <ng-container matColumnDef="procedure">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by procedure"> Procedure </th>
+      <th mat-header-cell *matHeaderCellDef> Procedure </th>
       <td mat-cell *matCellDef="let appointment"> {{appointment.procedureName}} </td>
     </ng-container>
 
@@ -68,8 +68,10 @@
     </tr>
   </table>
 
-  <button id="submit-button" mat-button mat-raised-button color="accent" (click)="addAppointment()">
-    NEW APPOINTMENT
-  </button>
+  <div class="button-container">    
+    <button id="submit-button" mat-button mat-raised-button color="accent" (click)="addAppointment()">
+      NEW APPOINTMENT
+    </button>
+  </div>
   
 </div>
