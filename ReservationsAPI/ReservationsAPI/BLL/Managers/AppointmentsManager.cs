@@ -60,6 +60,11 @@ namespace ReservationsAPI.BLL.Managers
             return _unitOfWork.AppointmentsRepository.GetAppointmentsInformation();
         }
 
+        public Task<List<AppointmentsInformationModel>> GetAllUpcoming()
+        {
+            return _unitOfWork.AppointmentsRepository.GetUpcomingAppointmentsInformation();
+        }
+
         public Task<AppointmentsInformationModel> GetAppointmentInformationById(long pacientId, long doctorId, long procedureId, DateTime startTime)
         {
             return _unitOfWork.AppointmentsRepository.GetAppointmentInformation(pacientId, doctorId, procedureId, startTime);

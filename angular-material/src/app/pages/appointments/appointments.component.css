@@ -18,3 +18,12 @@ table {
   width: 200px;
   padding: 10px;
 }
+
+.chip-list {
+  margin: 5px;
+}
+
+.chip {
+  font-size: 12px;
+  cursor: pointer;
+}

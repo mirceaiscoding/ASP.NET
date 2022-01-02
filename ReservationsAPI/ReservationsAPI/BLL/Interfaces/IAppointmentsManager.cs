@@ -14,6 +14,8 @@ namespace ReservationsAPI.BLL.Interfaces
 
         Task<List<AppointmentsInformationModel>> GetAll();
 
+        Task<List<AppointmentsInformationModel>> GetAllUpcoming();
+
         Task<AppointmentsInformationModel> GetAppointmentInformationById(long pacientId, long doctorId, long procedureId, DateTime startTime);
 
         Task<AppointmentDTO> GetById(long pacientId, long doctorId, long procedureId, DateTime startTime);

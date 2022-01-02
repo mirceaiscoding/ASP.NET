@@ -74,7 +74,7 @@ export class AppointmentsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.adminInformationsServie.getAllAppointments().subscribe(appointments => {
+    this.adminInformationsServie.getUpcomingAppointments().subscribe(appointments => {
       this.appointmets = appointments.map(function (appointment): AppointmentTableDataModel {
         return {
           pacientId: appointment.pacientDTO.id,
@@ -165,5 +165,46 @@ export class AppointmentsComponent implements OnInit {
         }
       }
     );
+  }
+
+  isSelectedUpcoming = true;
+
+  showUpcomingAppointmentsOnly() {
+    this.isSelectedUpcoming = (!this.isSelectedUpcoming);
+    if (this.isSelectedUpcoming == true) {
+      this.adminInformationsServie.getUpcomingAppointments().subscribe(appointments => {
+        this.appointmets = appointments.map(function (appointment): AppointmentTableDataModel {
+          return {
+            pacientId: appointment.pacientDTO.id,
+            doctorId: appointment.doctorDTO.id,
+            procedureId: appointment.procedureDTO.id,
+            pacientName: appointment.pacientDTO.lastName + " " + appointment.pacientDTO.firstName,
+            doctorName: appointment.doctorDTO.lastName + " " + appointment.doctorDTO.firstName,
+            procedureName: appointment.procedureDTO.procedureName,
+            startTime: appointment.startTime,
+            endTime: appointment.endTime,
+          }
+        });
+        this.dataSource.data = this.appointmets;
+        console.log(this.appointmets);
+      });
+    } else {
+      this.adminInformationsServie.getAllAppointments().subscribe(appointments => {
+        this.appointmets = appointments.map(function (appointment): AppointmentTableDataModel {
+          return {
+            pacientId: appointment.pacientDTO.id,
+            doctorId: appointment.doctorDTO.id,
+            procedureId: appointment.procedureDTO.id,
+            pacientName: appointment.pacientDTO.lastName + " " + appointment.pacientDTO.firstName,
+            doctorName: appointment.doctorDTO.lastName + " " + appointment.doctorDTO.firstName,
+            procedureName: appointment.procedureDTO.procedureName,
+            startTime: appointment.startTime,
+            endTime: appointment.endTime,
+          }
+        });
+        this.dataSource.data = this.appointmets;
+        console.log(this.appointmets);
+      });
+    }
   }
 }

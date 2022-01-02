@@ -6,6 +6,13 @@
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Scaling" #input>
   </mat-form-field>
 
+  <mat-chip-list class="chip-list">
+    <mat-chip color="primary" class="chip" [selected]="isSelectedUpcoming" (click)="showUpcomingAppointmentsOnly()">
+      Show only upcoming appointments 
+      <mat-icon (click)="showUpcomingAppointmentsOnly()" matChipRemove *ngIf="isSelectedUpcoming">cancel</mat-icon>
+    </mat-chip>
+  </mat-chip-list>
+
   <table mat-table class="appointmentsTable" [dataSource]="dataSource" class="mat-elevation-z8" matSort
     (matSortChange)="announceSortChange($event)">
 

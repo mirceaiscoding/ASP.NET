@@ -28,6 +28,12 @@ export class AdminInformationsService {
     .pipe(map((response) => <AppointmentInformationModel[]> response));
   }
 
+  getUpcomingAppointments(): Observable<AppointmentInformationModel[]>
+  {
+    return this.http.get(this.baseUrl + 'api/appointments/get-upcoming-appointments')
+    .pipe(map((response) => <AppointmentInformationModel[]> response));
+  }
+
   getAllPacients(): Observable<PacientDTO[]>
   {
     return this.http.get(this.baseUrl + 'api/pacients/get-all-pacients')

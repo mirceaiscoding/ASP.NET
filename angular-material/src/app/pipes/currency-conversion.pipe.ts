@@ -11,7 +11,7 @@ export class CurrencyConversionPipe implements PipeTransform {
 
     if (currency == "EUR") {
       price /= 5;
-      return "approx. " + price + " " + currency;
+      return "~" + price + " " + currency;
     }
 
     return price + " " + currency;
