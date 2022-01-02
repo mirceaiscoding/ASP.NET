@@ -46,6 +46,13 @@ namespace ReservationsAPI.DAL.Controllers
         }
 
         [Authorize("Admin")]
+        [HttpGet("get-previous-appointments")]
+        public async Task<IActionResult> getPreviousAppointments()
+        {
+            return Ok(await _appointmentsManager.GetAllPrevious());
+        }
+
+        [Authorize("Admin")]
         [HttpGet("get-appointment")]
         public async Task<IActionResult> GetAppointmentById(long pacientId, long doctorId, long procedureId, DateTime startTime)
         {

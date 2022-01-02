@@ -124,5 +124,25 @@ namespace ReservationsAPI.DAL.Repositories
                 .ToListAsync();
             return appointmentsInformationModels;
         }
+
+        public async Task<List<AppointmentsInformationModel>> GetPreviousAppointmentsInformation()
+        {
+            var appointmentsInformationModels = await entities
+                .Include(x => x.Doctor)
+                .Include(x => x.Pacient)
+                .Include(x => x.Procedure)
+                .Where(x => x.EndTime <= DateTime.Now)
+                .Select(x => new AppointmentsInformationModel
+                {
+                    doctorDTO = _mapper.Map<DoctorDTO>(x.Doctor),
+                    pacientDTO = _mapper.Map<PacientDTO>(x.Pacient),
+                    procedureDTO = _mapper.Map<ProcedureDTO>(x.Procedure),
+                    StartTime = x.StartTime,
+                    EndTime = x.EndTime
+                })
+                .OrderBy(x => x.StartTime)
+                .ToListAsync();
+            return appointmentsInformationModels;
+        }
     }
 }

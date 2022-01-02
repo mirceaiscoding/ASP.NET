@@ -171,6 +171,7 @@ export class AppointmentsComponent implements OnInit {
 
   showUpcomingAppointmentsOnly() {
     this.isSelectedUpcoming = (!this.isSelectedUpcoming);
+    this.isSelectedPrevious = false;
     if (this.isSelectedUpcoming == true) {
       this.adminInformationsServie.getUpcomingAppointments().subscribe(appointments => {
         this.appointmets = appointments.map(function (appointment): AppointmentTableDataModel {
@@ -206,5 +207,53 @@ export class AppointmentsComponent implements OnInit {
         console.log(this.appointmets);
       });
     }
+  }
+
+  isSelectedPrevious = false;
+
+  showPreviousAppointmentsOnly() {
+    this.isSelectedPrevious = (!this.isSelectedPrevious);
+    this.isSelectedUpcoming = false;
+    if (this.isSelectedPrevious == true) {
+      this.adminInformationsServie.getPreviousAppointments().subscribe(appointments => {
+        this.appointmets = appointments.map(function (appointment): AppointmentTableDataModel {
+          return {
+            pacientId: appointment.pacientDTO.id,
+            doctorId: appointment.doctorDTO.id,
+            procedureId: appointment.procedureDTO.id,
+            pacientName: appointment.pacientDTO.lastName + " " + appointment.pacientDTO.firstName,
+            doctorName: appointment.doctorDTO.lastName + " " + appointment.doctorDTO.firstName,
+            procedureName: appointment.procedureDTO.procedureName,
+            startTime: appointment.startTime,
+            endTime: appointment.endTime,
+          }
+        });
+        this.dataSource.data = this.appointmets;
+        console.log(this.appointmets);
+      });
+    } else {
+      this.adminInformationsServie.getAllAppointments().subscribe(appointments => {
+        this.appointmets = appointments.map(function (appointment): AppointmentTableDataModel {
+          return {
+            pacientId: appointment.pacientDTO.id,
+            doctorId: appointment.doctorDTO.id,
+            procedureId: appointment.procedureDTO.id,
+            pacientName: appointment.pacientDTO.lastName + " " + appointment.pacientDTO.firstName,
+            doctorName: appointment.doctorDTO.lastName + " " + appointment.doctorDTO.firstName,
+            procedureName: appointment.procedureDTO.procedureName,
+            startTime: appointment.startTime,
+            endTime: appointment.endTime,
+          }
+        });
+        this.dataSource.data = this.appointmets;
+        console.log(this.appointmets);
+      });
+    }
+  }
+
+  isExpired(row: AppointmentTableDataModel)
+  {
+    console.log("Checking isExpired", row, new Date());
+    return new Date(row.endTime).getTime() < new Date().getTime();
   }
 }

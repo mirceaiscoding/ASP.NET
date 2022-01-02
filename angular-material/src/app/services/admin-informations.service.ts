@@ -34,6 +34,12 @@ export class AdminInformationsService {
     .pipe(map((response) => <AppointmentInformationModel[]> response));
   }
 
+  getPreviousAppointments(): Observable<AppointmentInformationModel[]>
+  {
+    return this.http.get(this.baseUrl + 'api/appointments/get-previous-appointments')
+    .pipe(map((response) => <AppointmentInformationModel[]> response));
+  }
+
   getAllPacients(): Observable<PacientDTO[]>
   {
     return this.http.get(this.baseUrl + 'api/pacients/get-all-pacients')
