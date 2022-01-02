@@ -69,10 +69,11 @@ namespace ReservationsAPI.DAL.Repositories
             return await entities.FindAsync(id);
         }
 
-        public async Task InsertAsync(TEntity entity)
+        public async Task<TEntity> InsertAsync(TEntity entity)
         {
             await entities.AddAsync(entity);
             await _context.SaveChangesAsync();
+            return entity;
         }
     }
 }

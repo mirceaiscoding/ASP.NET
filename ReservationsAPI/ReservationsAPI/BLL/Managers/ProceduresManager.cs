@@ -22,9 +22,9 @@ namespace ReservationsAPI.BLL.Managers
 
         public async Task<ProcedureDTO> Insert(ProcedureDTO procedureDTO)
         {
-            var procedure = _mapper.Map<Procedure>(procedureDTO);
-            await _unitOfWork.ProceduresRepository.InsertAsync(procedure);
-            return procedureDTO;
+            var procedureToInsert = _mapper.Map<Procedure>(procedureDTO);
+            var procedure = await _unitOfWork.ProceduresRepository.InsertAsync(procedureToInsert);
+            return _mapper.Map<ProcedureDTO>(procedure);
         }
 
         public async Task<ProcedureDTO> Update(long id, ProcedureDTO procedureDTO)

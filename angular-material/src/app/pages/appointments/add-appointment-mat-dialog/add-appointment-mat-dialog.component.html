@@ -4,6 +4,9 @@
 
   <mat-form-field>
     <input matInput placeholder="Doctor" formControlName="doctor" [matAutocomplete]="doctorAutocomplete" />
+    <mat-error *ngIf="form.controls['doctor'].touched && form.controls['doctor'].invalid">
+      Choose a value from the list!
+    </mat-error>
   </mat-form-field>
 
   <mat-autocomplete autoActiveFirstOption #doctorAutocomplete="matAutocomplete">
@@ -14,6 +17,9 @@
 
   <mat-form-field>
     <input matInput placeholder="Pacient" formControlName="pacient" [matAutocomplete]="pacientAutocomplete" />
+    <mat-error *ngIf="form.controls['doctor'].touched && form.controls['doctor'].invalid">
+      Choose a value from the list!
+    </mat-error>
   </mat-form-field>
 
   <mat-autocomplete autoActiveFirstOption #pacientAutocomplete="matAutocomplete">
@@ -24,6 +30,9 @@
 
   <mat-form-field>
     <input matInput placeholder="Procedure" formControlName="procedure" [matAutocomplete]="procedureAutocomplete" />
+    <mat-error *ngIf="form.controls['doctor'].touched && form.controls['doctor'].invalid">
+      Choose a value from the list!
+    </mat-error>
   </mat-form-field>
 
   <mat-autocomplete autoActiveFirstOption #procedureAutocomplete="matAutocomplete">

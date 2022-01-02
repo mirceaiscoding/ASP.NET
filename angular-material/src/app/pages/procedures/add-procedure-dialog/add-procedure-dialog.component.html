@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>Add a procedure</h2>
+
+<mat-dialog-content [formGroup]="form">
+
+  <mat-form-field appearance="fill">
+    <mat-label>Procedure name</mat-label>
+    <input matInput type="text" formControlName="procedureName">
+    <mat-error *ngIf="form.controls['procedureName'].touched && form.controls['procedureName'].invalid">
+      A name is required!
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Price</mat-label>
+    <input matInput type="text" formControlName="cost">
+    <span matSuffix>RON</span>
+    <mat-error *ngIf="form.controls['cost'].touched && form.controls['cost'].invalid">
+      Enter a valid price!
+    </mat-error>
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button class="mat-raised-button" (click)="close()">Close</button>
+  <button [disabled]="form.invalid" class="mat-raised-button mat-primary" (click)="save()"
+    [disabled]="form.invalid">Save</button>
+</mat-dialog-actions>

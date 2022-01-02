@@ -16,7 +16,7 @@ namespace ReservationsAPI.DAL.Interfaces
         Task<TEntity> GetByIdAsync(object id);
 
         void Insert(TEntity entity);
-        Task InsertAsync(TEntity entity);
+        Task<TEntity> InsertAsync(TEntity entity);
 
         void Delete(TEntity entity);
         void Delete(object id);

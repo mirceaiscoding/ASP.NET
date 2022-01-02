@@ -1,0 +1,19 @@
+.mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  margin: auto;
+  width: 80%;
+}
+
+.add-procedure-button {
+  margin: 10px;
+  text-align: center;
+}
+
+.slider{
+    margin-top: 15px;
+    font-size: 15px;
+}

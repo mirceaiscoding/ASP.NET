@@ -1,0 +1,23 @@
+<div class="page-title">SERVICES</div>
+
+<div class="container">
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let procedure of procedures">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{procedure.procedureName}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        {{procedure.cost | currencyConversion:currency }}
+      </mat-expansion-panel>
+    </mat-accordion>
+    
+    <mat-slide-toggle class="slider" [checked] = false (change)="updateCurrency($event)">Convert prices to Euro</mat-slide-toggle>
+    
+    <div class="add-procedure-button">
+        <button *ngIf="authService.getRole() == 'Admin'" mat-button mat-raised-button color="accent" (click)="addProcedure()">
+            ADD A PROCEDURE
+        </button>
+    </div>
+</div>
+

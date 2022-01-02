@@ -18,7 +18,7 @@ import { AdminInformationsService } from 'src/app/services/admin-informations.se
 })
 export class AddAppointmentMatDialogComponent implements OnInit {
 
-  startWithIdRegx: RegExp = /(^#[0-9]{1,}:[a-zA-Z ]*)/
+  startWithIdRegx = "(^#[0-9]{1,}:[a-zA-Z ]*)";
 
   form = new FormGroup({
     doctor: new FormControl('', [Validators.required, Validators.pattern(this.startWithIdRegx)]),

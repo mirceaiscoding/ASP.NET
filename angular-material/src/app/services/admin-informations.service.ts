@@ -7,6 +7,7 @@ import { AppointmentDTO } from '../interfaces/appointment-dto';
 import { AppointmentInformationModel } from '../interfaces/appointment-information-model';
 import { AppoointmentPostModel } from '../interfaces/appoointment-post-model';
 import { PacientDTO } from '../interfaces/pacient-dto';
+import { ProcedureDTO } from '../interfaces/procedure-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +41,7 @@ export class AdminInformationsService {
       headers: this.privateHttpHeaders,
       body: appointment,
     };
-    return this.http.delete(this.baseUrl + 'api/appointments/delete-appointment', options)
+    return this.http.delete(this.baseUrl + 'api/appointments/delete-appointment', options);
   }
 
   updateAppointmentTime(appointment: AppointmentDTO, newDate: Date, newTime: String)
@@ -53,20 +54,25 @@ export class AdminInformationsService {
       "startTime": appointment.startTime,
       "endTime": appointment.endTime,
       "newStartTime": formattedDate + "T" + newTime
-    }
+    };
     console.log(body);
-    return this.http.put(this.baseUrl + 'api/appointments/update-appointment-time', body)
+    return this.http.put(this.baseUrl + 'api/appointments/update-appointment-time', body);
   }
 
   addAppointment(appointment: AppoointmentPostModel)
   {
     console.log("POST APPOINTMENT", appointment);
-    return this.http.post(this.baseUrl + 'api/appointments/insert-appointment', appointment)
+    return this.http.post(this.baseUrl + 'api/appointments/insert-appointment', appointment);
   }
 
   getAppointmentInfo(appointment: AppointmentDTO)
   {
-    return this.http.post(this.baseUrl + 'api/appointments/get-appointment-information', appointment)
+    return this.http.post(this.baseUrl + 'api/appointments/get-appointment-information', appointment);
+  }
+
+  addProcedure(procedure: ProcedureDTO)
+  {
+    return this.http.post(this.baseUrl + 'api/procedures/insert-procedure', procedure);
   }
 
 }
