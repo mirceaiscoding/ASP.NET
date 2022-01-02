@@ -37,18 +37,20 @@ export class AuthService {
     var isTokenExpired = this.jwtHelper.isTokenExpired(token);
 
     if (!isTokenExpired) {
-      console.log("Token is valid");
+      console.log("Token already is valid");
       return true;
     }
     // Refresh token
-    console.log("Token is expired. Refreshing token");
+    console.log("Token is expired.");
     this.refreshToken().subscribe((response: any) => {
       console.log(response);
       if (response['success']) {
         var newToken = response['newAccessToken']
+        console.log("New token", newToken);
         localStorage.setItem('accessToken', newToken);
         return true;
       } else {
+        console.log("Failed to refresh token!", newToken);
         return false;
       }
     });

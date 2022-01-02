@@ -15,11 +15,15 @@ export class AuthorizeRequestInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // add auth header with jwt if account is logged in and request is to the api url
-    const token = localStorage.getItem("accessToken");
+
+    // Refresh token if it is expired
+    var isAuthentificated = this.authService.isAuthenticatedRefreshToken();
+
+    // Add auth header with jwt if account is logged in and request is to the api url
     const isApiUrl: boolean = request.url.startsWith(environment.baseUrl);
-    if (token != null && isApiUrl) {
+    if (isAuthentificated && isApiUrl) {
       console.log("Intercepted request. Adding Authorization Header");
+      const token = localStorage.getItem("accessToken");
       request = request.clone({
             setHeaders: { Authorization: `Bearer ${token}` }
         });
