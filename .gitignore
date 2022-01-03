@@ -771,3 +771,4 @@ Temporary Items
 
 # End of https://www.toptal.com/developers/gitignore/api/csharp,angular,dotnetcore,visualstudio,visualstudiocode,aspnetcore,macos
 angular-material/.angular/cache
+appsettings.json

@@ -253,7 +253,6 @@ export class AppointmentsComponent implements OnInit {
 
   isExpired(row: AppointmentTableDataModel)
   {
-    console.log("Checking isExpired", row, new Date());
     return new Date(row.endTime).getTime() < new Date().getTime();
   }
 }
