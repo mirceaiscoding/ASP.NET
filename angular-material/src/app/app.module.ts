@@ -53,7 +53,6 @@ import { SharedModule } from './shared/shared.module';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { AppointmentsComponent } from './pages/appointments/appointments.component';
-import { AuthorizeRequestInterceptor } from './interceptors/authorize-request.interceptor';
 import { MatTableModule } from '@angular/material/table';
 
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -142,11 +141,6 @@ const materialModules = [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
-      multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthorizeRequestInterceptor,
       multi: true,
     },
     { provide: JWT_OPTIONS,

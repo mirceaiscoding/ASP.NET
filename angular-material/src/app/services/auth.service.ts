@@ -51,10 +51,11 @@ export class AuthService {
         return true;
       } else {
         console.log("Failed to refresh token!", newToken);
+        this.logout();
         return false;
       }
     });
-    return true;
+    return false;
   }
 
   login(authModel: AuthModel) {
@@ -93,7 +94,11 @@ export class AuthService {
     );
   }
 
-  getRole() {
-    return localStorage.getItem('role')
+  getRole(): string {
+    const role = localStorage.getItem('role')
+    if (role != null) {
+      return role;
+    }
+    return ""
   }
 }

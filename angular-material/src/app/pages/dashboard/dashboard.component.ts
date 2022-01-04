@@ -12,12 +12,15 @@ export class DashboardComponent implements OnInit {
   constructor(private authService: AuthService,
     private router: Router) { }
 
+  role: string = "";
+
   logout(): void {
     this.authService.logout();
     this.router.navigate([""]);
   }
 
   ngOnInit(): void {
+    this.role = this.authService.getRole();
   }
 
 }
