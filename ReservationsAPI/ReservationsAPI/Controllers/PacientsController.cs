@@ -55,20 +55,6 @@ namespace ReservationsAPI.DAL.Controllers
             }
         }
 
-        [HttpPost("insert-pacient")]
-        public async Task<IActionResult> InsertPacient(PacientDTO pacientDTO)
-        {
-            try
-            {
-                var insertedDoctorDTO = await _pacientsManager.Insert(pacientDTO);
-                return Ok(insertedDoctorDTO);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-        }
-
         [HttpPut("update-pacient")]
         public async Task<IActionResult> UpdatePacient(long id, PacientDTO pacientDTO)
         {

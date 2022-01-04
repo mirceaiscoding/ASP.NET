@@ -1,6 +1,6 @@
 ﻿<Properties StartupConfiguration="{4F96D45A-291E-4B3E-8E04-E668420FB686}|Default">
   <MonoDevelop.Ide.ItemProperties.ReservationsAPI PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="DAL/Models/DataTransferObjects/DoctorDTO.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/PacientsController.cs">
     <Files>
       <File FileName="BLL/Managers/ProceduresManager.cs" Line="27" Column="55" />
       <File FileName="DAL/Interfaces/IGenericRepository.cs" />
@@ -14,8 +14,8 @@
       <File FileName="DAL/InitialSeed.cs" Line="33" Column="1" />
       <File FileName="Startup.cs" Line="28" Column="39" />
       <File FileName="appsettings.json" Line="15" Column="4" />
-      <File FileName="Controllers/AuthController.cs" Line="53" Column="38" />
-      <File FileName="Controllers/DoctorsController.cs" Line="62" Column="10" />
+      <File FileName="Controllers/AuthController.cs" Line="56" Column="59" />
+      <File FileName="Controllers/DoctorsController.cs" Line="55" Column="26" />
       <File FileName="Program.cs" Line="27" Column="1" />
       <File FileName="DAL/Entities/Pacient.cs" Line="19" Column="31" />
       <File FileName="DAL/Entities/User.cs" Line="14" Column="1" />
@@ -27,25 +27,23 @@
       <File FileName="DAL/Models/DataTransferObjects/PacientDTO.cs" Line="13" Column="6" />
       <File FileName="Migrations/20220104143831_ResetMigrations.cs" Line="229" Column="61" />
       <File FileName="DAL/Models/DoctorUserPostModel.cs" Line="9" Column="21" />
-      <File FileName="DAL/Models/DataTransferObjects/DoctorDTO.cs" Line="12" Column="19" />
+      <File FileName="DAL/Models/DataTransferObjects/DoctorDTO.cs" Line="12" Column="38" />
+      <File FileName="Controllers/PacientsController.cs" Line="57" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="ReservationsAPI" expanded="True">
             <Node name="ReservationsAPI" expanded="True">
-              <Node name="BLL" expanded="True">
-                <Node name="Interfaces" expanded="True" />
-                <Node name="Managers" expanded="True" />
+              <Node name="BLL" expanded="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="PacientsController.cs" selected="True" />
               </Node>
-              <Node name="Controllers" expanded="True" />
               <Node name="DAL" expanded="True">
                 <Node name="Entities" expanded="True" />
                 <Node name="Interfaces" expanded="True" />
                 <Node name="Models" expanded="True">
-                  <Node name="DataTransferObjects" expanded="True">
-                    <Node name="DoctorDTO.cs" selected="True" />
-                  </Node>
+                  <Node name="DataTransferObjects" expanded="True" />
                 </Node>
                 <Node name="Repositories" expanded="True" />
               </Node>
