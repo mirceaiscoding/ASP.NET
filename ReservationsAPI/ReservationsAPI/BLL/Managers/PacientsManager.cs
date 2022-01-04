@@ -74,5 +74,11 @@ namespace ReservationsAPI.BLL.Managers
             await _unitOfWork.SaveAsync();
             return pacientDTO;
         }
+
+        public async Task<PacientDTO> GetUserData(int userId)
+        {
+            var pacient = await _unitOfWork.PacientsRepository.getUserData(userId);
+            return _mapper.Map<PacientDTO>(pacient);
+        }
     }
 }

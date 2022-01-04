@@ -1,7 +1,8 @@
 ﻿<Properties StartupConfiguration="{4F96D45A-291E-4B3E-8E04-E668420FB686}|Default">
-  <MonoDevelop.Ide.ItemProperties.ReservationsAPI PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BLL/Managers/DoctorsManager.cs">
+  <MonoDevelop.Ide.ItemProperties.ReservationsAPI PreferredExecutionTarget="/Applications/Firefox.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="DAL/Repositories/PacientsRepository.cs">
     <Files>
+      <File FileName="Controllers/PacientsController.cs" Line="28" Column="31" IsPinned="True" />
       <File FileName="BLL/Managers/ProceduresManager.cs" Line="27" Column="55" />
       <File FileName="DAL/Interfaces/IGenericRepository.cs" />
       <File FileName="DAL/Repositories/GenericRepository.cs" />
@@ -12,27 +13,32 @@
       <File FileName="BLL/Managers/AppointmentsManager.cs" Line="66" Column="10" />
       <File FileName="Controllers/AppointmentsController.cs" Line="34" Column="1" />
       <File FileName="DAL/InitialSeed.cs" Line="33" Column="1" />
-      <File FileName="Startup.cs" Line="28" Column="39" />
+      <File FileName="Startup.cs" Line="123" Column="1" />
       <File FileName="appsettings.json" Line="15" Column="4" />
       <File FileName="Controllers/AuthController.cs" Line="56" Column="59" />
-      <File FileName="Controllers/DoctorsController.cs" Line="34" Column="49" />
+      <File FileName="Controllers/DoctorsController.cs" Line="34" Column="68" />
       <File FileName="Program.cs" Line="27" Column="1" />
       <File FileName="DAL/Entities/Pacient.cs" Line="19" Column="31" />
       <File FileName="DAL/Entities/User.cs" Line="14" Column="1" />
       <File FileName="DAL/Entities/Doctor.cs" Line="26" Column="1" />
       <File FileName="DAL/ReservationsContext.cs" Line="21" Column="10" />
-      <File FileName="BLL/Managers/AuthManager.cs" Line="104" Column="10" />
-      <File FileName="BLL/Interfaces/IAuthManager.cs" Line="14" Column="1" />
+      <File FileName="BLL/Managers/AuthManager.cs" Line="30" Column="10" />
+      <File FileName="BLL/Interfaces/IAuthManager.cs" Line="20" Column="6" />
       <File FileName="DAL/Models/PacientUserPostModel.cs" Line="8" Column="1" />
       <File FileName="DAL/Models/DataTransferObjects/PacientDTO.cs" Line="13" Column="6" />
       <File FileName="Migrations/20220104143831_ResetMigrations.cs" Line="229" Column="61" />
       <File FileName="DAL/Models/DoctorUserPostModel.cs" Line="9" Column="21" />
       <File FileName="DAL/Models/DataTransferObjects/DoctorDTO.cs" Line="6" Column="1" />
-      <File FileName="Controllers/PacientsController.cs" Line="56" Column="10" />
       <File FileName="DAL/Models/DataTransferObjects/DoctorPublicInformationDTO.cs" Line="4" Column="44" />
       <File FileName="AutoMapping.cs" Line="25" Column="57" />
       <File FileName="BLL/Interfaces/IDoctorsManager.cs" Line="17" Column="1" />
-      <File FileName="BLL/Managers/DoctorsManager.cs" Line="44" Column="52" />
+      <File FileName="BLL/Managers/DoctorsManager.cs" Line="47" Column="77" />
+      <File FileName="BLL/Interfaces/ITokenHelper.cs" Line="1" Column="1" />
+      <File FileName="BLL/Managers/PacientsManager.cs" Line="80" Column="64" />
+      <File FileName="BLL/Interfaces/IPacientsManager.cs" Line="22" Column="48" />
+      <File FileName="DAL/Interfaces/IUnitOfWork.cs" Line="11" Column="25" />
+      <File FileName="DAL/Interfaces/IPacientsRepository.cs" Line="13" Column="26" />
+      <File FileName="DAL/Repositories/PacientsRepository.cs" Line="17" Column="21" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -41,9 +47,7 @@
             <Node name="ReservationsAPI" expanded="True">
               <Node name="BLL" expanded="True">
                 <Node name="Interfaces" expanded="True" />
-                <Node name="Managers" expanded="True">
-                  <Node name="DoctorsManager.cs" selected="True" />
-                </Node>
+                <Node name="Managers" expanded="True" />
               </Node>
               <Node name="Controllers" expanded="True" />
               <Node name="DAL" expanded="True">
@@ -52,7 +56,9 @@
                 <Node name="Models" expanded="True">
                   <Node name="DataTransferObjects" expanded="True" />
                 </Node>
-                <Node name="Repositories" expanded="True" />
+                <Node name="Repositories" expanded="True">
+                  <Node name="PacientsRepository.cs" selected="True" />
+                </Node>
               </Node>
               <Node name="Migrations" expanded="True" />
             </Node>

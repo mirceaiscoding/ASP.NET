@@ -1,12 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using ReservationsAPI.BLL.Interfaces;
-using ReservationsAPI.DAL.Entities;
 using ReservationsAPI.DAL.Models.DataTransferObjects;
 
 namespace ReservationsAPI.DAL.Controllers
@@ -28,12 +25,20 @@ namespace ReservationsAPI.DAL.Controllers
             return Ok(await _pacientsManager.GetAll());
         }
 
-        [HttpGet("get-pacient-by-id/{id}")]
-        public async Task<IActionResult> GetPacientById(long id)
+        [Authorize("Pacient")]
+        [HttpGet("get-user-data/{userId}")]
+        public async Task<IActionResult> GetUserData(int userId)
         {
             try
             {
-                return Ok(await _pacientsManager.GetById(id));
+                int authentifiedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+                if (authentifiedUserId != userId)
+                {
+                    return Unauthorized("Cannot acces data that isn't bound to this account");
+                }
+                var pacient = await _pacientsManager.GetUserData(userId);
+                return Ok(pacient);
+
             }
             catch (Exception e)
             {
@@ -84,3 +89,4 @@ namespace ReservationsAPI.DAL.Controllers
         }
     }
 }
+

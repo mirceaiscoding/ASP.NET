@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using ReservationsAPI.DAL.Entities;
 using ReservationsAPI.DAL.Interfaces;
 using ReservationsAPI.DAL.Models;
+using ReservationsAPI.DAL.Models.DataTransferObjects;
 
 namespace ReservationsAPI.DAL.Repositories
 {
@@ -20,6 +21,11 @@ namespace ReservationsAPI.DAL.Repositories
                 .FirstOrDefaultAsync(x => x.Id == pacientId);
             var numberOfAppointments = pacient.Appointments.Count();
             return numberOfAppointments;
+        }
+
+        public async Task<Pacient> getUserData(int userId)
+        {
+            return await entities.FirstOrDefaultAsync(x => x.UserId == userId);
         }
     }
 }
