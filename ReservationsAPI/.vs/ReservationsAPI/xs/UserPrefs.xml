@@ -1,8 +1,8 @@
 ﻿<Properties StartupConfiguration="{4F96D45A-291E-4B3E-8E04-E668420FB686}|Default">
   <MonoDevelop.Ide.ItemProperties.ReservationsAPI PreferredExecutionTarget="/Applications/Firefox.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="DAL/Repositories/PacientsRepository.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="appsettings.json">
     <Files>
-      <File FileName="Controllers/PacientsController.cs" Line="28" Column="31" IsPinned="True" />
+      <File FileName="Controllers/PacientsController.cs" Line="42" Column="14" IsPinned="True" />
       <File FileName="BLL/Managers/ProceduresManager.cs" Line="27" Column="55" />
       <File FileName="DAL/Interfaces/IGenericRepository.cs" />
       <File FileName="DAL/Repositories/GenericRepository.cs" />
@@ -13,16 +13,15 @@
       <File FileName="BLL/Managers/AppointmentsManager.cs" Line="66" Column="10" />
       <File FileName="Controllers/AppointmentsController.cs" Line="34" Column="1" />
       <File FileName="DAL/InitialSeed.cs" Line="33" Column="1" />
-      <File FileName="Startup.cs" Line="123" Column="1" />
-      <File FileName="appsettings.json" Line="15" Column="4" />
+      <File FileName="Startup.cs" Line="41" Column="40" />
       <File FileName="Controllers/AuthController.cs" Line="56" Column="59" />
       <File FileName="Controllers/DoctorsController.cs" Line="34" Column="68" />
-      <File FileName="Program.cs" Line="27" Column="1" />
+      <File FileName="Program.cs" Line="16" Column="1" />
       <File FileName="DAL/Entities/Pacient.cs" Line="19" Column="31" />
       <File FileName="DAL/Entities/User.cs" Line="14" Column="1" />
       <File FileName="DAL/Entities/Doctor.cs" Line="26" Column="1" />
       <File FileName="DAL/ReservationsContext.cs" Line="21" Column="10" />
-      <File FileName="BLL/Managers/AuthManager.cs" Line="30" Column="10" />
+      <File FileName="BLL/Managers/AuthManager.cs" Line="29" Column="10" />
       <File FileName="BLL/Interfaces/IAuthManager.cs" Line="20" Column="6" />
       <File FileName="DAL/Models/PacientUserPostModel.cs" Line="8" Column="1" />
       <File FileName="DAL/Models/DataTransferObjects/PacientDTO.cs" Line="13" Column="6" />
@@ -34,11 +33,12 @@
       <File FileName="BLL/Interfaces/IDoctorsManager.cs" Line="17" Column="1" />
       <File FileName="BLL/Managers/DoctorsManager.cs" Line="47" Column="77" />
       <File FileName="BLL/Interfaces/ITokenHelper.cs" Line="1" Column="1" />
-      <File FileName="BLL/Managers/PacientsManager.cs" Line="80" Column="64" />
+      <File FileName="BLL/Managers/PacientsManager.cs" Line="81" Column="53" />
       <File FileName="BLL/Interfaces/IPacientsManager.cs" Line="22" Column="48" />
       <File FileName="DAL/Interfaces/IUnitOfWork.cs" Line="11" Column="25" />
-      <File FileName="DAL/Interfaces/IPacientsRepository.cs" Line="13" Column="26" />
-      <File FileName="DAL/Repositories/PacientsRepository.cs" Line="17" Column="21" />
+      <File FileName="DAL/Interfaces/IPacientsRepository.cs" Line="13" Column="21" />
+      <File FileName="DAL/Repositories/PacientsRepository.cs" Line="26" Column="59" />
+      <File FileName="appsettings.json" Line="17" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -56,11 +56,10 @@
                 <Node name="Models" expanded="True">
                   <Node name="DataTransferObjects" expanded="True" />
                 </Node>
-                <Node name="Repositories" expanded="True">
-                  <Node name="PacientsRepository.cs" selected="True" />
-                </Node>
+                <Node name="Repositories" expanded="True" />
               </Node>
               <Node name="Migrations" expanded="True" />
+              <Node name="AutoMapping.cs" selected="True" />
             </Node>
           </Node>
         </State>

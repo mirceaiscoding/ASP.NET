@@ -68,7 +68,19 @@ export class AuthService {
     if (role != null) {
       return role;
     }
-    return ""
+    return "";
+  }
+
+  getUserId(): number | null {
+    var token = localStorage.getItem('accessToken');
+    if (token === null) {
+      return null;
+    }
+    var userId = this.jwtHelper.decodeToken(token)['nameid'];
+    if (userId === null) {
+      return null;
+    }
+    return parseInt(userId);
   }
 
   isLoggedIn(): boolean {

@@ -1,0 +1,13 @@
+<div class="page-title">ACCOUNT INFORMATION</div>
+
+<div *ngIf="pacientData" class="account-information">
+
+    <div class="wellcome">Wellcome, {{pacientData | fullName}}</div>
+    <br/>
+    <div>First Name: {{pacientData?.firstName}}</div>
+    <div>Last Name: {{pacientData?.lastName}}</div>
+    <div>Phone Number: {{pacientData?.phoneNumber}}</div>
+    <div>Date of birth: {{pacientData?.dateOfBirth | date:'dd/MM/yyyy'}}</div>
+</div>
+
+<button mat-button mat-raised-button color="accent" (click)="logout()"> LOG OUT </button>

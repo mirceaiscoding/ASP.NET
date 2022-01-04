@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('refreshToken', response['refreshToken']);
         var role = this.jwtHelper.decodeToken(response['accessToken'])['role'];
         localStorage.setItem('role', role)
-        this.router.navigate(['/home']);
+        this.router.navigate(['dashboard']);
       } else {
         alert(response['message']);
       }

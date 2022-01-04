@@ -61,6 +61,9 @@ import { AddAppointmentMatDialogComponent } from './pages/appointments/add-appoi
 import { ProceduresComponent } from './pages/procedures/procedures.component';
 import { AddProcedureDialogComponent } from './pages/procedures/add-procedure-dialog/add-procedure-dialog.component';
 import { CurrencyConversionPipe } from './pipes/currency-conversion.pipe';
+import { PacientProfileComponent } from './pages/pacient-profile/pacient-profile.component';
+import { FullNamePipe } from './pipes/full-name.pipe';
+import { IdFullNamePipe } from './pipes/id-full-name.pipe';
 
 const materialModules = [
   CdkTreeModule,
@@ -122,6 +125,9 @@ const materialModules = [
     ProceduresComponent,
     AddProcedureDialogComponent,
     CurrencyConversionPipe,
+    PacientProfileComponent,
+    FullNamePipe,
+    IdFullNamePipe,
   ],
   imports: [
     materialModules,
