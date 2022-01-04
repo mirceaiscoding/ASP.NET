@@ -8,5 +8,7 @@ namespace ReservationsAPI.DAL.Models.DataTransferObjects
         public string LastName { get; set; }
         public string PhoneNumber { get; set; }
         public DateTime DateOfBirth { get; set; }
+
+        public int UserId { get; set; }
     }
 }

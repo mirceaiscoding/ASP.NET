@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ReservationsAPI.DAL.Entities
 {
@@ -13,6 +14,9 @@ namespace ReservationsAPI.DAL.Entities
 
         public virtual ICollection<Appointment> Appointments { get; set; }
 
-        public virtual PacientUser PacientUser { get; set; }
+        public int UserId { get; set; }
+
+        [ForeignKey("UserId")]
+        public virtual User User { get; set; }
     }
 }

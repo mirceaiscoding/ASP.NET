@@ -12,11 +12,13 @@ namespace ReservationsAPI.Controllers
     {
         private readonly IAuthManager _authManager;
         private readonly IPacientsManager _pacientsManager;
+        private readonly IDoctorsManager _doctorsManager;
 
-        public AuthController(IAuthManager authManager, IPacientsManager pacientsManager)
+        public AuthController(IAuthManager authManager, IPacientsManager pacientsManager, IDoctorsManager doctorsManager)
         {
             _authManager = authManager;
             _pacientsManager = pacientsManager;
+            _doctorsManager = doctorsManager;
         }
 
         //[Authorize("Admin")]
@@ -31,9 +33,28 @@ namespace ReservationsAPI.Controllers
         [HttpPost("register-as-pacient")]
         public async Task<IActionResult> RegisterAsPacient([FromBody] PacientUserPostModel pacientUserPostModel)
         {
+            var userId = await _authManager.RegisterAsPacient(pacientUserPostModel.registerModel);
+            if (userId == null)
+            {
+                return Ok(false);
+            }
+            pacientUserPostModel.PacientDTO.UserId = userId.Value;
             var insertedPacientDTO = await _pacientsManager.Insert(pacientUserPostModel.PacientDTO);
-            var result = await _authManager.RegisterAsPacient(pacientUserPostModel.registerModel, insertedPacientDTO);
-            return Ok(result);
+            return Ok(true);
+        }
+
+        //[Authorize("Admin")]
+        [HttpPost("register-as-doctor")]
+        public async Task<IActionResult> RegisterAsDoctor([FromBody] DoctorUserPostModel pacientUserPostModel)
+        {
+            var userId = await _authManager.RegisterAsPacient(pacientUserPostModel.registerModel);
+            if (userId == null)
+            {
+                return Ok(false);
+            }
+            pacientUserPostModel.doctorDTO.UserId = userId.Value;
+            var insertedPacientDTO = await _doctorsManager.Insert(pacientUserPostModel.doctorDTO);
+            return Ok(true);
         }
 
         [AllowAnonymous]

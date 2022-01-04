@@ -84,13 +84,12 @@ namespace ReservationsAPI.BLL.Managers
             return false;
         }
 
-        public async Task<bool> RegisterAsPacient(RegisterModel registerModel, PacientDTO pacientDTO)
+        public async Task<int?> RegisterAsPacient(RegisterModel registerModel)
         {
-            var user = new PacientUser
+            var user = new User
             {
                 Email = registerModel.Email,
                 UserName = registerModel.Email,
-                PacientId = pacientDTO.Id
             };
 
             // Encrypt password
@@ -99,9 +98,28 @@ namespace ReservationsAPI.BLL.Managers
             if (result.Succeeded)
             {
                 await _userManager.AddToRoleAsync(user, "Pacient");
-                return true;
+                return user.Id;
             }
-            return false;
+            return null;
+        }
+
+        public async Task<int?> RegisterAsDoctor(RegisterModel registerModel)
+        {
+            var user = new User
+            {
+                Email = registerModel.Email,
+                UserName = registerModel.Email,
+            };
+
+            // Encrypt password
+            var result = await _userManager.CreateAsync(user, registerModel.Password);
+
+            if (result.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(user, "Doctor");
+                return user.Id;
+            }
+            return null;
         }
 
         public async Task<RefreshTokenResult> Refresh(RefreshModel refreshModel)

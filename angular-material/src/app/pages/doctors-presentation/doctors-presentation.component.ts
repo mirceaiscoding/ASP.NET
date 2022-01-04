@@ -22,13 +22,13 @@ export class DoctorsPresentationComponent implements OnInit {
   ngOnInit(): void {
     this.publicInformationsService.getAllDoctors().subscribe(doctors => {
       this.doctors = doctors;
-      console.log(doctors);
+      console.log("Doctors", doctors);
     });
   }
 
   selectDoctor(doctor: DoctorDTO)
   {
-    console.log(doctor);
+    console.log("Selected doctor", doctor);
   }
 
 }

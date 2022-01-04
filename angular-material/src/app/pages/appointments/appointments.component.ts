@@ -61,14 +61,14 @@ export class AppointmentsComponent implements OnInit {
   delete(appointment: AppointmentDTO) {
     console.log(appointment);
     this.adminInformationsServie.deleteAppointment(appointment).subscribe(response => {
-      console.log(response);
+      console.log("Delete appointment", response);
       this.appointmets = this.appointmets.filter(a => a != appointment);
       this.dataSource.data = this.appointmets;
     });
   }
 
   editTime(appointment: AppointmentDTO) {
-    console.log(appointment);
+    console.log("Edit time", appointment);
     this.openNewTimeDialog(appointment);
   }
 
@@ -88,7 +88,7 @@ export class AppointmentsComponent implements OnInit {
         }
       });
       this.dataSource.data = this.appointmets;
-      console.log(this.appointmets);
+      console.log("Appointments", this.appointmets);
     });
 
     this.adminInformationsServie.getAllPacients().subscribe(pacients => {
@@ -159,7 +159,7 @@ export class AppointmentsComponent implements OnInit {
         if (data) {
           console.log("Dialog output:", data);
           var appointmetToUpdate = this.appointmets.filter(a => a == appointment)[0]; // TODO: Write this better!
-          console.log(appointmetToUpdate);
+          console.log("Update appointment time", appointmetToUpdate);
           appointmetToUpdate['startTime'] = data['startTime'];
           appointmetToUpdate['endTime'] = data['endTime'];
         }
@@ -187,7 +187,7 @@ export class AppointmentsComponent implements OnInit {
           }
         });
         this.dataSource.data = this.appointmets;
-        console.log(this.appointmets);
+        console.log("Appointments", this.appointmets);
       });
     } else {
       this.adminInformationsServie.getAllAppointments().subscribe(appointments => {
@@ -204,7 +204,7 @@ export class AppointmentsComponent implements OnInit {
           }
         });
         this.dataSource.data = this.appointmets;
-        console.log(this.appointmets);
+        console.log("Appointments", this.appointmets);
       });
     }
   }
@@ -229,7 +229,7 @@ export class AppointmentsComponent implements OnInit {
           }
         });
         this.dataSource.data = this.appointmets;
-        console.log(this.appointmets);
+        console.log("Appointments", this.appointmets);
       });
     } else {
       this.adminInformationsServie.getAllAppointments().subscribe(appointments => {
@@ -246,7 +246,7 @@ export class AppointmentsComponent implements OnInit {
           }
         });
         this.dataSource.data = this.appointmets;
-        console.log(this.appointmets);
+        console.log("Appointments", this.appointmets);
       });
     }
   }

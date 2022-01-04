@@ -150,7 +150,13 @@ namespace ReservationsAPI.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Doctors");
                 });
@@ -174,7 +180,13 @@ namespace ReservationsAPI.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Pacients");
                 });
@@ -373,34 +385,6 @@ namespace ReservationsAPI.Migrations
                     b.ToTable("WorkDaySchedules");
                 });
 
-            modelBuilder.Entity("ReservationsAPI.DAL.Entities.DoctorUser", b =>
-                {
-                    b.HasBaseType("ReservationsAPI.DAL.Entities.User");
-
-                    b.Property<long>("DoctorId")
-                        .HasColumnType("bigint");
-
-                    b.HasIndex("DoctorId")
-                        .IsUnique()
-                        .HasFilter("[DoctorId] IS NOT NULL");
-
-                    b.ToTable("DoctorUsers");
-                });
-
-            modelBuilder.Entity("ReservationsAPI.DAL.Entities.PacientUser", b =>
-                {
-                    b.HasBaseType("ReservationsAPI.DAL.Entities.User");
-
-                    b.Property<long>("PacientId")
-                        .HasColumnType("bigint");
-
-                    b.HasIndex("PacientId")
-                        .IsUnique()
-                        .HasFilter("[PacientId] IS NOT NULL");
-
-                    b.ToTable("PacientUsers");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("ReservationsAPI.DAL.Entities.Role", null)
@@ -464,6 +448,28 @@ namespace ReservationsAPI.Migrations
                     b.Navigation("Procedure");
                 });
 
+            modelBuilder.Entity("ReservationsAPI.DAL.Entities.Doctor", b =>
+                {
+                    b.HasOne("ReservationsAPI.DAL.Entities.User", "User")
+                        .WithOne("Doctor")
+                        .HasForeignKey("ReservationsAPI.DAL.Entities.Doctor", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ReservationsAPI.DAL.Entities.Pacient", b =>
+                {
+                    b.HasOne("ReservationsAPI.DAL.Entities.User", "User")
+                        .WithOne("Pacient")
+                        .HasForeignKey("ReservationsAPI.DAL.Entities.Pacient", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("ReservationsAPI.DAL.Entities.UserRole", b =>
                 {
                     b.HasOne("ReservationsAPI.DAL.Entities.Role", null)
@@ -513,45 +519,9 @@ namespace ReservationsAPI.Migrations
                     b.Navigation("Doctor");
                 });
 
-            modelBuilder.Entity("ReservationsAPI.DAL.Entities.DoctorUser", b =>
-                {
-                    b.HasOne("ReservationsAPI.DAL.Entities.Doctor", "Doctor")
-                        .WithOne("DoctorUser")
-                        .HasForeignKey("ReservationsAPI.DAL.Entities.DoctorUser", "DoctorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ReservationsAPI.DAL.Entities.User", null)
-                        .WithOne()
-                        .HasForeignKey("ReservationsAPI.DAL.Entities.DoctorUser", "Id")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
-
-                    b.Navigation("Doctor");
-                });
-
-            modelBuilder.Entity("ReservationsAPI.DAL.Entities.PacientUser", b =>
-                {
-                    b.HasOne("ReservationsAPI.DAL.Entities.User", null)
-                        .WithOne()
-                        .HasForeignKey("ReservationsAPI.DAL.Entities.PacientUser", "Id")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
-
-                    b.HasOne("ReservationsAPI.DAL.Entities.Pacient", "Pacient")
-                        .WithOne("PacientUser")
-                        .HasForeignKey("ReservationsAPI.DAL.Entities.PacientUser", "PacientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Pacient");
-                });
-
             modelBuilder.Entity("ReservationsAPI.DAL.Entities.Doctor", b =>
                 {
                     b.Navigation("Appointments");
-
-                    b.Navigation("DoctorUser");
 
                     b.Navigation("VacationDays");
 
@@ -561,8 +531,6 @@ namespace ReservationsAPI.Migrations
             modelBuilder.Entity("ReservationsAPI.DAL.Entities.Pacient", b =>
                 {
                     b.Navigation("Appointments");
-
-                    b.Navigation("PacientUser");
                 });
 
             modelBuilder.Entity("ReservationsAPI.DAL.Entities.Procedure", b =>
@@ -577,6 +545,10 @@ namespace ReservationsAPI.Migrations
 
             modelBuilder.Entity("ReservationsAPI.DAL.Entities.User", b =>
                 {
+                    b.Navigation("Doctor");
+
+                    b.Navigation("Pacient");
+
                     b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618

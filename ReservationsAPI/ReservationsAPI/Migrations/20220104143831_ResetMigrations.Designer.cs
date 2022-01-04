@@ -10,8 +10,8 @@ using ReservationsAPI.DAL;
 namespace ReservationsAPI.Migrations
 {
     [DbContext(typeof(ReservationsContext))]
-    [Migration("20211124161527_AddedRefreshToken")]
-    partial class AddedRefreshToken
+    [Migration("20220104143831_ResetMigrations")]
+    partial class ResetMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -152,7 +152,13 @@ namespace ReservationsAPI.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Doctors");
                 });
@@ -176,7 +182,13 @@ namespace ReservationsAPI.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Pacients");
                 });
@@ -438,6 +450,28 @@ namespace ReservationsAPI.Migrations
                     b.Navigation("Procedure");
                 });
 
+            modelBuilder.Entity("ReservationsAPI.DAL.Entities.Doctor", b =>
+                {
+                    b.HasOne("ReservationsAPI.DAL.Entities.User", "User")
+                        .WithOne("Doctor")
+                        .HasForeignKey("ReservationsAPI.DAL.Entities.Doctor", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ReservationsAPI.DAL.Entities.Pacient", b =>
+                {
+                    b.HasOne("ReservationsAPI.DAL.Entities.User", "User")
+                        .WithOne("Pacient")
+                        .HasForeignKey("ReservationsAPI.DAL.Entities.Pacient", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("ReservationsAPI.DAL.Entities.UserRole", b =>
                 {
                     b.HasOne("ReservationsAPI.DAL.Entities.Role", null)
@@ -513,6 +547,10 @@ namespace ReservationsAPI.Migrations
 
             modelBuilder.Entity("ReservationsAPI.DAL.Entities.User", b =>
                 {
+                    b.Navigation("Doctor");
+
+                    b.Navigation("Pacient");
+
                     b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618

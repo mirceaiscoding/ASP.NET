@@ -10,7 +10,9 @@ namespace ReservationsAPI.BLL.Interfaces
     {
         Task<bool> Register(RegisterModel registerModel);
 
-        Task<bool> RegisterAsPacient(RegisterModel registerModel, PacientDTO pacientDTO);
+        Task<int?> RegisterAsPacient(RegisterModel registerModel);
+
+        Task<int?> RegisterAsDoctor(RegisterModel registerModel);
 
         Task<LoginResult> Login(LoginModel loginModel);
 
