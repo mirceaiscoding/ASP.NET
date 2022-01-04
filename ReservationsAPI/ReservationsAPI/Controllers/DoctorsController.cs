@@ -31,7 +31,7 @@ namespace ReservationsAPI.DAL.Controllers
         [HttpGet("get-all-doctors")]
         public async Task<IActionResult> GetAllDoctors()
         {
-            return Ok(await _doctorsManager.GetAll());
+            return Ok(await _doctorsManager.GetAllPublicInformation());
         }
 
         [HttpGet("get-doctor-by-id/{id}")]

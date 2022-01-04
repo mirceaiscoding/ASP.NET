@@ -22,6 +22,7 @@ namespace ReservationsAPI
         {
             CreateMap<Appointment, AppointmentDTO>().ReverseMap();
             CreateMap<Doctor, DoctorDTO>().ReverseMap();
+            CreateMap<Doctor, DoctorPublicInformationDTO>().ReverseMap();
             CreateMap<Pacient, PacientDTO>().ReverseMap();
             CreateMap<Procedure, ProcedureDTO>().ReverseMap();
             CreateMap<VacationDay, VacationDayDTO>().ReverseMap();

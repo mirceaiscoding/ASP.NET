@@ -1,6 +1,6 @@
 ﻿<Properties StartupConfiguration="{4F96D45A-291E-4B3E-8E04-E668420FB686}|Default">
   <MonoDevelop.Ide.ItemProperties.ReservationsAPI PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/PacientsController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BLL/Managers/DoctorsManager.cs">
     <Files>
       <File FileName="BLL/Managers/ProceduresManager.cs" Line="27" Column="55" />
       <File FileName="DAL/Interfaces/IGenericRepository.cs" />
@@ -15,7 +15,7 @@
       <File FileName="Startup.cs" Line="28" Column="39" />
       <File FileName="appsettings.json" Line="15" Column="4" />
       <File FileName="Controllers/AuthController.cs" Line="56" Column="59" />
-      <File FileName="Controllers/DoctorsController.cs" Line="55" Column="26" />
+      <File FileName="Controllers/DoctorsController.cs" Line="34" Column="49" />
       <File FileName="Program.cs" Line="27" Column="1" />
       <File FileName="DAL/Entities/Pacient.cs" Line="19" Column="31" />
       <File FileName="DAL/Entities/User.cs" Line="14" Column="1" />
@@ -27,18 +27,25 @@
       <File FileName="DAL/Models/DataTransferObjects/PacientDTO.cs" Line="13" Column="6" />
       <File FileName="Migrations/20220104143831_ResetMigrations.cs" Line="229" Column="61" />
       <File FileName="DAL/Models/DoctorUserPostModel.cs" Line="9" Column="21" />
-      <File FileName="DAL/Models/DataTransferObjects/DoctorDTO.cs" Line="12" Column="38" />
-      <File FileName="Controllers/PacientsController.cs" Line="57" Column="1" />
+      <File FileName="DAL/Models/DataTransferObjects/DoctorDTO.cs" Line="6" Column="1" />
+      <File FileName="Controllers/PacientsController.cs" Line="56" Column="10" />
+      <File FileName="DAL/Models/DataTransferObjects/DoctorPublicInformationDTO.cs" Line="4" Column="44" />
+      <File FileName="AutoMapping.cs" Line="25" Column="57" />
+      <File FileName="BLL/Interfaces/IDoctorsManager.cs" Line="17" Column="1" />
+      <File FileName="BLL/Managers/DoctorsManager.cs" Line="44" Column="52" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="ReservationsAPI" expanded="True">
             <Node name="ReservationsAPI" expanded="True">
-              <Node name="BLL" expanded="True" />
-              <Node name="Controllers" expanded="True">
-                <Node name="PacientsController.cs" selected="True" />
+              <Node name="BLL" expanded="True">
+                <Node name="Interfaces" expanded="True" />
+                <Node name="Managers" expanded="True">
+                  <Node name="DoctorsManager.cs" selected="True" />
+                </Node>
               </Node>
+              <Node name="Controllers" expanded="True" />
               <Node name="DAL" expanded="True">
                 <Node name="Entities" expanded="True" />
                 <Node name="Interfaces" expanded="True" />
