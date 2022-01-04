@@ -27,37 +27,6 @@ export class AuthService {
 
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService) { }
 
-  public isAuthenticatedRefreshToken(): boolean {
-    const token = localStorage.getItem('accessToken');
-    if (token === null) {
-      console.log("No token in local storage");
-      return false;
-    }
-
-    var isTokenExpired = this.jwtHelper.isTokenExpired(token);
-
-    if (!isTokenExpired) {
-      console.log("Token already is valid");
-      return true;
-    }
-    // Refresh token
-    console.log("Token is expired.");
-    this.refreshToken().subscribe((response: any) => {
-      console.log(response);
-      if (response['success']) {
-        var newToken = response['newAccessToken']
-        console.log("New token", newToken);
-        localStorage.setItem('accessToken', newToken);
-        return true;
-      } else {
-        console.log("Failed to refresh token!", newToken);
-        this.logout();
-        return false;
-      }
-    });
-    return false;
-  }
-
   login(authModel: AuthModel) {
     return this.http.post(
       this.baseUrl + 'login',
@@ -100,5 +69,13 @@ export class AuthService {
       return role;
     }
     return ""
+  }
+
+  isLoggedIn(): boolean {
+    return localStorage['accessToken'] && localStorage['refreshToken'] && localStorage['role'];
+  }
+
+  isTokenExpired(token: string): boolean {
+    return this.jwtHelper.isTokenExpired(token);
   }
 }

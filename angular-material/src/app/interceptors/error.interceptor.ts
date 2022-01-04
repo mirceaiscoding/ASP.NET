@@ -18,6 +18,15 @@ export class ErrorInterceptor implements HttpInterceptor {
 
   constructor(private router: Router, private authService: AuthService) { }
 
+  addAuthorizationHeader(request: HttpRequest<unknown>) {
+    const token = localStorage.getItem("accessToken");
+    request = request.clone({
+      setHeaders: { Authorization: `Bearer ${token}` }
+    });
+    console.log("Added Authorization Header", request);
+    return request;
+  }
+
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
@@ -25,21 +34,40 @@ export class ErrorInterceptor implements HttpInterceptor {
           // A client-side or network error occurred. Handle it accordingly.
           console.error('An error occurred:', error.error.message);
         } else {
-          if (error.status == 401) {   // Unauthorized. Adding Authorization Header
+          // If request is to the api
+          const isApiUrl: boolean = request.url.startsWith(environment.baseUrl);
+          if (isApiUrl && error.status == 401) {   // Unauthorized. Adding Authorization Header
             
-            // Refresh token if it is expired
-            var isAuthentificated = this.authService.isAuthenticatedRefreshToken();
+            var token = localStorage.getItem('accessToken');
+            if (token === null) {
+              console.log("No token in local storage");
+              return EMPTY;
+            }
+        
+            if (this.authService.isTokenExpired(token)) {
+              // Refresh token
+              console.log("Token is expired.");
+              this.authService.refreshToken().subscribe((response: any) => {
+                console.log(response);
+                if (response['success']) {
+                  var newToken = response['newAccessToken']
+                  console.log("New token", newToken);
+                  localStorage.setItem('accessToken', newToken);
 
-            // If request is to the api
-            const isApiUrl: boolean = request.url.startsWith(environment.baseUrl);
+                  // Try again but with authorization
+                  request = this.addAuthorizationHeader(request);
+                  return next.handle(request); 
 
-            if (isAuthentificated && isApiUrl) {
-              const token = localStorage.getItem("accessToken");
-              request = request.clone({
-                setHeaders: { Authorization: `Bearer ${token}` }
+                } else {
+                  console.log("Failed to refresh token!");
+                  this.authService.logout();
+                  return EMPTY;
+                }
               });
-              console.log("Added Authorization Header", request);
-              return next.handle(request);  // Try again but with authorization
+            } else {
+              // Try again but with authorization
+              request = this.addAuthorizationHeader(request);
+              return next.handle(request); 
             }
           }
 
