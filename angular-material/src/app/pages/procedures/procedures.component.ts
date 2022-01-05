@@ -16,6 +16,8 @@ export class ProceduresComponent implements OnInit {
 
   currency = "RON";
 
+  role = "";
+
   procedures: ProcedureDTO[] = [];
 
   constructor(
@@ -29,6 +31,7 @@ export class ProceduresComponent implements OnInit {
       this.procedures = response;
       console.log("Procedures", this.procedures);
     });
+    this.role = this.authService.getRole();
   }
 
   addProcedure() {
@@ -51,6 +54,14 @@ export class ProceduresComponent implements OnInit {
         }
       }
     );
+  }
+
+  delete(procedureId: number) {
+    this.adminInformationsService.deleteProcedure(procedureId).subscribe((response: any) => {
+      if (response === true) {
+        this.procedures = this.procedures.filter(x => x.id != procedureId)
+      }
+    })
   }
 
   updateCurrency(event: MatSlideToggleChange) {

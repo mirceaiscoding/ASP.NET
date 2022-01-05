@@ -17,3 +17,13 @@
     margin-top: 15px;
     font-size: 15px;
 }
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.expansion {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

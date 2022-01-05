@@ -57,12 +57,11 @@ namespace ReservationsAPI.BLL.Managers
             return _mapper.Map<DoctorDTO>(doctor);
         }
 
-        public async Task<DoctorDTO> Delete(DoctorDTO doctorDTO)
+        public async Task<bool> Delete(long id)
         {
-            var doctor = _mapper.Map<Doctor>(doctorDTO);
-            _unitOfWork.DoctorsRepository.Delete(doctor);
+            _unitOfWork.DoctorsRepository.Delete(id);
             await _unitOfWork.SaveAsync();
-            return doctorDTO;
+            return true;
         }
 
     }

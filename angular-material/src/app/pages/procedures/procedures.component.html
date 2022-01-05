@@ -8,14 +8,22 @@
             {{procedure.procedureName}}
           </mat-panel-title>
         </mat-expansion-panel-header>
-        {{procedure.cost | currencyConversion:currency }}
+        <div class="expansion">
+          <div class="cost">
+            {{procedure.cost | currencyConversion:currency }}
+          </div>
+          <span class="example-spacer"></span>
+          <button *ngIf="role == 'Admin'" mat-icon-button color="warn" (click)="delete(procedure.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
       </mat-expansion-panel>
     </mat-accordion>
     
     <mat-slide-toggle class="slider" [checked] = false (change)="updateCurrency($event)">Convert prices to EUR</mat-slide-toggle>
     
     <div class="add-procedure-button">
-        <button *ngIf="authService.getRole() == 'Admin'" mat-button mat-raised-button color="accent" (click)="addProcedure()">
+        <button *ngIf="role == 'Admin'" mat-button mat-raised-button color="accent" (click)="addProcedure()">
             ADD A PROCEDURE
         </button>
     </div>

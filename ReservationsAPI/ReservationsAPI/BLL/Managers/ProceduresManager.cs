@@ -69,5 +69,12 @@ namespace ReservationsAPI.BLL.Managers
             await _unitOfWork.SaveAsync();
             return procedureDTO;
         }
+
+        public async Task<bool> Delete(long id)
+        {
+            _unitOfWork.ProceduresRepository.Delete(id);
+            await _unitOfWork.SaveAsync();
+            return true;
+        }
     }
 }

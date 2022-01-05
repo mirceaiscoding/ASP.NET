@@ -22,32 +22,27 @@ export class AdminInformationsService {
 
   private baseUrl: string = environment.baseUrl;
 
-  getAllAppointments(): Observable<AppointmentInformationModel[]>
-  {
+  getAllAppointments(): Observable<AppointmentInformationModel[]> {
     return this.http.get(this.baseUrl + 'api/appointments/get-all-appointments')
-    .pipe(map((response) => <AppointmentInformationModel[]> response));
+      .pipe(map((response) => <AppointmentInformationModel[]>response));
   }
 
-  getUpcomingAppointments(): Observable<AppointmentInformationModel[]>
-  {
+  getUpcomingAppointments(): Observable<AppointmentInformationModel[]> {
     return this.http.get(this.baseUrl + 'api/appointments/get-upcoming-appointments')
-    .pipe(map((response) => <AppointmentInformationModel[]> response));
+      .pipe(map((response) => <AppointmentInformationModel[]>response));
   }
 
-  getPreviousAppointments(): Observable<AppointmentInformationModel[]>
-  {
+  getPreviousAppointments(): Observable<AppointmentInformationModel[]> {
     return this.http.get(this.baseUrl + 'api/appointments/get-previous-appointments')
-    .pipe(map((response) => <AppointmentInformationModel[]> response));
+      .pipe(map((response) => <AppointmentInformationModel[]>response));
   }
 
-  getAllPacients(): Observable<PacientDTO[]>
-  {
+  getAllPacients(): Observable<PacientDTO[]> {
     return this.http.get(this.baseUrl + 'api/pacients/get-all-pacients')
-    .pipe(map((response) => <PacientDTO[]> response));
+      .pipe(map((response) => <PacientDTO[]>response));
   }
 
-  deleteAppointment(appointment: AppointmentDTO)
-  {
+  deleteAppointment(appointment: AppointmentDTO) {
     console.log(appointment);
     const options = {
       headers: this.privateHttpHeaders,
@@ -56,8 +51,7 @@ export class AdminInformationsService {
     return this.http.delete(this.baseUrl + 'api/appointments/delete-appointment', options);
   }
 
-  updateAppointmentTime(appointment: AppointmentDTO, newDate: Date, newTime: String)
-  {
+  updateAppointmentTime(appointment: AppointmentDTO, newDate: Date, newTime: String) {
     var formattedDate = formatDate(newDate, "yyyy-MM-dd", "en-US");
     var body = {
       "pacientId": appointment.pacientId,
@@ -71,20 +65,21 @@ export class AdminInformationsService {
     return this.http.put(this.baseUrl + 'api/appointments/update-appointment-time', body);
   }
 
-  addAppointment(appointment: AppoointmentPostModel)
-  {
+  addAppointment(appointment: AppoointmentPostModel) {
     console.log("POST APPOINTMENT", appointment);
     return this.http.post(this.baseUrl + 'api/appointments/insert-appointment', appointment);
   }
 
-  getAppointmentInfo(appointment: AppointmentDTO)
-  {
+  getAppointmentInfo(appointment: AppointmentDTO) {
     return this.http.post(this.baseUrl + 'api/appointments/get-appointment-information', appointment);
   }
 
-  addProcedure(procedure: ProcedureDTO)
-  {
+  addProcedure(procedure: ProcedureDTO) {
     return this.http.post(this.baseUrl + 'api/procedures/insert-procedure', procedure);
+  }
+
+  deleteProcedure(id: number) {
+    return this.http.delete(this.baseUrl + 'api/procedures/delete-procedure/' + id);
   }
 
 }

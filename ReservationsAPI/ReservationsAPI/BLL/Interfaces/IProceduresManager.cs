@@ -18,5 +18,7 @@ namespace ReservationsAPI.BLL.Interfaces
         Task<ProcedureDTO> GetById(long id);
 
         Task<ProcedureDTO> Delete(ProcedureDTO procedureDTO);
+
+        Task<bool> Delete(long id);
     }
 }

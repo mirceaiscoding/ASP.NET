@@ -82,13 +82,13 @@ namespace ReservationsAPI.DAL.Controllers
             }
         }
 
-        [HttpDelete("delete-procedure")]
-        public async Task<IActionResult> DeleteProcedure(ProcedureDTO procedureDTO)
+        [HttpDelete("delete-procedure/{id}")]
+        public async Task<IActionResult> DeleteProcedure(long id)
         {
             try
             {
-                var deletedProcedureDto = await _proceduresManager.Delete(procedureDTO);
-                return Ok(deletedProcedureDto);
+                var result = await _proceduresManager.Delete(id);
+                return Ok(result);
             }
             catch (Exception e)
             {
