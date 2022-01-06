@@ -108,10 +108,10 @@ namespace ReservationsAPI.DAL.Repositories
         public async Task<List<AppointmentsInformationModel>> GetUpcomingAppointmentsInformation()
         {
             var appointmentsInformationModels = await entities
+                .Where(x => x.EndTime.CompareTo(DateTime.Now) > 0)
                 .Include(x => x.Doctor)
                 .Include(x => x.Pacient)
                 .Include(x => x.Procedure)
-                .Where(x => x.EndTime >= DateTime.Now)
                 .Select(x => new AppointmentsInformationModel
                 {
                     doctorDTO = _mapper.Map<DoctorDTO>(x.Doctor),
@@ -128,10 +128,10 @@ namespace ReservationsAPI.DAL.Repositories
         public async Task<List<AppointmentsInformationModel>> GetPreviousAppointmentsInformation()
         {
             var appointmentsInformationModels = await entities
+                .Where(x => x.EndTime.CompareTo(DateTime.Now) < 0)
                 .Include(x => x.Doctor)
                 .Include(x => x.Pacient)
                 .Include(x => x.Procedure)
-                .Where(x => x.EndTime <= DateTime.Now)
                 .Select(x => new AppointmentsInformationModel
                 {
                     doctorDTO = _mapper.Map<DoctorDTO>(x.Doctor),

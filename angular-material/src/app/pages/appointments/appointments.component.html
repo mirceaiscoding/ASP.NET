@@ -89,4 +89,8 @@
     </button>
   </div>
 
+  <div *ngFor="let appointment of appointmets">
+    <my-highlight-appointment [appointment]="appointment">appointment!!!</my-highlight-appointment>
+  </div>
+
 </div>
