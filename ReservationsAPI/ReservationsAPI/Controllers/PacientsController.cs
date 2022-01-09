@@ -19,6 +19,7 @@ namespace ReservationsAPI.DAL.Controllers
             _pacientsManager = pacientsManager;
         }
 
+        [Authorize("Admin")]
         [HttpGet("get-all-pacients")]
         public async Task<IActionResult> GetAllPacients()
         {
@@ -46,11 +47,18 @@ namespace ReservationsAPI.DAL.Controllers
             }
         }
 
-        [HttpGet("get-number-of-future-appointments")]
+        [Authorize("Pacient")]
+        [HttpGet("get-number-of-future-appointments/{userId}")]
         public async Task<IActionResult> GetNumberOfFutureAppointments(long pacientId)
         {
             try
             {
+                int authentifiedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+                PacientDTO authentifiedPacient = await _pacientsManager.GetUserData(authentifiedUserId);
+                if (pacientId != authentifiedPacient.Id)
+                {
+                    return Unauthorized("Cannot acces data that isn't bound to this account");
+                }
                 var numberOfFutureAppointments = await _pacientsManager.GetNumberOfFutureAppointments(pacientId);
                 return Ok(numberOfFutureAppointments);
             }

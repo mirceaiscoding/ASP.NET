@@ -1,4 +1,5 @@
 using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,21 +15,41 @@ namespace ReservationsAPI.DAL.Controllers
     {
         private readonly IAppointmentsManager _appointmentsManager;
 
-        public AppointmentsController(IAppointmentsManager appointmentsManager)
+        private readonly IPacientsManager _pacientsManager;
+
+        public AppointmentsController(IAppointmentsManager appointmentsManager, IPacientsManager pacientsManager)
         {
             _appointmentsManager = appointmentsManager;
+            _pacientsManager = pacientsManager;
         }
 
+        [Authorize("Admin")]
         [HttpGet("get-doctor-appointments/{id}")]
         public async Task<IActionResult> GetDoctorAppointments(long id)
         {
             return Ok(await _appointmentsManager.GetDoctorAppointments(id));
         }
 
-        [HttpGet("get-pacient-appointments/{id}")]
-        public async Task<IActionResult> GetPacientAppointments(long id)
+        [Authorize("Pacient")]
+        [HttpGet("get-pacient-appointments/{pacientId}")]
+        public async Task<IActionResult> GetPacientAppointments(long pacientId)
         {
-            return Ok(await _appointmentsManager.GetPacientAppointments(id));
+            try
+            {
+                int authentifiedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+                PacientDTO authentifiedPacient = await _pacientsManager.GetUserData(authentifiedUserId);
+                if (pacientId != authentifiedPacient.Id)
+                {
+                    return Unauthorized("Cannot acces data that isn't bound to this account");
+                }
+                var numberOfFutureAppointments = await _pacientsManager.GetNumberOfFutureAppointments(pacientId);
+                return Ok(await _appointmentsManager.GetPacientAppointments(pacientId));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
         }
 
         [Authorize("Admin")]
@@ -82,6 +103,7 @@ namespace ReservationsAPI.DAL.Controllers
             }
         }
 
+        [Authorize("Admin")]
         [HttpPost("insert-appointment")]
         public async Task<IActionResult> PostAppointment(AppointmentDTO appointmentDTO)
         {
@@ -97,6 +119,7 @@ namespace ReservationsAPI.DAL.Controllers
         }
 
         // The new EndTime will be set based on the old time span!
+        [Authorize("Admin")]
         [HttpPut("update-appointment-time")]
         public async Task<IActionResult> UpdateAppointment(NewStartTimeAppointmentModel startTimeAppointmentModel)
         {
@@ -111,6 +134,7 @@ namespace ReservationsAPI.DAL.Controllers
             }
         }
 
+        [Authorize("Admin")]
         [HttpDelete("delete-appointment")]
         public async Task<IActionResult> DeleteAppointment(AppointmentDTO appointmentDTO)
         {

@@ -2,12 +2,38 @@
 
 <div *ngIf="pacientData" class="account-information">
 
-    <div class="wellcome">Wellcome, {{pacientData | fullName}}</div>
-    <br/>
-    <div>First Name: {{pacientData?.firstName}}</div>
-    <div>Last Name: {{pacientData?.lastName}}</div>
-    <div>Phone Number: {{pacientData?.phoneNumber}}</div>
-    <div>Date of birth: {{pacientData?.dateOfBirth | date:'dd/MM/yyyy'}}</div>
+  <div class="wellcome">Wellcome, {{pacientData | fullName}}</div>
+  <br />
+  <div>First Name: {{pacientData?.firstName}}</div>
+  <div>Last Name: {{pacientData?.lastName}}</div>
+  <div>Phone Number: {{pacientData?.phoneNumber}}</div>
+  <div>Date of birth: {{pacientData?.dateOfBirth | date:'dd/MM/yyyy'}}</div>
+</div>
+
+<div class="appointments">
+  <div class="appointment" *ngFor="let appointment of pacientAppoointments">
+    <my-highlight-appointment [appointment]="appointment">
+
+      <mat-card>
+        <mat-card-header>{{appointment.procedureName}}</mat-card-header>
+
+        <mat-card-subtitle>
+          {{appointment.doctorName}}
+        </mat-card-subtitle>
+
+        <mat-card-content>
+          {{appointment.startTime | date:'EEEE, dd/MM/yyyy HH:mm'}} - {{appointment.endTime | date:'HH:mm'}}
+        </mat-card-content>
+
+        <mat-card-actions>
+          <button mat-raised-button color="primary">RESCHEDULE</button>
+        </mat-card-actions>
+      </mat-card>
+
+      <!-- Directive add button if appointment is in the future (at least 1 day) -->
+
+    </my-highlight-appointment>
+  </div>
 </div>
 
 <button mat-button mat-raised-button color="accent" (click)="logout()"> LOG OUT </button>

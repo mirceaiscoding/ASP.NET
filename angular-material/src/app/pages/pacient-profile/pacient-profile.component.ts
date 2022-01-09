@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PacientAppoointmentModel } from 'src/app/interfaces/pacient-appoointment-model';
 import { PacientDTO } from 'src/app/interfaces/pacient-dto';
 import { AuthService } from 'src/app/services/auth.service';
 import { PacientService } from 'src/app/services/pacient.service';
@@ -15,6 +16,8 @@ export class PacientProfileComponent implements OnInit {
 
   public pacientData!: PacientDTO;
 
+  public pacientAppoointments: PacientAppoointmentModel[] = [];
+
   constructor(
     private activatedRoute: ActivatedRoute, 
     private pacientService: PacientService,
@@ -28,7 +31,12 @@ export class PacientProfileComponent implements OnInit {
       this.pacientService.getPacientData(this.id).subscribe((response: any) => {
         console.log("Pacient data", response);
         this.pacientData = response;
+        this.pacientService.getPacientAppointments(this.pacientData.id).subscribe((appointments: any) => {
+          console.log("Pacinet appointments", appointments);
+          this.pacientAppoointments = appointments;
+        })
       })
+
     });
   }
 

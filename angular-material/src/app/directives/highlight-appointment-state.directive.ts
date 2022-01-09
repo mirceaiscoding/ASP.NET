@@ -1,13 +1,14 @@
 import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 import { AppointmentDTO } from '../interfaces/appointment-dto';
 import { AppointmentTableDataModel } from '../interfaces/appointment-table-data-model';
+import { PacientAppoointmentModel } from '../interfaces/pacient-appoointment-model';
 
 @Directive({
   selector: 'my-highlight-appointment[appointment]'
 })
 export class HighlightAppointmentStateDirective implements OnInit{
 
-  @Input() appointment!: AppointmentDTO | AppointmentTableDataModel;
+  @Input() appointment!: AppointmentDTO | AppointmentTableDataModel | PacientAppoointmentModel;
 
   pastAppointmentColor = "rgb(228, 227, 227)";
   presentAppointmentColor = "#006064";

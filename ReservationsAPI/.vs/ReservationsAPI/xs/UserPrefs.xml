@@ -1,6 +1,6 @@
 ﻿<Properties StartupConfiguration="{4F96D45A-291E-4B3E-8E04-E668420FB686}|Default">
   <MonoDevelop.Ide.ItemProperties.ReservationsAPI PreferredExecutionTarget="/Applications/Firefox.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="DAL/Repositories/AppointmentsRepository.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BLL/Managers/PacientsManager.cs">
     <Files>
       <File FileName="BLL/Interfaces/IProceduresManager.cs" Line="25" Column="1" />
       <File FileName="BLL/Managers/ProceduresManager.cs" Line="73" Column="31" />
@@ -8,11 +8,14 @@
       <File FileName="BLL/Managers/DoctorsManager.cs" Line="1" Column="1" />
       <File FileName="Controllers/DoctorsController.cs" Line="1" Column="1" />
       <File FileName="Controllers/ProceduresController.cs" Line="92" Column="14" />
-      <File FileName="Controllers/AppointmentsController.cs" Line="45" Column="60" />
+      <File FileName="Controllers/AppointmentsController.cs" Line="47" Column="1" />
       <File FileName="BLL/Interfaces/IAppointmentsManager.cs" Line="17" Column="50" />
-      <File FileName="BLL/Managers/AppointmentsManager.cs" Line="65" Column="73" />
+      <File FileName="BLL/Managers/AppointmentsManager.cs" Line="70" Column="89" />
       <File FileName="DAL/Interfaces/IAppointmentsRepository.cs" Line="14" Column="50" />
-      <File FileName="DAL/Repositories/AppointmentsRepository.cs" Line="1" Column="1" />
+      <File FileName="DAL/Repositories/AppointmentsRepository.cs" Line="143" Column="23" />
+      <File FileName="Controllers/PacientsController.cs" Line="60" Column="87" />
+      <File FileName="BLL/Interfaces/IPacientsManager.cs" Line="13" Column="1" />
+      <File FileName="BLL/Managers/PacientsManager.cs" Line="27" Column="10" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -21,7 +24,9 @@
             <Node name="ReservationsAPI" expanded="True">
               <Node name="BLL" expanded="True">
                 <Node name="Interfaces" expanded="True" />
-                <Node name="Managers" expanded="True" />
+                <Node name="Managers" expanded="True">
+                  <Node name="PacientsManager.cs" selected="True" />
+                </Node>
               </Node>
               <Node name="Controllers" expanded="True" />
               <Node name="DAL" expanded="True">
@@ -30,9 +35,7 @@
                 <Node name="Models" expanded="True">
                   <Node name="DataTransferObjects" expanded="True" />
                 </Node>
-                <Node name="Repositories" expanded="True">
-                  <Node name="AppointmentsRepository.cs" selected="True" />
-                </Node>
+                <Node name="Repositories" expanded="True" />
               </Node>
               <Node name="Migrations" expanded="True" />
             </Node>
