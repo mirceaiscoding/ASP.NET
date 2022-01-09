@@ -1,0 +1,52 @@
+<h2 mat-dialog-title>Edit account data</h2>
+
+<mat-dialog-content [formGroup]="form">
+
+    <div class="form-field-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter your first name</mat-label>
+          <input matInput placeholder="First Name" formControlName="firstName">
+          <mat-error *ngIf="form.controls['firstName'].touched && form.controls['firstName'].invalid">
+            Enter your first name!
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-field-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter your last name</mat-label>
+          <input matInput placeholder="Last Name" formControlName="lastName">
+          <mat-error *ngIf="form.controls['lastName'].touched && form.controls['lastName'].invalid">
+            Enter your last name!
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-field-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter your phone number</mat-label>
+          <input matInput placeholder="07 xxx xxx xxx" formControlName="phoneNumber">
+          <mat-error *ngIf="form.controls['phoneNumber'].touched && form.controls['phoneNumber'].invalid">
+            Enter your phone number!
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-field-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter your date of birth</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="form.controls['dateOfBirth'].touched && form.controls['dateOfBirth'].invalid">
+            Enter your date of birth!
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button class="mat-raised-button" (click)="close()">Close</button>
+  <button [disabled]="form.invalid" class="mat-raised-button mat-primary" (click)="save()" [disabled]="form.invalid">Save</button>
+</mat-dialog-actions>

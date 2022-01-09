@@ -22,4 +22,8 @@ export class PacientService {
     return this.http.get(environment.baseUrl + "api/appointments/get-pacient-appointments/" + id)
     .pipe(map((response) =>  <PacientAppoointmentModel[]>response))
   }
+
+  updatePacientData(id: number, updatedPacient: PacientDTO): Observable<any> {
+    return this.http.put(environment.baseUrl + "api/pacients/update-pacient/" + id, updatedPacient);
+  }
 }

@@ -4,4 +4,5 @@ export interface PacientDTO {
     lastName: string;
     dateOfBirth: Date;
     phoneNumber: string;
+    userId: number;
 }

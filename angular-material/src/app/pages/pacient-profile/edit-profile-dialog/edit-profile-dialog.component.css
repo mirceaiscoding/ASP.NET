@@ -1,0 +1,14 @@
+.mat-dialog-content{
+    display: flex;
+    flex-direction: column;
+}
+
+.form-field-container {
+    flex-grow: 1;
+    text-align: center;
+    font-size: smaller;
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }

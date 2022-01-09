@@ -25,7 +25,7 @@ namespace ReservationsAPI.DAL.Repositories
 
         public async Task<Pacient> getUserData(int userId)
         {
-            return await entities.FirstOrDefaultAsync(x => x.UserId == userId);
+            return await entities.AsNoTracking().FirstOrDefaultAsync(x => x.UserId == userId);
         }
     }
 }

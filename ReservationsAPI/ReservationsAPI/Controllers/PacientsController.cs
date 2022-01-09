@@ -68,12 +68,19 @@ namespace ReservationsAPI.DAL.Controllers
             }
         }
 
-        [HttpPut("update-pacient")]
-        public async Task<IActionResult> UpdatePacient(long id, PacientDTO pacientDTO)
+        [Authorize("Pacient")]
+        [HttpPut("update-pacient/{pacientId}")]
+        public async Task<IActionResult> UpdatePacient(long pacientId, PacientDTO pacientDTO)
         {
             try
             {
-                var updatedPacient = await _pacientsManager.Update(id, pacientDTO);
+                int authentifiedUserId = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+                PacientDTO authentifiedPacient = await _pacientsManager.GetUserData(authentifiedUserId);
+                if (pacientId != authentifiedPacient.Id)
+                {
+                    return Unauthorized("Cannot acces data that isn't bound to this account");
+                }
+                var updatedPacient = await _pacientsManager.Update(pacientId, pacientDTO);
                 return Ok(updatedPacient);
             }
             catch (Exception e)
