@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -28,11 +29,13 @@ namespace ReservationsAPI.DAL.Controllers
             return Ok(await _doctorsManager.IsWorking(doctorId, date));
         }
 
+        [AllowAnonymous]
         [HttpGet("get-all-doctors")]
         public async Task<IActionResult> GetAllDoctors()
         {
             return Ok(await _doctorsManager.GetAllPublicInformation());
         }
+
 
         [HttpGet("get-doctor-by-id/{id}")]
         public async Task<IActionResult> GetDoctorById(long id)
@@ -47,6 +50,7 @@ namespace ReservationsAPI.DAL.Controllers
             }
         }
 
+        [Authorize("Admin")]
         [HttpDelete("delete-doctor/{id}")]
         public async Task<IActionResult> DeleteDoctor(long id)
         {

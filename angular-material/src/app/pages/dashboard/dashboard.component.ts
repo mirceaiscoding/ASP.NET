@@ -10,7 +10,15 @@ import { AuthService } from 'src/app/services/auth.service';
 export class DashboardComponent implements OnInit {
 
   constructor(private authService: AuthService,
-    private router: Router) { }
+    private router: Router) {
+      this.role = this.authService.getRole();
+      if (this.role == "Pacient") {
+        var userId = this.authService.getUserId();
+        if (userId) {
+          this.router.navigate(["profile/" + userId]);
+        }
+      }
+     }
 
   role: string = "";
 
@@ -20,13 +28,6 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.role = this.authService.getRole();
-    if (this.role == "Pacient") {
-      var userId = this.authService.getUserId();
-      if (userId) {
-        this.router.navigate(["profile/" + userId]);
-      }
-    }
   }
 
 }

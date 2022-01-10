@@ -45,15 +45,15 @@ namespace ReservationsAPI.Controllers
 
         //[Authorize("Admin")]
         [HttpPost("register-as-doctor")]
-        public async Task<IActionResult> RegisterAsDoctor([FromBody] DoctorUserPostModel pacientUserPostModel)
+        public async Task<IActionResult> RegisterAsDoctor([FromBody] DoctorUserPostModel doctorUserPostModel)
         {
-            var userId = await _authManager.RegisterAsPacient(pacientUserPostModel.registerModel);
+            var userId = await _authManager.RegisterAsDoctor(doctorUserPostModel.registerModel);
             if (userId == null)
             {
                 return Ok(false);
             }
-            pacientUserPostModel.doctorDTO.UserId = userId.Value;
-            var insertedPacientDTO = await _doctorsManager.Insert(pacientUserPostModel.doctorDTO);
+            doctorUserPostModel.doctorDTO.UserId = userId.Value;
+            var insertedPacientDTO = await _doctorsManager.Insert(doctorUserPostModel.doctorDTO);
             return Ok(true);
         }
 

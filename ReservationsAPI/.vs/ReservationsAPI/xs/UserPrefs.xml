@@ -1,12 +1,12 @@
 ﻿<Properties StartupConfiguration="{4F96D45A-291E-4B3E-8E04-E668420FB686}|Default">
   <MonoDevelop.Ide.ItemProperties.ReservationsAPI PreferredExecutionTarget="/Applications/Firefox.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="DAL/Repositories/PacientsRepository.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BLL/Interfaces/IAuthManager.cs">
     <Files>
       <File FileName="BLL/Interfaces/IProceduresManager.cs" Line="25" Column="1" />
       <File FileName="BLL/Managers/ProceduresManager.cs" Line="73" Column="31" />
       <File FileName="BLL/Interfaces/IDoctorsManager.cs" Line="1" Column="1" />
       <File FileName="BLL/Managers/DoctorsManager.cs" Line="1" Column="1" />
-      <File FileName="Controllers/DoctorsController.cs" Line="1" Column="1" />
+      <File FileName="Controllers/DoctorsController.cs" Line="51" Column="10" />
       <File FileName="Controllers/ProceduresController.cs" Line="92" Column="14" />
       <File FileName="Controllers/AppointmentsController.cs" Line="34" Column="54" />
       <File FileName="BLL/Interfaces/IAppointmentsManager.cs" Line="18" Column="1" />
@@ -16,13 +16,17 @@
       <File FileName="Controllers/PacientsController.cs" Line="79" Column="57" />
       <File FileName="BLL/Interfaces/IPacientsManager.cs" Line="12" Column="53" />
       <File FileName="BLL/Managers/PacientsManager.cs" Line="80" Column="83" />
-      <File FileName="DAL/Repositories/PacientsRepository.cs" Line="28" Column="80" />
+      <File FileName="DAL/Repositories/PacientsRepository.cs" Line="29" Column="10" />
+      <File FileName="Controllers/AuthController.cs" Line="62" Column="31" />
+      <File FileName="DAL/InitialSeed.cs" Line="33" Column="1" />
+      <File FileName="appsettings.json" Line="1" Column="1" />
+      <File FileName="BLL/Interfaces/IAuthManager.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="ReservationsAPI" expanded="True">
-            <Node name="ReservationsAPI" expanded="True">
+            <Node name="ReservationsAPI" expanded="True" selected="True">
               <Node name="BLL" expanded="True">
                 <Node name="Interfaces" expanded="True" />
                 <Node name="Managers" expanded="True" />
@@ -34,9 +38,7 @@
                 <Node name="Models" expanded="True">
                   <Node name="DataTransferObjects" expanded="True" />
                 </Node>
-                <Node name="Repositories" expanded="True">
-                  <Node name="PacientsRepository.cs" selected="True" />
-                </Node>
+                <Node name="Repositories" expanded="True" />
               </Node>
               <Node name="Migrations" expanded="True" />
             </Node>
