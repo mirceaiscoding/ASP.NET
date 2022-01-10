@@ -1,54 +1,106 @@
 .content {
     width: 100%;
     height: 100%;    
-    background-color: #00a0fc1c;
+    background-color: #e4f5ff;
 }
 
-#container{
-    position: relative;
-    top: 15%;
-    left: 40%;
+@media (min-width: 800px) {
+    
+    #container{
+        position: relative;
+        top: 15%;
+        left: 40%;
+    }
+
+    #doctor-id-art{
+        height: 400px;
+        width: 400px;
+        z-index: 1;
+        position: absolute;
+        top: 50px;
+        left: 50px;
+        filter: drop-shadow(3px 5px 2px rgba(0, 0, 0, 0.15));
+    }
+    
+    #circle{
+        width: 250px;
+        height: 250px;
+        background: white;
+        border-radius: 50%;
+        position: absolute;
+        z-index: 0;
+        top: -50px;
+        left: -150px;
+    }
+    
+    #message{
+        font-size: 40px;
+        letter-spacing: 5px;
+        width: 350px;
+        height: 300px;
+        border-radius: 50%;
+        position: absolute;
+        top: -20px;
+        left: -160px;
+        z-index: 2;
+    }
+    
+    #appointment-button{
+        /* width: 100px; */
+        /* height: 100px; */
+        position: absolute;
+        top: 120px;
+        left: -80px;
+        z-index: 3;
+    }
 }
 
-#doctor-id-art{
-    height: 400px;
-    width: 400px;
-    z-index: 1;
-    position: absolute;
-    top: 50px;
-    left: 50px;
-    filter: drop-shadow(3px 5px 2px rgba(0, 0, 0, 0.15));
-}
+@media (max-width: 800px) {
+    
+    #container{
+        position: relative;
+        top: 15%;
+        left: 45%;
+    }
 
-#circle{
-    width: 250px;
-    height: 250px;
-    background: white;
-    border-radius: 50%;
-    position: absolute;
-    z-index: 0;
-    top: -50px;
-    left: -150px;
-
-}
-
-#message{
-    font-size: 40px;
-    letter-spacing: 5px;
-    width: 350px;
-    height: 300px;
-    border-radius: 50%;
-    position: absolute;
-    top: -20px;
-    left: -160px;
-    z-index: 2;
-}
-
-#appointment-button{
-    /* width: 100px; */
-    /* height: 100px; */
-    position: absolute;
-    top: 120px;
-    left: -80px;
-    z-index: 3;
-}
+    #doctor-id-art{
+        height: 300px;
+        width: 300px;
+        z-index: 1;
+        position: absolute;
+        top: 50px;
+        left: -50px;
+        filter: drop-shadow(3px 5px 2px rgba(0, 0, 0, 0.15));
+    }
+    
+    #circle{
+        width: 175px;
+        height: 175px;
+        background: white;
+        border-radius: 50%;
+        position: absolute;
+        z-index: 0;
+        top: -50px;
+        left: -150px;
+    }
+    
+    #message{
+        font-size: 25px;
+        letter-spacing: 5px;
+        width: 250px;
+        height: 300px;
+        border-radius: 50%;
+        position: absolute;
+        top: -20px;
+        left: -160px;
+        z-index: 2;
+    }
+    
+    #appointment-button{
+        font-size: 12px;
+        position: absolute;
+        top: 62px;
+        left: -125px;
+        z-index: 3;
+    }
+  }
