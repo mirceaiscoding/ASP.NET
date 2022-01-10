@@ -7,6 +7,18 @@
     justify-content: space-between;
 }
 
+@media (max-width: 800px) {
+    .page-content{
+        flex-direction: column;
+        justify-content: center;
+    }
+    .appointments{
+        flex-direction: column;
+        justify-content: center;
+
+    }
+  }
+
 .page-content > div {
     margin: 5px;
     padding: 5px;
@@ -17,21 +29,26 @@
 .account-information-container{
     display: inline-flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .account-information{
     display: flex;
     flex-direction: column;
     margin: 10px;
-    width: auto;
+    width: 300px;
+    /* width: auto; */
 }
 
 .appointments-container{
     display: inline-flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .appointments{
+    align-items: center;
+    justify-content: center;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -40,7 +57,7 @@
 .appointment{
     margin: 10px;
     width: 300px;
-
+    align-content: center;
 }
 
 .mat-card{
