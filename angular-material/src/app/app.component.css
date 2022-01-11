@@ -1,6 +1,6 @@
 
 .mat-sidenav{
-    width: 250px;
+    width: 100%;
 }
 
 .mat-nav-list{
@@ -19,9 +19,25 @@
     text-align: center;
 }
 
+.toolbar-button{
+    width: 100%;
+}
+
 .icons{
     display: flex;
     flex-direction: row;
     align-content: center;
     justify-content: center;
+}
+
+/* for better open/close animation performance */
+
+.mat-sidenav-backdrop {
+    opacity: 0 !important;
+}
+
+mat-sidenav.md-closed-add,
+mat-sidenav.md-closed-remove {
+    -webkit-transition: all .10s cubic-bezier(0.25, .8, .25, 1) !important;
+    transition: all .10s cubic-bezier(0.25, .8, .25, 1) !important;
 }
