@@ -1,5 +1,11 @@
-.selected-doctor-card {
-  /* color: rgb(255, 82, 82); */
+.appointment-button {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.selected-doctor-card > .container > .appointment-button {
+  visibility: visible;
+  opacity: 1;
 }
 
 
