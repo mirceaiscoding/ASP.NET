@@ -25,3 +25,22 @@
   border-radius: 1px;
   height: 30px;
 }
+
+@media (min-width: 800px) {
+  .menu-button{
+    display: none;
+  }
+}
+
+
+@media (max-width: 800px) {
+  .icons{
+    display: none;
+  }
+  .navbar-link{
+    display: none;
+  }
+  .vl{
+    display: none;
+  }
+}

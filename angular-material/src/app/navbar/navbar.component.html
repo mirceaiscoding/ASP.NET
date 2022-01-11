@@ -12,30 +12,34 @@
     </span>
   </a>
   <span class="example-spacer"></span>
-  <div *ngIf="authService.getRole() == 'Admin'">
+  <div class="navbar-link" *ngIf="authService.getRole() == 'Admin'">
     <a routerLink="appointments">
       <button mat-button class="toolbar-button">
         DATABASE
       </button>
     </a>
   </div>
-  <div *ngIf="authService.getRole() != 'Admin'">
+  <div class="navbar-link" *ngIf="authService.getRole() != 'Admin'">
     <a routerLink="doctors">
       <button mat-button class="toolbar-button">
         DOCTORS
       </button>
     </a>
   </div>
-  <a routerLink="services">
-    <button mat-button class="toolbar-button">
-      SERVICES
-    </button>
-  </a>
-  <a routerLink="dashboard">
-    <button mat-button class="toolbar-button">
-      ACCOUNT
-    </button>
-  </a>
+  <div class="navbar-link">
+    <a routerLink="services">
+      <button mat-button class="toolbar-button">
+        SERVICES
+      </button>
+    </a>
+  </div>
+  <div class="navbar-link">
+    <a routerLink="dashboard">
+      <button mat-button class="toolbar-button">
+        ACCOUNT
+      </button>
+    </a>
+  </div>
 
   <div class="vl"></div>
 
@@ -63,6 +67,11 @@
       </svg>
     </a>
   </div>
-
+  
+  <button mat-icon-button class="toolbar-button menu-button" (click)="emitOnMenuClick()">
+    <mat-icon>
+      menu
+    </mat-icon>
+  </button>
 
 </mat-toolbar>

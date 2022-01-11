@@ -1,0 +1,27 @@
+
+.mat-sidenav{
+    width: 250px;
+}
+
+.mat-nav-list{
+    height: 80%;
+}
+
+.sidenav-list{
+    display: flex;
+    height: 600px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
+}
+
+.navbar-link{
+    text-align: center;
+}
+
+.icons{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+}

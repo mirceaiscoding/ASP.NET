@@ -61,11 +61,11 @@ import { AddAppointmentMatDialogComponent } from './pages/appointments/add-appoi
 import { ProceduresComponent } from './pages/procedures/procedures.component';
 import { AddProcedureDialogComponent } from './pages/procedures/add-procedure-dialog/add-procedure-dialog.component';
 import { CurrencyConversionPipe } from './pipes/currency-conversion.pipe';
-import { PacientProfileComponent } from './pages/pacient-profile/pacient-profile.component';
 import { FullNamePipe } from './pipes/full-name.pipe';
 import { IdFullNamePipe } from './pipes/id-full-name.pipe';
-import { HighlightAppointmentStateDirective } from './directives/highlight-appointment-state.directive';
 import { EditProfileDialogComponent } from './pages/pacient-profile/edit-profile-dialog/edit-profile-dialog.component';
+import { PacientProfileComponent } from './pages/pacient-profile/pacient-profile.component';
+import { HighlightAppointmentStateDirective } from './directives/highlight-appointment-state.directive';
 
 const materialModules = [
   CdkTreeModule,
