@@ -1,5 +1,6 @@
 import { UpperCasePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DoctorDTO } from 'src/app/interfaces/doctor-dto';
 import { PublicInformationsService } from 'src/app/services/public-informations.service';
 import { SelectedDoctorService } from 'src/app/services/selected-doctor.service';
@@ -11,11 +12,11 @@ import { SelectedDoctorService } from 'src/app/services/selected-doctor.service'
 })
 export class DoctorsPresentationComponent implements OnInit {
 
-  constructor(private publicInformationsService:PublicInformationsService, private selectedDoctorService: SelectedDoctorService) { }
+  constructor(
+    private publicInformationsService:PublicInformationsService,
+    private router: Router) { }
 
   doctors: DoctorDTO[] = [];
-
-  selectedDoctor: DoctorDTO = this.selectedDoctorService.noDoctor;
 
   getImagePath(doctor: DoctorDTO): string
   {
@@ -29,17 +30,8 @@ export class DoctorsPresentationComponent implements OnInit {
     });
   }
 
-  selectDoctor(doctor: DoctorDTO) {
-    console.log("Selected doctor", doctor);
-    this.selectedDoctorService.changeDoctor(doctor);
-    this.selectedDoctor = doctor;
-  }
-
-  hasSelectedDoctor(): boolean {
-    return this.selectedDoctor !== this.selectedDoctorService.noDoctor;
-  }
-
-  goToRequestConsultation() {
+  goToMakeAppointment(doctor: DoctorDTO) {
+    this.router.navigate(["make-appointment", doctor.id]);
   }
 
 }

@@ -66,6 +66,7 @@ import { IdFullNamePipe } from './pipes/id-full-name.pipe';
 import { EditProfileDialogComponent } from './pages/pacient-profile/edit-profile-dialog/edit-profile-dialog.component';
 import { PacientProfileComponent } from './pages/pacient-profile/pacient-profile.component';
 import { HighlightAppointmentStateDirective } from './directives/highlight-appointment-state.directive';
+import { MakeAppointmentComponent } from './pages/make-appointment/make-appointment.component';
 
 const materialModules = [
   CdkTreeModule,
@@ -132,6 +133,7 @@ const materialModules = [
     IdFullNamePipe,
     HighlightAppointmentStateDirective,
     EditProfileDialogComponent,
+    MakeAppointmentComponent,
   ],
   imports: [
     materialModules,

@@ -34,4 +34,11 @@ export class PublicInformationsService {
     return this.http.get(this.baseUrl + 'api/procedures/get-all-procedures')
     .pipe(map((response) => <ProcedureDTO[]> response));
   }
+
+  getDoctorById(id: number): Observable<DoctorDTO>
+  {
+    return this.http.get(this.baseUrl + 'api/doctors/get-doctor-by-id/' + id)
+    .pipe(map((response) => <DoctorDTO> response));
+  }
+
 }
