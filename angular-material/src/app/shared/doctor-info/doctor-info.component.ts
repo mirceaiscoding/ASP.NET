@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DoctorDTO } from 'src/app/interfaces/doctor-dto';
+import { SelectedDoctorService } from 'src/app/services/selected-doctor.service';
 
 @Component({
   selector: 'app-doctor-info',
@@ -8,7 +9,7 @@ import { DoctorDTO } from 'src/app/interfaces/doctor-dto';
 })
 export class DoctorInfoComponent implements OnInit {
 
-  @Input() doctor:DoctorDTO = {
+  @Input() doctor: DoctorDTO = {
     id: -1,
     firstName: '',
     lastName: '',
@@ -18,9 +19,14 @@ export class DoctorInfoComponent implements OnInit {
 
   @Output() onSelectDoctor: EventEmitter<DoctorDTO> = new EventEmitter<DoctorDTO>();
 
-  constructor() { }
+  constructor(private selectedDoctorService: SelectedDoctorService) { }
+
+  selectedDoctor: DoctorDTO = this.selectedDoctorService.noDoctor;
 
   ngOnInit(): void {
+    this.selectedDoctorService.currentSelectedDoctor.subscribe((response: DoctorDTO) => {
+      this.selectedDoctor = response;
+    });
   }
 
   selectDoctor(doctor: DoctorDTO)
@@ -28,9 +34,16 @@ export class DoctorInfoComponent implements OnInit {
     this.onSelectDoctor.emit(doctor);
   }
 
+  isSelected(doctor: DoctorDTO) {
+    return this.selectedDoctor == doctor;
+  }
+
   getImagePath(doctor: DoctorDTO): string
   {
     return "assets/" + (doctor.lastName + "_" + doctor.firstName + "_Photo").toUpperCase() + ".jpg";
   }
 
+  requestConsultation(){
+    
+  }
 }

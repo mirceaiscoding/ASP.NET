@@ -1,8 +1,16 @@
-<div class="doctor-card" (click)="selectDoctor(doctor)">
+<div class="doctor-card" (click)="selectDoctor(doctor)" [ngClass]="{'selected-doctor-card': isSelected(doctor)}">
     <div class="doctor-photo-container">
         <img class="doctor-photo" [src]="getImagePath(doctor)" alt=""/>
     </div>
     <div class="container">
       <h4><b>{{doctor.lastName}} {{doctor.firstName}}</b></h4>
       <p>{{doctor.jobDescription}}</p>
+
+      <div class="appointment-button"
+       [style.visibility]="isSelected(doctor) ? 'visible' : 'hidden'"
+       [style.opacity]="isSelected(doctor) ? '1' : '0'">
+          <button mat-button mat-raised-button color="accent" (click)="requestConsultation()">
+            MAKE AN APPOINTMENT
+          </button>
+      </div>
 </div>

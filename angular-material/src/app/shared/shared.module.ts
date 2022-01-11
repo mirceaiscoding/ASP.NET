@@ -4,6 +4,7 @@ import { DoctorInfoComponent } from './doctor-info/doctor-info.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatButton, MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,8 @@ import { MatInputModule } from '@angular/material/input';
     MatInputModule,
     MatTableModule,
     MatFormFieldModule,
+    MatButtonModule
+
   ],
   exports: [
     DoctorInfoComponent,
