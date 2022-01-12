@@ -12,11 +12,7 @@ import { MatButton, MatButtonModule } from '@angular/material/button';
   ],
   imports: [
     CommonModule,
-    MatInputModule,
-    MatTableModule,
-    MatFormFieldModule,
     MatButtonModule
-
   ],
   exports: [
     DoctorInfoComponent,
