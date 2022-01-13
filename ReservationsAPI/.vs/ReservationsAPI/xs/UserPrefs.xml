@@ -1,7 +1,6 @@
 ﻿<Properties StartupConfiguration="{4F96D45A-291E-4B3E-8E04-E668420FB686}|Default">
   <MonoDevelop.Ide.ItemProperties.ReservationsAPI PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.ItemProperties.ReservationsAPI.BLL FirstBuild="True" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../ReservationsAPI.DAL/ReservationsContext.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../ReservationsAPI.BLL/Helpers/TokenHelper.cs">
     <Files>
       <File FileName="Startup.cs" Line="32" Column="1" />
       <File FileName="Program.cs" />
@@ -10,6 +9,10 @@
       <File FileName="../ReservationsAPI.DAL/Class1.cs" Line="1" Column="1" />
       <File FileName="../ReservationsAPI.DAL/Repositories/DoctorsRepository.cs" Line="4" Column="17" />
       <File FileName="../ReservationsAPI.DAL/ReservationsContext.cs" Line="3" Column="37" />
+      <File FileName="../ReservationsAPI.BLL/Class1.cs" Line="1" Column="1" />
+      <File FileName="Controllers/AppointmentsController.cs" Line="10" Column="30" />
+      <File FileName="Controllers/AuthController.cs" Line="1" Column="1" />
+      <File FileName="../ReservationsAPI.BLL/Helpers/TokenHelper.cs" Line="3" Column="14" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -19,12 +22,15 @@
               <Node name="Dependencies" expanded="True">
                 <Node name="PackageDependencies" expanded="True" />
               </Node>
+              <Node name="Controllers" expanded="True" />
             </Node>
-            <Node name="ReservationsAPI.DAL" expanded="True" selected="True">
-              <Node name="Dependencies" expanded="True">
-                <Node name="FrameworkReferences" expanded="True" />
+            <Node name="ReservationsAPI.BLL" expanded="True">
+              <Node name="Dependencies" expanded="True" />
+              <Node name="Helpers" expanded="True">
+                <Node name="TokenHelper.cs" selected="True" />
               </Node>
             </Node>
+            <Node name="ReservationsAPI.DAL" expanded="True" />
           </Node>
         </State>
       </Pad>

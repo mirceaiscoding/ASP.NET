@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReservationsAPI", "Reservat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReservationsAPI.DAL", "ReservationsAPI.DAL\ReservationsAPI.DAL.csproj", "{04AAA591-4018-4D64-800A-9ED75D4E5AB4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReservationsAPI.BLL", "ReservationsAPI.BLL\ReservationsAPI.BLL.csproj", "{14727A86-AE5A-40F2-AEC9-8F53DD55145B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{04AAA591-4018-4D64-800A-9ED75D4E5AB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04AAA591-4018-4D64-800A-9ED75D4E5AB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04AAA591-4018-4D64-800A-9ED75D4E5AB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14727A86-AE5A-40F2-AEC9-8F53DD55145B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14727A86-AE5A-40F2-AEC9-8F53DD55145B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14727A86-AE5A-40F2-AEC9-8F53DD55145B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14727A86-AE5A-40F2-AEC9-8F53DD55145B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
