@@ -67,6 +67,7 @@ import { EditProfileDialogComponent } from './pages/pacient-profile/edit-profile
 import { PacientProfileComponent } from './pages/pacient-profile/pacient-profile.component';
 import { HighlightAppointmentStateDirective } from './directives/highlight-appointment-state.directive';
 import { MakeAppointmentComponent } from './pages/make-appointment/make-appointment.component';
+import { DoctorProfileComponent } from './pages/doctor-profile/doctor-profile.component';
 
 const materialModules = [
   CdkTreeModule,
@@ -134,6 +135,7 @@ const materialModules = [
     HighlightAppointmentStateDirective,
     EditProfileDialogComponent,
     MakeAppointmentComponent,
+    DoctorProfileComponent,
   ],
   imports: [
     materialModules,

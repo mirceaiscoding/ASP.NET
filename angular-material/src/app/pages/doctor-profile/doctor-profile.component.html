@@ -1,0 +1,21 @@
+<div class="weekdays-container">
+    <div class="page-title">SCHEDULE</div>
+
+    <div class="weekdays">
+        <div *ngFor="let weekday of weekdays">
+          <mat-card class="weekday-card">
+            {{ weekday.name }}
+
+            <mat-card-content> s </mat-card-content>
+
+              <mat-card-actions>
+                <button mat-raised-button
+                  color="primary">UPDATE</button>
+              </mat-card-actions>
+  
+          </mat-card>
+        </div>
+
+    </div>
+
+</div>

@@ -4,6 +4,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { RoleGuard } from './guards/role.guard';
 import { AppointmentsComponent } from './pages/appointments/appointments.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { DoctorProfileComponent } from './pages/doctor-profile/doctor-profile.component';
 import { DoctorsPresentationComponent } from './pages/doctors-presentation/doctors-presentation.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -54,6 +55,12 @@ const routes: Routes = [
     component: PacientProfileComponent,
     canActivate: [AuthGuard, RoleGuard],
     data: {roles: ["Pacient"]}  
+  },
+  {
+    path: 'doctor-profile/:id',
+    component: DoctorProfileComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: {roles: ["Doctor"]}  
   },
   { 
     path: 'make-appointment/:id', 

@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
   <ItemGroup>
@@ -62,5 +64,10 @@
     <Folder Include="BLL\Interfaces\" />
     <Folder Include="BLL\Managers\" />
     <Folder Include="DAL\Models\DataTransferObjects\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="ReservationsAPI.DAL\ReservationsAPI.DAL.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
 </Project>

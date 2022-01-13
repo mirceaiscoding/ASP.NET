@@ -18,6 +18,12 @@ export class DashboardComponent implements OnInit {
         this.router.navigate(["profile/" + userId]);
       }
     }
+    if (this.role == "Doctor") {
+      var userId = this.authService.getUserId();
+      if (userId) {
+        this.router.navigate(["doctor-profile/" + userId]);
+      }
+    }
   }
 
   role: string = "";
