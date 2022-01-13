@@ -14,21 +14,19 @@
     <None Remove="Microsoft.EntityFrameworkCore.Relational" />
     <None Remove="Microsoft.EntityFrameworkCore.Tools" />
     <None Remove="Microsoft.AspNetCore.Mvc.NewtonsoftJson" />
-    <None Remove="DAL\" />
-    <None Remove="DAL\Entities\" />
-    <None Remove="DAL\Interfaces\" />
-    <None Remove="DAL\Repositories\" />
-    <None Remove="DAL\Models\" />
     <None Remove="BLL\" />
     <None Remove="BLL\Interfaces\" />
     <None Remove="BLL\Managers\" />
     <None Remove="AutoMapper" />
     <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
-    <None Remove="DAL\Models\DataTransferObjects\" />
     <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
     <None Remove="Microsoft.AspNetCore.Identity" />
     <None Remove="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
     <None Remove="Microsoft.AspNetCore.Cors" />
+    <None Remove="ReservationsAPI.DAL\Entities\" />
+    <None Remove="ReservationsAPI.DAL\Interfaces\" />
+    <None Remove="ReservationsAPI.DAL\Models\" />
+    <None Remove="ReservationsAPI.DAL\Repositories\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.11">
@@ -55,15 +53,13 @@
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DAL\" />
-    <Folder Include="DAL\Entities\" />
-    <Folder Include="DAL\Interfaces\" />
-    <Folder Include="DAL\Repositories\" />
-    <Folder Include="DAL\Models\" />
     <Folder Include="BLL\" />
     <Folder Include="BLL\Interfaces\" />
     <Folder Include="BLL\Managers\" />
-    <Folder Include="DAL\Models\DataTransferObjects\" />
+    <Folder Include="ReservationsAPI.DAL\Entities\" />
+    <Folder Include="ReservationsAPI.DAL\Interfaces\" />
+    <Folder Include="ReservationsAPI.DAL\Models\" />
+    <Folder Include="ReservationsAPI.DAL\Repositories\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="ReservationsAPI.DAL\ReservationsAPI.DAL.csproj">

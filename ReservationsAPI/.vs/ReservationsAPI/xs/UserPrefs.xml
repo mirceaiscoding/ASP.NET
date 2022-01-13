@@ -1,10 +1,25 @@
 ﻿<Properties StartupConfiguration="{4F96D45A-291E-4B3E-8E04-E668420FB686}|Default">
   <MonoDevelop.Ide.ItemProperties.ReservationsAPI PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="DAL/Repositories/PacientsRepository.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ReservationsAPI.DAL/Repositories/DoctorsRepository.cs">
     <Files>
-      <File FileName="ReservationsAPI.csproj" Line="33" Column="14" />
+      <File FileName="ReservationsAPI.csproj" Line="31" Column="14" />
       <File FileName="DAL/Repositories/GenericRepository.cs" Line="10" Column="75" />
       <File FileName="DAL/Repositories/PacientsRepository.cs" Line="1" Column="1" />
+      <File FileName="ReservationsAPI.DAL/InitialSeed.cs" Line="3" Column="1" />
+      <File FileName="ReservationsAPI.DAL/Entities/Appointment.cs" Line="1" Column="1" />
+      <File FileName="ReservationsAPI.DAL/Interfaces/IAppointmentsRepository.cs" Line="1" Column="1" />
+      <File FileName="ReservationsAPI.DAL/Interfaces/IPacientsRepository.cs" Line="1" Column="1" />
+      <File FileName="ReservationsAPI.DAL/Interfaces/IProceduresRepository.cs" Line="1" Column="1" />
+      <File FileName="ReservationsAPI.DAL/Interfaces/IUnitOfWork.cs" Line="1" Column="1" />
+      <File FileName="ReservationsAPI.DAL/Models/AppointmentsInformationModel.cs" Line="1" Column="1" />
+      <File FileName="ReservationsAPI.DAL/Models/DataTransferObjects/AppointmentDTO.cs" Line="1" Column="1" />
+      <File FileName="ReservationsAPI.DAL/Models/DataTransferObjects/DoctorPublicInformationDTO.cs" Line="1" Column="1" />
+      <File FileName="ReservationsAPI.DAL/Models/RefreshModel.cs" Line="1" Column="1" />
+      <File FileName="ReservationsAPI.DAL/ReservationsContext.cs" Line="1" Column="1" />
+      <File FileName="ReservationsAPI.DAL/UnitOfWork.cs" Line="1" Column="1" />
+      <File FileName="ReservationsAPI.DAL/Repositories/AppointmentsRepository.cs" Line="5" Column="7" />
+      <File FileName="ReservationsAPI.DAL/Entities/Pacient.cs" Line="22" Column="2" />
+      <File FileName="ReservationsAPI.DAL/Repositories/DoctorsRepository.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -12,16 +27,19 @@
           <Node name="ReservationsAPI" expanded="True">
             <Node name="ReservationsAPI" expanded="True">
               <Node name="Dependencies" expanded="True">
-                <Node name="ProjectDependencies" expanded="True" />
+                <Node name="PackageDependencies" expanded="True" />
               </Node>
-              <Node name="DAL" expanded="True">
-                <Node name="Repositories" expanded="True">
-                  <Node name="PacientsRepository.cs" selected="True" />
-                </Node>
+              <Node name="ReservationsAPI.DAL" expanded="True">
+                <Node name="Entities" expanded="True" />
               </Node>
             </Node>
             <Node name="ReservationsAPI.DAL" expanded="True">
-              <Node name="Dependencies" expanded="True" />
+              <Node name="Dependencies" expanded="True">
+                <Node name="FrameworkReferences" expanded="True" />
+              </Node>
+              <Node name="Repositories" expanded="True">
+                <Node name="DoctorsRepository.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>
