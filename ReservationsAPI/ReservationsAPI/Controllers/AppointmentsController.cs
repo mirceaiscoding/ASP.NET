@@ -7,7 +7,7 @@ using ReservationsAPI.BLL.Interfaces;
 using ReservationsAPI.DAL.Models;
 using ReservationsAPI.DAL.Models.DataTransferObjects;
 
-namespace ReservationsAPI.DAL.Controllers
+namespace ReservationsAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

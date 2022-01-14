@@ -95,7 +95,7 @@ namespace ReservationsAPI
 
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
-                builder.WithOrigins("http://localhost:4200")
+                builder.WithOrigins("http://localhost:4200", "http://localhost:5001")
                        .AllowAnyMethod()
                        .AllowAnyHeader();
             }));
